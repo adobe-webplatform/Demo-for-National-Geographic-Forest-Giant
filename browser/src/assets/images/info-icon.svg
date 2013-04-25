@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.2.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="26.5px" height="26.5px" viewBox="0 0 26.5 26.5" enable-background="new 0 0 26.5 26.5" xml:space="preserve">
+<g>
+	<g>
+		<defs>
+			<rect id="SVGID_1_" width="26.5" height="26.5"/>
+		</defs>
+		<clipPath id="SVGID_2_">
+			<use xlink:href="#SVGID_1_"  overflow="visible"/>
+		</clipPath>
+		<g clip-path="url(#SVGID_2_)">
+			<g>
+				<defs>
+					<rect id="SVGID_3_" width="26.5" height="26.5"/>
+				</defs>
+				<clipPath id="SVGID_4_">
+					<use xlink:href="#SVGID_3_"  overflow="visible"/>
+				</clipPath>
+				<g clip-path="url(#SVGID_4_)">
+					<g opacity="0.75">
+						<g>
+							<defs>
+								<rect id="SVGID_5_" x="-9" y="-8" width="44.5" height="35.5"/>
+							</defs>
+							<clipPath id="SVGID_6_">
+								<use xlink:href="#SVGID_5_"  overflow="visible"/>
+							</clipPath>
+							<circle clip-path="url(#SVGID_6_)" fill="none" stroke="#30955F" stroke-width="2.5" cx="13.25" cy="13.25" r="12"/>
+						</g>
+					</g>
+					<g>
+						<defs>
+							<rect id="SVGID_7_" width="26.5" height="26.5"/>
+						</defs>
+						<clipPath id="SVGID_8_">
+							<use xlink:href="#SVGID_7_"  overflow="visible"/>
+						</clipPath>
+						<path clip-path="url(#SVGID_8_)" fill="#30955F" d="M15.111,16.268c-0.493,0.426-0.936,0.664-1.088,0.664
+							c-0.119,0-0.153-0.171-0.035-0.664l0.953-3.927c0.254-1.021,0.152-1.683-0.34-1.683c-0.613,0-1.871,0.662-3.095,1.802
+							l0.237,0.459c0.408-0.289,0.885-0.578,1.037-0.578c0.103,0,0.085,0.17,0,0.595l-0.884,3.791
+							c-0.357,1.496,0.017,1.836,0.527,1.836c0.51,0,1.785-0.543,2.992-1.869L15.111,16.268z M14.652,7.19
+							c-0.815,0-1.258,0.731-1.258,1.292c0,0.646,0.408,1.037,1.002,1.037c0.748,0,1.242-0.629,1.242-1.309
+							c0-0.544-0.324-1.02-0.97-1.02H14.652z"/>
+					</g>
+				</g>
+			</g>
+		</g>
+	</g>
+</g>
+</svg>

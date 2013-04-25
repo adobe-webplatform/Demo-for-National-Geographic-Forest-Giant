@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>National Geographic: Forest Giant</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+
+        <link rel="apple-touch-icon" href="assets/images/icon/apple-touch-icon.png" />
+        <link rel="apple-touch-icon" sizes="57x57" href="assets/images/icon/apple-touch-icon-57x57-precomposed.png"/>
+        <link rel="apple-touch-icon" sizes="72x72" href="assets/images/icon/apple-touch-icon-72x72-precomposed.png" />
+        <link rel="apple-touch-icon" sizes="114x114" href="assets/images/icon/apple-touch-icon-114x114-precomposed.png" />
+        <link rel="apple-touch-icon" sizes="144x144" href="assets/images/icon/apple-touch-icon-144x144-precomposed.png" />
+
+        <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
+
+        <script src="js/vendor/cordova-2.5.0.js"></script>
+        <script src="//use.edgefonts.net/indie-flower:n4;judson;open-sans.js"></script>
+
+        <!-- <link href="css/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> -->
+        <link href="css/print.css" media="print" rel="stylesheet" type="text/css" />
+        <link href="css/shaders.css" media="screen, projection" rel="stylesheet" type="text/css" />
+    <!--[if IE]>
+        <link href="/stylesheets/ie.css" media="screen, projection" rel="stylesheet" type="text/css" />
+    <![endif]-->
+
+        <style>
+        #preloader{
+            position: fixed;
+            top: 0px;
+            height: 100%;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 1);
+            z-index: 100;
+        }
+
+        #instructions{
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+        }
+        
+        .instructions-content{
+            margin: 100px auto;
+            width: 50%;
+            font-family: 'open-sans', sans-serif;
+            font-size: 1rem;
+        }
+
+        </style>
+        <!-- <script type="text/javascript" src="//use.typekit.net/did2dby.js"></script> -->
+        <!-- <script type="text/javascript">try{Typekit.load();}catch(e){}</script> -->
+        <script src="js/vendor/modernizr-build.min.js"></script>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+
+        <div id="beacon"></div>
+
+        <header>
+            <img src="assets/images/ng-logo.svg"> 
+            <h2>National Geographic Magazine</h2>
+            <button id="sort-btn">Sort By</button>
+            <div id="search-wrap">
+                <button id="search-btn"></button>
+                <form id="search-form">
+                    <input placeholder="search">
+                </form>
+            </div>
+            <button id="comments-btn">
+                <div id="comment-count">3</div>
+            </button>
+        </header>
+        
+        <aside id="item-list">
+        <!--
+            <p><a href="#">Sign in</a></p>
+            -->
+            <h3>Article comments</h3>
+            <div id="comment-list">
+                <article>
+                    <header>
+                        <div class="avatar"></div>
+                        <h4>Robert Johnson</h4>
+                        <time>2013-03-22</time>
+                    </header>
+                    <p>Great article!</p>
+                </article>
+                <article>
+                    <header>
+                        <div class="avatar"></div>
+                        <h4>John Smith</h4>
+                        <time>2013-03-22</time>
+                    </header>
+                    <p>In my opinion, in botany, a tree is a plant with an elongated stem, or trunk, supporting leaves or branches.</p>
+                    <p>In some usages, the definition of a tree may be narrower, including only woody plants, only plants that are usable as lumber, only plants above a specified height or only perennial species. At its broadest, trees include the taller palms, the tree ferns, bananas and bamboo.</p>
+                </article>
+                <article>
+                    <header>
+                        <div class="avatar"></div>
+                        <h4>Martha Jones</h4>
+                        <time>2013-03-22</time>
+                    </header>
+                    <p>I think a tree typically has many secondary branches supported clear of the ground by the trunk. This trunk typically contains woody tissue for strength, and vascular tissue to carry materials from one part of the tree to another. For most trees it is surrounded by a layer of bark which serves as a protective barrier. Below the ground, the roots branch and spread out widely; they serve to anchor the tree and extract moisture and nutrients from the soil. Above ground, the branches divide into smaller branches and shoots. The shoots typically bear leaves, which capture light energy and convert it into chemical energy by photosynthesis, providing the food needed by the tree for its growth and development.</p>
+                    <p class="overflow"><a href="#">See full comment</a></p>
+            </article>
+            </div>
+            <div class="comment_entry">
+                <textarea placeholder="Enter your comment"></textarea>
+                <button>Preview</button>
+                <button>Submit</button>
+            </div>
+            <!--
+            <ul>
+                <li><a href="#">Great article. I love the part about the thing with the stuff.</a></li>
+                <li><a href="#">Wow, what an amazing experience this must have been, those trees are really something.</a></li>
+                <li><a href="#">I actually live near this location and can state for a fact that something something.</a></li>
+            </ul>
+            -->
+        </aside>
+
+        <div id="main">
+            <article>
+                <div id="cover" class="img-cover img"></div>
+                <section class="col">
+                    <time>MAY 2013</time>
+                    <h1>Forest Giant</h1>
+                    <span class="subhead balance">
+                        A tree-climbing scientist and his team have learned surprising new facts about giant sequoias by measuring them inch by inch.
+                    </span>
+
+                    <div class="byline">
+                        <div>By <a href="#">David Quammen</a></div>
+                        <div>Photographs by <a href="#">Michael Nichols</a></div>
+                    </div>
+                </section>
+
+                <section id="share-tools" class="col">
+                    <a class="square comment">
+                        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="37.5px" height="33.5px" viewBox="0 0 37.5 33.5" enable-background="new 0 0 37.5 33.5" xml:space="preserve">
+                            <polygon fill="#00acff" points="18.743,13.953 18.743,4.086 4.177,4.086 4.177,13.953 11.413,13.953 14.46,18 15.507,13.953 "/>
+                        </svg>
+                        <span class="square-label">24</span>
+                    </a>
+                    <a class="square share">
+                        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="37.5px" height="33.5px" viewBox="0 0 37.5 33.5" enable-background="new 0 0 37.5 33.5" xml:space="preserve">
+                            <polygon fill="#00acff" points="19.567,9.551 13.257,4.188 13.257,7.343 3.267,7.343 3.267,11.759 13.257,11.759 13.257,14.599 "/>
+                        </svg>
+                        <span class="square-label">8</span>
+                    </a>
+                    <a class="square like">
+                        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="37.5px" height="33.5px" viewBox="0 0 37.5 33.5" enable-background="new 0 0 37.5 33.5" xml:space="preserve">
+                            <path fill="#00acff" d="M16.542,7.438c0-0.945-0.319-1.724-0.956-2.334c-0.637-0.609-1.431-0.915-2.383-0.915 c-0.651,0-1.256,0.17-1.813,0.51c-0.414,0.253-0.723,1.021-0.931,1.675c-0.208-0.654-0.516-1.422-0.93-1.675 c-0.558-0.34-1.162-0.51-1.813-0.51c-0.952,0-1.746,0.306-2.383,0.915c-0.637,0.61-0.956,1.389-0.956,2.334 c0,0.963,0.323,1.85,0.968,2.658c0.607,0.662,1.211,1.327,1.813,1.994c0.646,0.831,3.301,3.808,3.301,3.808s2.656-2.977,3.302-3.808 c0.601-0.667,1.206-1.332,1.813-1.994C16.219,9.287,16.542,8.4,16.542,7.438"/>
+                        </svg>
+                        <span class="square-label">156</span>
+                    </a>
+                    <div id="tag-holder">
+                        <a class="tag" href="#">Trees</a>
+                        <a class="tag" href="#">Nature</a>
+                        <a class="tag" href="#">Plants</a>
+                        <a class="tag" href="#">Documentary</a>
+                        <a class="tag" href="#">Art</a>
+                        <a class="tag" href="#">Photography</a>
+                    </div>
+                </section>
+                
+                <section class="col">
+                    <div id="region1" class="region"></div>
+                </section>
+
+                <section class="col">
+                    <figure id="video-btn" class="js-animates">
+                        <img class="img img-video" src="" data-src="assets/images/video.jpg" width="480px" height="270px">
+                        <figcaption>
+                            <div class="video-label">
+                                <img class="play-icon" src="assets/images/play_btn.svg">
+                                <div>Video (2:14)</div>
+                            </div>
+                            <div class="video-label-text">
+                                <h5>Sequoia in the Snow</h5>
+                                <div>
+                                Go behind the scenes of this breathtaking photo shoot.
+                                </div>
+                            </div>
+                        </figcaption>
+                    </figure>
+
+                    <div id="region2" class="region"></div>
+                </section>
+
+                <section>
+                    <blockquote class="balance js-animates">They are so old because they have survived all the things that could have killed them.</blockquote>
+                </section>
+
+                <section>
+                    <div id="img1" class="img img-mist js-animates">
+                        <img src="assets/images/interactive.svg"> 
+                    </div>
+                    <div id="region3" class="region"></div>
+
+                    <!-- <br class="clear"/> -->
+
+                    <!-- <div id="region4" class="region"></div> -->
+                    <div id="region5" class="region"></div>
+                    
+                    <br class="clear"/>
+                </section>
+
+                <div id="img2" class="img img-bottom js-animates">
+                    <div class="copy">
+                        The giant sequoia is a snow tree, Sillett says, adapted for long winters in the Sierra. But it's a fire tree too. Thick bark protects it from burning in lightning-caused fires, which open cones and clear the understory, allowing saplings to find light and prosper. 
+                    </div>
+                </div>
+
+                <div id="region6" class="region"></div>
+<!--
+                <div id="ad1">
+                    <img src="assets/images/banner.jpg" width="768" height="90">
+                </div>
+-->       
+                <section id="section78">
+                    <figure id="figureTree">
+                        <img height="250" src="assets/images/xl/full_small.png">
+                        <p>Cloaked in the snow of California's Sierra Nevada, the 3,200-year-old giant sequoia called the President rises 247 feet. Two other sequoias have wider trunks, but none has a larger crown, say the scientists who climbed it. The figure at the top seems taller than the other climbers because he's standing forward on one of the great limbs.</p>
+                        <hr class="thick" />
+                        <a id="zoomViewBtn" href="#">Click here to Pan & Zoom</a>
+                    </figure>
+
+                    <div id="region7" class="region"></div>
+                    <!-- <div id="region8" class="region"></div> -->
+                </section>
+
+                <div id="img3" class="img img-dark js-animates">
+                    <div class="copy">
+                        Resolute and anchored in their remote habitat, the giant sequoias withstand the weight of winter snow and many other stresses. They have seen times and trends and people come and go; we are merely the latest.
+                    </div>
+                </div>
+
+                <section id="section9">
+                    <img id="img4" width="400px" class="img img-log js-animates" src="" data-src="assets/images/img4_log.jpg" width="100%">
+                    <div id="region9" class="region"></div>
+                    <div id="region10" class="region"></div>
+                    <div id="region11" class="region"></div>
+                    <aside id="asideBook">
+                        <i>David Quammen's new book, Spillover, is about zoonotic diseases. Michael Nichols photographed California's giant redwoods for the October 2009 issue.</i>
+                        <hr class="thick" />
+                        <b>Society Grant</b>
+                        <p>
+                            This project was funded in part by your National Geographic Society membership.
+                        </p>
+                        <p>
+                            We thank Sequoia National Park for its generous cooperation in the production of this article.
+                        </p>
+                    </aside>
+
+                </section>
+
+                <!-- <section class="col"> -->
+                <!--     <div id="region11" class="region"></div> -->
+                <!-- </section> -->
+
+                <!-- <section class="col"> -->
+                <!--     <div id="region12" class="region"></div> -->
+                <!-- </section> -->
+
+
+                <section id="layers">
+                    <section id="tree">
+                        <div id="tree-columns">
+                            <div class="tree-column">
+                                <h4>THE PRESIDENT</h4>
+                                <div>Sequoiadendron giganteum</div>
+                                <ul>
+                                    <li><b>HEIGHT:</b> 247 feet</li>
+                                    <li><b>AGE:</b> at least 3,200 years</li>
+                                    <li><b>DIAMETER AT BASE:</b> 27 feet</li>
+                                    <li><b>TOTAL VOLUME:</b> 54,000 cubic feet</li>
+                                </ul>
+                            </div>
+                            <canvas id="tree-canvas" width="388" height="691"></canvas>
+                            <div id="tree-list-column" class="tree-column">
+                                <!-- <h5>tap to highlight features</h5> -->
+                                <ul id="tree-list">
+                                    <li data-num="0">
+                                        <h6>Shape</h6>
+                                        <p>The President reached its current height well over a thousand years ago but continues to expand in volume of wood, its crown growing more intricate.</p>
+                                        <p>The top 40 feet of the main trunk, struck by lightning, has been dead for more than a thousand years.</p>
+                                    </li>
+                                    <li data-num="1">
+                                        <h6>Foliage</h6>
+                                        <p>The scientists who measured every part of the tree estimate it has nearly two billion leaves and more than 82,000 cones. Each cone, the size of a chicken’s egg, holds about 200 seeds.</p>
+                                    </li>
+                                    <li data-num="2">
+                                        <h6>limbs</h6>
+                                        <p>The four largest limbs range in diameter from five to nearly seven feet; the largest is about 60 feet long. The tree’s total number of branches: 534.</p>
+                                    </li>
+                                    <li data-num="3">
+                                        <h6>groves</h6>
+                                        <p>Sequoias rarely grow in pure stands, but by sheer size they dominate their groves, which hold a variety of tree species.</p>
+                                    </li>
+                                </ul>
+                            </div>
+                            <br class="clear"/>
+                        </div>
+                        <div class="popup-close">BACK</div>
+                    </section>
+
+                    <section id="map">
+
+                        <div class="map-content-main">
+                            <h2>Where the Giants Grow</h2>
+                            <p>
+                                A slender, 250-mile-long corridor on the western slope of the Sierra Nevada is the giant sequoia’s only natural habitat. No tree surpasses it in volume of wood. Fortun&shy;ately, logging proved impractical, and in 1890 many of the titans gained protect&shy;ion with the creation of Sequoia and Yosemite National Parks.
+                            </p>
+                            <figure id="map-california-figure" class="js-animates">
+                                <img id="map-california" src="assets/images/california.svg">
+                                <figcaption>
+                                    AREA ENLARGED
+                                </figcaption>
+                            </figure>
+                        </div>
+
+                        <div id="map-dist" class="js-animates">
+                            <h5>GROVE DISTRIBUTION</h5>
+                            All but 8 of the 67 identified sequoia groves lie south of 
+                            the Kings River. These southern groves usually hold more—and larger—trees. 
+                        </div>
+
+                        <div id="map-limit" class="js-animates">
+                            <h5>NORTHERN LIMIT</h5>
+                            Only six giant sequoias form this isolated old-growth grove.
+                        </div>
+
+                        <!-- <figure id="map-tree-figure"> -->
+                            <!-- <img id="map-tree" class="js-animates" src="assets/images/tree_small.png" width="100px"> -->
+                        <!-- </figure> -->
+                        <a id="map-plus-1" class="plus map-btn js-animates" data-popup="explore" href="#"><img src="assets/images/plus-circle.svg"><span>tap to explore the president tree</span></a>
+                        <a id="map-plus-2" class="plus map-btn js-animates" data-popup="elevation" href="#"><img src="assets/images/plus-circle.svg"><span>elevation cross section</span></a>
+                            <a id="map-plus-3" class="plus map-btn js-animates" data-popup="forest" href="#"><img src="assets/images/plus-circle.svg"><span>giant forest</span></a>
+                        <!-- <a id="map-credits" class="info map-btn" href="#">credits</a> -->
+                    </section>
+                </section>
+
+                <!-- <section id="making"> -->
+                <!--     MAKING OF.. -->
+                <!-- </section> -->
+
+                <!-- begin content-->
+                <div id="content" class="hyphenate">
+                    <p class="first">
+                    <span class="drop-caps"></span>
+                            n a gentle slope above a trail junction in Sequoia National Park, about 7,000 feet above sea level in the southern Sierra Nevada, looms a very big tree. Its trunk is rusty red, thickened with deep layers of furrowed bark, and 27 feet in diameter at the base. Its footprint would cover your dining room. Trying to glimpse its tippy top, or craning to see the shape of its crown, could give you a sore neck. That is, this tree is so big you can scarcely look at it all. It has a name, the President, bestowed about 90 years ago by admiring humans. It’s a giant sequoia, a member of <i>Sequoiadendron giganteum</i>, one of several surviving species of redwoods.
+                        </p>
+                        <p>
+                            It’s not quite the largest tree on Earth. It’s the second largest. Recent research by scientist Steve Sillett of Humboldt State University and his colleagues has confirmed that the President ranks number two among all big trees that have ever been measured—and Sillett’s team has measured quite a few. It doesn’t stand so tall as the tallest of coast redwoods or of Eucalyptus regnans in Australia, but height isn’t everything; it’s far more massive than any coast redwood or eucalypt. Its dead spire, blasted by lightning, rises to 247 feet. Its four great limbs, each as big as a sizable tree, elbow outward from the trunk around halfway up, billowing into a thick crown like a mushroom cloud flattening against the sky. Although its trunk isn’t quite so bulky as that of the largest giant, the General Sherman, its crown is fuller than the Sherman’s. The President holds nearly two billion leaves.
+                        </p>
+                        <p>
+                            Trees grow tall and wide-crowned as a measure of competition with other trees, racing upward, reaching outward for sunlight and water. And a tree doesn’t stop getting larger—as a terrestrial mammal does, or a bird, their size constrained by gravity—once it’s sexually mature. A tree too is constrained by gravity, but not in the same way as a condor or a giraffe. It doesn’t need to locomote, and it fortifies its structure by continually adding more wood. Given the constant imperative of seeking resources from the sky and the soil, and with sufficient time, a tree can become huge and then keep growing. Giant sequoias are gigantic because they are very, very old.
+                        </p>
+                        <p>
+                            They are so old because they have survived all the threats that could have killed them. They’re too strong to be knocked over by wind. Their heartwood and bark are infused with tannic acids and other chemicals that protect against fungal rot. Wood-boring beetles hardly faze them. Their thick bark is flame resistant. Ground fires, in fact, are good for sequoia populations, burning away competitors, opening sequoia cones, allowing sequoia seedlings to get started amid the sunlight and nurturing ash. Lightning hurts the big adults but usually doesn’t kill them. So they grow older and bigger across the millennia. 
+                        </p>
+                        <p>
+                            Another factor that can end the lives of big trees, of course, is logging. Many giant sequoias fell to the ax during the late 19th and early 20th centuries. But the wood of the old giants was so brittle that trunks often shattered when they hit the ground, and what remained had little value as lumber. It went into shingles, fence posts, grape stakes, and other scrappy products. Given the difficulties of dealing with logs 20 feet thick, broken or unbroken, the trees were hardly worth cutting. Sequoia National Park was established in 1890, and automobile tourism soon showed that giant sequoias were worth more alive.
+                        </p>
+                        <p>
+                            One thing to remember about them, as Steve Sillett explained to me during a conversation amid the trees, is that they withstand months of frigid conditions. Their preferred habitat is severely wintry, so they must be strong while frozen. Snow piles up around them; it weights their limbs while the temperature wobbles in the teens. They handle the weight and the cold with aplomb, as they handle so much else. “They’re a snow tree,” he said. “That’s their thing.”
+                        </p>
+                        <p>
+                            Among the striking discoveries made by Sillett’s team is that even the rate of growth of a big tree, not just its height or total volume, can increase during old age. An elderly monster like the President actually lays down more new wood per year than a robust young tree. It puts that wood around the trunk, which grows wider, and into the limbs and the branches, which grow thicker. 
+                        </p>
+                        <p>
+                            This finding contradicts a long-held premise in forest ecology—that wood production decreases during the old age of a tree. That premise, which has justified countless management decisions in favor of short-rotation forestry, may hold true for some kinds of trees in some places, but not for giant sequoias (or other tall species, including coast redwoods). Sillett and his team have disproved it by doing something that earlier forest ecologists didn’t: climbing the big trees—climbing all over them—and measuring them inch by inch. 
+                        </p>
+                        <p>
+                            With blessings and permits from the National Park Service, they performed such high-altitude metrics on the President. This was part of a larger study, a long-term monitoring project on giant sequoias and coast redwoods called the Redwoods and Climate Change Initiative. Sillett’s group put a line over the President’s crown, rigged climbing ropes into position (with special protectors for the tree’s cambium), donned harnesses and helmets, and went up. They measured the trunk at different heights; they measured limbs, branches, and burls; they counted cones; they took core samples using a sterilized borer. Then they fed the numbers through mathematical models informed by additional data from other giant sequoias. That’s how they came to know that the President contains at least 54,000 cubic feet of wood and bark. And that’s how they detected that the old beast, at about the age of 3,200, is still growing quickly. It’s still inhaling great breaths of CO<sup>2</sup> and binding the carbon into cellulose, hemicellulose, and lignin in a growing season interrupted by six months of cold and snow. Not bad for an oldster.
+                        </p>
+                        <p>
+                            That’s the remarkable thing about them, Sillett told me. “Half the year, they’re not growing aboveground. They’re in the snow.” They grow bigger than their biggest compeer, the coast redwood, even with a shorter growing season.
+                        </p>
+                        <p>
+                            It was fitting, therefore, that Michael (Nick) Nichols made his portrait of the President in snow. Nick and Jim Campbell Spickler, an expert climber and rigger, came up with a plan. With a crew of assistants and climbers drawn heavily from Steve Sillett’s team, they arrived in mid-February, when the snowbanks along the plowed road were 12 feet high. They rigged ropes on the President and on a tall nearby tree, both for human ascent and for raising cameras. They waited through blue skies, slushy conditions, and fog until the weather changed and the snow came again and the moment was right. They got the shot. (Actually there were many individual shots, assembled as you see on the poster.) By the time I showed up, they were packing to leave.
+                        </p>
+                        <p>
+                            Nick had spent more than two weeks commanding this operation, composing the image and engineering it from the ground. But before the last ropes came down, he wanted to climb the tree himself. Not to take photos, he explained. “Just to say goodbye.” He put on a harness and a helmet, clipped onto a rope, fit his feet into the loops, clutched the ascender, and up he went.
+                        </p>
+                        <p>
+                            Once Nick was down, I went up myself—slowly, clumsily, with help from Spickler. Ascending, I braced my feet gratefully against the great trunk. I stood for a moment, with Spickler beside me, on one of the huge limbs. After half an hour, I found myself in the crown of the President, 200 feet above the ground. I saw the big burls at close range. I saw the smooth, purplish bark of the smaller branches. All around me was living tree. I looked up, dizzily, noticing small cracks in the deadwood and channels of cambium that flowed between trunk and limbs like a river of life. I thought: What an amazing place. Then I thought: What an amazing creature.
+                        </p>
+                        <p>
+                            Next afternoon, with Nick and the others gone, I snowshoed back to the President alone. There had been too much to take in, and I wanted another look. For a while I gaped at the tree. It was magnificent. Serene. It didn’t sway in the breeze; too solid to sway. I wondered about its history. I contemplated its durability and its patience. The day was warmish, and as I stood there, the President released a small dollop of melting snow from a high branch. The snow scattered as it fell, dissipating into tiny flecks and crystals, catching the light as they tumbled toward me. 
+                        </p>  
+                        <p>
+                        “Gesundheit,” I said. <img src="assets/images/ng-logo-black.svg" style="position: relative; top: .1em; height: 1em;">
+                        </p>
+                    </div>
+                    <!-- end content-->
+                </article>
+            </div>
+
+        <div id="preloader"></div>
+
+        <div id="popup-video" class="popup">
+            <div class="popup-hit-area"></div>
+            <div class="popup-box">
+                <video src="assets/videos/Sequoia_in_Snow.mp4"></video>
+                <div class="video-controls">
+                    <div class="playpause">
+                        <button></button>
+                    </div>
+                    <input type="range" class="time-bar" step="0.01" min="0" max="100" value="0">
+                    <span class="video-time">0:00</span>
+                    <div class="togglemute">
+                        <button></button>
+                    </div>
+                </div>
+                <div class="popup-close"></div>
+            </div> 
+        </div>
+
+        <div id="popup-elevation" class="popup">
+            <div class="popup-hit-area"></div>
+            <div class="popup-box">
+                <div class="popup-content">
+                    <div id="elevation-graphic"></div>
+                    <div id="elevation-title" class="elevation-label">Elevation Cross Section</div>
+                    <div id="elevation-label2" class="elevation-label">Elevation range of giant sequoias</div>
+                    <div id="elevation-wetter" class="elevation-label">WETTER</div>
+                    <div id="elevation-drier" class="elevation-label">DRIER</div>
+                    <div id="elevation-mt" class="elevation-label">Mount Whitney 14,494 ft</div>
+                    <div id="elevation-top" class="elevation-label">8,000 ft</div>
+                    <div id="elevation-bottom" class="elevation-label">4,000 ft</div>
+                    <div id="elevation-text" class="elevation-label">
+                        <b>SEQUOIA SWEET SPOT</b>
+                        <p>Conditions that suit the tree's growth and reproduction exist in a narrow elevation range. The Sierra's eastern slope is too dry for sequoias, which need rain and the deep moisture of heavy snowmelt.</p>
+                    </div>
+                </div>
+                <div class="popup-close dark"></div>
+            </div> 
+        </div>
+
+        <div id="popup-forest" class="popup">
+            <div class="popup-hit-area"></div>
+            <div class="popup-box">
+                <div class="popup-content"></div>
+                <div class="popup-close dark"></div>
+            </div> 
+        </div>
+
+        <div id="imageViewer">
+            <!-- <div class="frame"> -->
+            <!--     <div class="container"></div> -->
+            <!-- </div> -->
+
+            <div class="ui">
+                <a class="zoomInBtn zoomBtn" href="#"></a>
+                <a class="zoomOutBtn zoomBtn" href="#"></a>
+                <input class="zoomRange" type="range" min="0" max="100" value="0" />
+                <div class="popup-close"></div>
+            </div>
+
+            <div id="imageViewerLoader"></div>
+        </div>
+
+        <div id="overlay">
+            <div id="overlay-balance" class="overlay-balance">
+                <b>TEXT BALANCING</b>
+                With text balancing we can keep short runs of text consistent width. 
+            </div>
+            <div id="overlay-drop">
+                <b>REAL DROP CAPS</b>
+                Applying Shape Outside on an element floating to the left allows the inline content to wrap around the shape.
+            </div>
+            <div id="overlay-flow">
+                <b>FLOWING CONTENT</b>
+                With Regions we can flow content through other elements in the layout without moving text manually between elements.
+            </div>
+            <div id="overlay-balance-2" class="overlay-balance">
+                <b>TEXT BALANCING</b>
+                With text balancing we can keep short runs of text consistent width. 
+            </div> 
+
+            <div id="overlay-flow-2"></div>
+
+            <div id="overlay-flow-stop-1" class="overlay-flow-stop"></div>
+            
+            <div id="overlay-flow-start-1" class="overlay-flow-start"></div>
+
+            <div id="overlay-flow-stop-2" class="overlay-flow-stop"></div>
+            
+            <div id="overlay-flow-start-2" class="overlay-flow-start"></div>
+            
+            <div id="overlay-flow-stop-3" class="overlay-flow-stop"></div>
+            
+            <div id="overlay-flow-start-3" class="overlay-flow-start"></div>
+            
+            <div id="overlay-shape-1">
+                <b>SHAPE AS DESIGNED</b>
+                Using Shape Inside, we can create non-rectangular containers for text allowing it to fit nicely within our design.
+            </div>
+
+            <div id="overlay-shape-2">
+                <b>SHAPE AS DESIGNED</b>
+                Using Shape Inside, we can create non-rectangular containers for text allowing it to fit nicely within our design.
+            </div>
+            
+            <div id="overlay-shape-3">
+                <b>SHAPE AS DESIGNED</b>
+                Using Shape Inside, we can create non-rectangular containers for text allowing it to fit nicely within our design.
+            </div>
+            
+            <div id="overlay-filter-1">
+                <b>BEND TO YOUR WILL</b>
+                With custom filters we can add distortion for effects we previously could not achieve on the web.
+            </div>
+
+        </div>
+
+        <div id="overlayToggle">
+            &#10003; Show Editor's Marks
+        </div>
+
+        <div id="instructions">
+            <div class="instructions-content">
+                <h2>A Peek at the Future</h2>
+                <p>
+                    This experiment showcases features that are not yet implemented by all browsers.
+                </p>
+                <p>
+                    Follow the instructions below:
+                </p>
+                <ol>
+                    <li>Download <a href="https://www.google.com/intl/en/chrome/browser/canary.html">Chrome Canary</a> on Desktop or <a href="https://play.google.com/store/apps/details?id=com.chrome.beta&hl=en">Chrome Beta</a> on Android.</li>
+                    <li>Navigate in the address bar to <code>about://flags</code></li>
+                    <li>enable <code>Experimental WebKit Features</code>.</li>
+                    <li>enable <code>CSS Shaders</code>.</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- <div id="debugger"></div> -->
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.9.0.min.js"><\/script>')</script>
+        <script src="js/plugins.js"></script>
+        <script src="js/vendor/signals.min.js"></script>
+        <script data-main="js/main" src="js/vendor/require.js"></script>
+
+    </body>
+</html>
