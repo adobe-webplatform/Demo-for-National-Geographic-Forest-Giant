@@ -1,0 +1,120 @@
+#tree{
+    position: absolute;
+    // padding: 2em;
+    margin: auto;
+    // width: 900px;
+    width: 100%;
+    height: 600px;
+    font-size: .8rem;
+    line-height: 1.5;
+    background: white;
+
+    h4{
+        font-size: 1.2rem;
+        font-weight: bold;
+        margin-bottom: 1em;
+    }
+
+    h5{
+        margin: 2em 0;
+        padding-left: 1em;
+        font-family: Georgia;
+        font-style: italic;
+        color: $lightblue;
+        text-transform: uppercase;
+    }
+
+    h6{
+        color: $lightblue;
+        text-transform: uppercase;
+    }
+
+    p{
+        margin: .5em 0 1.2em;
+        text-align: left;
+        // text-align: justify;
+        text-indent: 0;
+        line-height: 1.4;
+    }
+    
+    b{
+        font-weight: bold;
+    }
+
+    .popup-close{
+        top: auto;
+        right: 100px;
+        bottom: 10px;
+        color: $lightblue;
+        background-image: url(../assets/images/back-arrow.svg);
+
+        &:hover{
+            background-color: transparent;
+        }
+    }
+}
+
+#tree-columns{
+    position: relative;
+    max-width: 850px;
+    margin: auto;
+}
+
+#tree-list-column{
+    margin-right: 300px;
+}
+
+#tree-list{
+   
+    li{
+        // margin-bottom: 1em;
+        padding: 1em 1em 0;
+        border-bottom: 1px solid #fafafa;
+        cursor: pointer;
+        @include transition(background .2s linear);
+        @include transform(translateZ(0));
+
+        h6, p{
+            @include transition(opacity .2s linear);
+            opacity: .3;
+        }
+
+        &.active{
+            h6, p{
+                opacity: 1;
+            }
+        }
+
+        &:hover{
+            background-color: rgba(255, 255, 255, .3);
+
+            h6{
+                opacity: 1;
+            }
+        }
+    }
+}
+
+#tree-canvas{
+    position: absolute;
+    left: 50%;
+    display: inline-block;
+    height: 600px;
+    z-index: 0;
+    // @include transform(translateZ(0));
+    @include transform(translate(-150px, 0px));
+}
+
+.tree-column{
+    position: relative;
+    float: right;
+    margin-top: 2em;
+    display: inline-block;
+    max-width: 25em;
+    z-index: 1;
+    @include transform(translateZ(0));
+
+    li{
+        line-height: 1.8;
+    }
+}

@@ -1,0 +1,25 @@
+/* #img4{ */
+/*     -webkit-filter:  */
+/*     opacity(0%) */
+/*     custom(url(http://html.adobe.com/webstandards/csscustomfilters/cssfilterlab/shaders/vertex/page-curl.vs) mix(url(http://html.adobe.com/webstandards/csscustomfilters/cssfilterlab/shaders/fragment/page-curl.fs) normal source-atop), 50 50, transform perspective(1000) scale(0.7) rotateX(0deg) rotateY(0deg) rotateZ(0deg), curlPosition -1.0 0, curlDirection 104, curlRadius 0.2, bleedThrough 0.5); */
+/* } */
+/*  */
+/* #img4.in{ */
+/*     -webkit-filter:  */
+/*     opacity(100%) */
+/*     custom(url(http://html.adobe.com/webstandards/csscustomfilters/cssfilterlab/shaders/vertex/page-curl.vs) mix(url(http://html.adobe.com/webstandards/csscustomfilters/cssfilterlab/shaders/fragment/page-curl.fs) normal source-atop), 50 50, transform perspective(1000) scale(0.9) rotateX(0deg) rotateY(0deg) rotateZ(0deg), curlPosition 1 0, curlDirection 104, curlRadius 0.2, bleedThrough 0.5); */
+/* } */
+
+/*
+#map .out{
+    -webkit-filter: 
+    opacity(0%)
+    custom(url(http://html.adobe.com/webstandards/csscustomfilters/cssfilterlab/shaders/vertex/page-curl.vs) mix(url(http://html.adobe.com/webstandards/csscustomfilters/cssfilterlab/shaders/fragment/page-curl.fs) normal source-atop), 50 50, transform perspective(1000) scale(0.7) rotatex(0deg) rotatey(0deg) rotatez(0deg), curlposition -1.0 0, curldirection 104, curlradius 0.2, bleedthrough 0.5);
+}
+
+#map{
+    -webkit-filter: 
+    opacity(100%)
+    custom(url(http://html.adobe.com/webstandards/csscustomfilters/cssfilterlab/shaders/vertex/page-curl.vs) mix(url(http://html.adobe.com/webstandards/csscustomfilters/cssfilterlab/shaders/fragment/page-curl.fs) normal source-atop), 50 50, transform perspective(1000) scale(0.9) rotatex(0deg) rotatey(0deg) rotatez(0deg), curlposition 1 0, curldirection 104, curlradius 0.2, bleedthrough 0.5);
+}
+*/
