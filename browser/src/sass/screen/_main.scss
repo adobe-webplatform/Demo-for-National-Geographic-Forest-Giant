@@ -1003,6 +1003,7 @@ body.withSidebar #main {
         font-size: 1.1rem;
         font-style: italic;
         line-height: 1.8;
+        text-align: justify;
         opacity: 0;
         @include transition(opacity 1s linear 1s);
         -webkit-shape-inside: polygon(0 50%, 50% 0, 100% 0, 100% 100%, 0 100%);
