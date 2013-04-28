@@ -1,0 +1,928 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+/* line 17, ../../../../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+/* line 22, ../../../../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+html {
+  line-height: 1;
+}
+
+/* line 24, ../../../../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+ol, ul {
+  list-style: none;
+}
+
+/* line 26, ../../../../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* line 28, ../../../../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+/* line 30, ../../../../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+q, blockquote {
+  quotes: none;
+}
+/* line 103, ../../../../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+q:before, q:after, blockquote:before, blockquote:after {
+  content: "";
+  content: none;
+}
+
+/* line 32, ../../../../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+a img {
+  border: none;
+}
+
+/* line 116, ../../../../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
+  display: block;
+}
+
+/* line 1, ../sass/screen/_main.scss */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  font-size: 80%;
+  overflow: hidden;
+}
+
+/* line 10, ../sass/screen/_main.scss */
+#main {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* line 16, ../sass/screen/_main.scss */
+.view {
+  position: absolute;
+}
+
+/* line 20, ../sass/screen/_main.scss */
+.page-container-view {
+  position: absolute;
+  padding: 5vh 10vw;
+  width: 80vw;
+  height: 90vh;
+  background-color: #1a1a1a;
+  overflow: hidden;
+}
+
+/* line 29, ../sass/screen/_main.scss */
+.page-container-shadows {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* line 38, ../sass/screen/_main.scss */
+.page-scroll-view {
+  width: 80vw;
+  height: 90vh;
+}
+
+/* line 43, ../sass/screen/_main.scss */
+.page-content-view {
+  height: 100%;
+  background: white;
+}
+
+/* line 48, ../sass/screen/_main.scss */
+.page-view-full {
+  margin-right: 20vw;
+  margin-left: 20vw;
+}
+
+/* line 53, ../sass/screen/_main.scss */
+.page-view {
+  position: static;
+  float: left;
+  width: 80vw;
+  height: 80vh;
+}
+
+/* line 60, ../sass/screen/_main.scss */
+.article-container-view {
+  width: 100vw;
+  height: 100vh;
+}
+
+/* line 65, ../sass/screen/_main.scss */
+.article-content-view {
+  height: 100%;
+}
+
+/* line 69, ../sass/screen/_main.scss */
+.article-scroll-view {
+  width: 100vw;
+  height: 100vh;
+}
+
+/* line 74, ../sass/screen/_main.scss */
+.article-pages-scroll-view {
+  bottom: 0;
+  width: 100vw;
+  height: 100px;
+  background: blue;
+}
+
+/* line 81, ../sass/screen/_main.scss */
+.article-pages-content-view {
+  height: 100%;
+}
+
+/* line 85, ../sass/screen/_main.scss */
+.article-cover-view {
+  display: inline-block;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(255, 0, 255, 0.5);
+  background-size: cover;
+  background-position: center bottom;
+}
+
+/* line 94, ../sass/screen/_main.scss */
+.toc-title {
+  position: absolute;
+  right: 0;
+  padding: .5em;
+  color: white;
+  font-family: 'Helvetica Neue', sans-serif;
+  font-size: 3rem;
+  font-weight: 800;
+}
+/* line 104, ../sass/screen/_main.scss */
+.toc-title.coming-soon {
+  color: #ccc;
+}
+
+/* line 109, ../sass/screen/_main.scss */
+.toc-logo {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin: 1rem;
+}
+
+/* line 116, ../sass/screen/_main.scss */
+.toc-contents {
+  -webkit-perspective: 500px;
+}
+
+/* line 120, ../sass/screen/_main.scss */
+.toc-view {
+  height: 100vh;
+  width: 100vw;
+  background-color: #2f2d2d;
+  overflow-x: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* line 128, ../sass/screen/_main.scss */
+.toc-view-button {
+  background-color: #333;
+  background-size: 100%;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+}
+
+/* line 138, ../sass/screen/_main.scss */
+.page-thumb-view {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  overflow: visible !important;
+  height: 20vh;
+  z-index: 5;
+}
+/* line 147, ../sass/screen/_main.scss */
+.page-thumb-view .page-thumb-view-content {
+  height: 20vh;
+}
+/* line 150, ../sass/screen/_main.scss */
+.page-thumb-view .page-thumb-view-content .page-thumb {
+  height: 20vh;
+  background-color: black;
+  border-radius: 20px;
+}
+
+/* line 159, ../sass/screen/_main.scss */
+.intro-view {
+  background-color: white;
+}
+
+/* line 163, ../sass/screen/_main.scss */
+.transition-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  perspective: 3000;
+  pointer-events: none;
+}
+
+/* line 175, ../sass/screen/_main.scss */
+.transition-element {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: 100%;
+  background-position: 50% 50%;
+}
+
+/* line 8, ../sass/screen/_pages.scss */
+section.page-view-full {
+  -webkit-transform: scale(1.1);
+  -moz-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  -o-transform: scale(1.1);
+  transform: scale(1.1);
+}
+/* line 11, ../sass/screen/_pages.scss */
+section.page-view-full.in {
+  -webkit-transform: none;
+  -moz-transform: none;
+  -ms-transform: none;
+  -o-transform: none;
+  transform: none;
+}
+
+/* line 19, ../sass/screen/_pages.scss */
+.page-full {
+  position: relative;
+  top: -5vh;
+  left: -10vw;
+  width: 100vw;
+  height: 95vh;
+  background-size: 100%;
+  background-position: center;
+}
+
+/* line 30, ../sass/screen/_pages.scss */
+.page {
+  position: relative;
+  width: 100%;
+  height: 80vh;
+  box-sizing: border-box;
+  padding: 2em;
+}
+
+/* line 38, ../sass/screen/_pages.scss */
+.region1 {
+  pointer-events: none;
+  -webkit-flow-from: flow1;
+}
+
+/* line 43, ../sass/screen/_pages.scss */
+#content1 {
+  text-align: justify;
+  font-family: georgia;
+  font-size: 1.2rem;
+  line-height: 1.7;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+  -webkit-flow-into: flow1;
+}
+/* line 54, ../sass/screen/_pages.scss */
+#content1 p {
+  margin-top: 1em;
+  text-indent: 2em;
+}
+/* line 58, ../sass/screen/_pages.scss */
+#content1 p.first {
+  text-indent: 0;
+}
+
+/* line 64, ../sass/screen/_pages.scss */
+.col-left-full {
+  float: left;
+  width: 47%;
+  height: 80vh;
+}
+
+/* line 70, ../sass/screen/_pages.scss */
+.col-right-full {
+  float: right;
+  width: 47%;
+  height: 80vh;
+}
+
+/* line 76, ../sass/screen/_pages.scss */
+.col-right-1 {
+  float: right;
+  margin-top: 38vh;
+  width: 47%;
+  height: 42vh;
+}
+
+/* line 83, ../sass/screen/_pages.scss */
+.col-right-2 {
+  float: right;
+  margin-top: 0px;
+  width: 47%;
+  height: 32vh;
+}
+
+/* line 90, ../sass/screen/_pages.scss */
+.col-right-3 {
+  float: right;
+  width: 35%;
+  height: 80vh;
+}
+
+/* line 96, ../sass/screen/_pages.scss */
+.col-left-1 {
+  float: left;
+  width: 35%;
+  height: 80vh;
+}
+
+/* line 102, ../sass/screen/_pages.scss */
+#article1-page-cover {
+  background-image: url(../assets/images/toc/article1.jpg);
+  height: 100vh;
+}
+
+/* line 109, ../sass/screen/_pages.scss */
+#a1p2 .col1,
+#a1p2 .col2 {
+  height: 62vh;
+}
+/* line 112, ../sass/screen/_pages.scss */
+#a1p2 blockquote {
+  position: relative;
+  top: .2em;
+  color: #888;
+  font-family: "pragmatica-web", "open-sans", "Helvetica Neue", sans-serif;
+  font-weight: bold;
+  font-size: 2.5rem;
+  line-height: 4rem;
+  height: 6rem;
+}
+
+/* line 124, ../sass/screen/_pages.scss */
+#a1p7 {
+  background-image: url(../assets/images/article1/img2_bottom.jpg);
+  background-position: bottom center;
+}
+/* line 128, ../sass/screen/_pages.scss */
+#a1p7 p {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  max-width: 32em;
+  height: 19ex;
+  margin-right: 5em;
+  padding: 2em;
+  color: rgba(0, 0, 0, 0.7);
+  font-family: "minion-pro", "judson", Georgia, serif;
+  font-size: 1.2rem;
+  line-height: 1.6;
+  text-align: justify;
+  -webkit-shape-inside: polygon(0 40%, 30% 0, 100% 0, 100% 100%, 0 100%);
+}
+
+/* line 147, ../sass/screen/_pages.scss */
+#a1p10 .map-google {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* line 156, ../sass/screen/_pages.scss */
+#videoBtn {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  width: 50%;
+  height: 42vh;
+  background-image: url(../assets/images/article1/video.jpg);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* line 168, ../sass/screen/_pages.scss */
+#logImage {
+  position: absolute;
+  bottom: -12vh;
+  left: 50%;
+  width: 50%;
+  height: 47vh;
+  background-image: url(../assets/images/article1/img4_log.jpg);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* line 184, ../sass/screen/_pages.scss */
+#fogImage {
+  position: absolute;
+  top: -10px;
+  left: 40%;
+  margin-left: 10px;
+  width: 50vw;
+  height: 100vh;
+  background-size: 200%;
+  background-position: -100% center;
+  background-image: url(../assets/images/article1/img1_mist.jpg);
+  -webkit-transform-origin: top left;
+  -moz-transform-origin: top left;
+  -ms-transform-origin: top left;
+  -o-transform-origin: top left;
+  transform-origin: top left;
+  -webkit-transform: scale(0.93);
+  -moz-transform: scale(0.93);
+  -ms-transform: scale(0.93);
+  -o-transform: scale(0.93);
+  transform: scale(0.93);
+}
+
+/* line 200, ../sass/screen/_pages.scss */
+#darkImage {
+  position: absolute;
+  top: -10px;
+  left: 0%;
+  margin-left: 10px;
+  width: 50vw;
+  height: 100vh;
+  background-size: 200%;
+  background-position: -100% center;
+  background-image: url(../assets/images/article1/img3_dark.jpg);
+  -webkit-transform-origin: top left;
+  -moz-transform-origin: top left;
+  -ms-transform-origin: top left;
+  -o-transform-origin: top left;
+  transform-origin: top left;
+  -webkit-transform: scale(0.93);
+  -moz-transform: scale(0.93);
+  -ms-transform: scale(0.93);
+  -o-transform: scale(0.93);
+  transform: scale(0.93);
+}
+
+/* line 217, ../sass/screen/_pages.scss */
+#elevation {
+  width: 600px;
+  height: 433px;
+}
+
+/* line 222, ../sass/screen/_pages.scss */
+.drop-caps {
+  float: left;
+  margin-left: -0.05em;
+  font-size: 9em;
+  width: 120px;
+  height: 130px;
+  background-image: url(../assets/images/article1/drop-caps.svg);
+  background-repeat: no-repeat;
+  -webkit-shape-outside: ellipse(50px, 50px, 60px, 60px);
+}
+
+/* line 233, ../sass/screen/_pages.scss */
+.transition-filter {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-size: 100%;
+  pointer-events: none;
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  -o-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+/* line 245, ../sass/screen/_pages.scss */
+.transition-transform {
+  position: absolute;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  pointer-events: none;
+  opacity: 0;
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  -o-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+/* line 3, ../sass/screen/_map.scss */
+.map-content {
+  position: absolute;
+  height: 95vh;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.99);
+  background-image: url(../assets/images/article1/map.jpg);
+  background-repeat: no-repeat;
+  background-size: auto 85%;
+  background-position: right top;
+  z-index: 10;
+}
+/* line 15, ../sass/screen/_map.scss */
+.map-content h2 {
+  font-family: georgia;
+  font-size: 4rem;
+  text-align: right;
+  width: 30rem;
+  display: inline-block;
+}
+/* line 23, ../sass/screen/_map.scss */
+.map-content h5 {
+  font-weight: bold;
+}
+/* line 27, ../sass/screen/_map.scss */
+.map-content .map-content-main {
+  position: relative;
+  margin-left: 5%;
+  margin-top: 1rem;
+  margin-left: 7rem;
+  padding: 2.7em 2em;
+  padding-bottom: 0;
+  width: 44vw;
+  text-align: right;
+}
+/* line 37, ../sass/screen/_map.scss */
+.map-content .map-content-main p {
+  margin: 1.9em 0;
+  line-height: 1.9;
+  text-align: justify;
+  display: block;
+  min-height: 200px;
+  margin-left: 3em;
+  margin-top: 22px;
+  padding-bottom: 0;
+  margin-bottom: 0;
+  font-size: 1.4rem;
+  text-indent: 0;
+  -webkit-shape-inside: polygon(30px 0, 100% 0, 100% 500px, 130px 500px, 0% 50px);
+}
+/* line 53, ../sass/screen/_map.scss */
+.map-content .map-content-main figure {
+  position: absolute;
+  top: 6rem;
+  left: -30px;
+  opacity: 1;
+  -webkit-transition: opacity 1s ease-out;
+  -webkit-transition-delay: 1s;
+  -moz-transition: opacity 1s ease-out 1s;
+  -o-transition: opacity 1s ease-out 1s;
+  transition: opacity 1s ease-out 1s;
+}
+/* line 60, ../sass/screen/_map.scss */
+.map-content .map-content-main figure.in {
+  opacity: 1;
+}
+/* line 66, ../sass/screen/_map.scss */
+.map-content a {
+  position: absolute;
+  display: block;
+  padding: 1em;
+  line-height: 1.3;
+  text-transform: uppercase;
+  color: #30915f;
+}
+/* line 74, ../sass/screen/_map.scss */
+.map-content a.plus {
+  width: 300px;
+}
+/* line 81, ../sass/screen/_map.scss */
+.low-perf .map-content a.plus.in img, .high-perf .map-content a.plus.in img {
+  -webkit-transform: scale(1);
+  -moz-transform: scale(1);
+  -ms-transform: scale(1);
+  -o-transform: scale(1);
+  transform: scale(1);
+}
+/* line 85, ../sass/screen/_map.scss */
+.low-perf .map-content a.plus.in span, .high-perf .map-content a.plus.in span {
+  opacity: 1;
+}
+/* line 91, ../sass/screen/_map.scss */
+.high-perf .map-content a.plus:hover img {
+  -webkit-transform: scale(1.2) rotate(180deg);
+  -moz-transform: scale(1.2) rotate(180deg);
+  -ms-transform: scale(1.2) rotate(180deg);
+  -o-transform: scale(1.2) rotate(180deg);
+  transform: scale(1.2) rotate(180deg);
+}
+/* line 96, ../sass/screen/_map.scss */
+.map-content a.plus img {
+  position: absolute;
+}
+/* line 100, ../sass/screen/_map.scss */
+.high-perf .map-content a.plus img {
+  -webkit-transform-origin: center center;
+  -moz-transform-origin: center center;
+  -ms-transform-origin: center center;
+  -o-transform-origin: center center;
+  transform-origin: center center;
+  -webkit-transform: scale(0.2);
+  -moz-transform: scale(0.2);
+  -ms-transform: scale(0.2);
+  -o-transform: scale(0.2);
+  transform: scale(0.2);
+  -webkit-transition: -webkit-transform 1s;
+  -moz-transition: -moz-transform 1s;
+  -o-transition: -o-transform 1s;
+  transition: transform 1s;
+}
+/* line 106, ../sass/screen/_map.scss */
+.map-content a.plus span {
+  display: block;
+  margin-left: 2.5em;
+  width: 200px;
+}
+/* line 113, ../sass/screen/_map.scss */
+.high-perf .map-content a.plus span {
+  -webkit-transition: opacity 1s ease-out;
+  -webkit-transition-delay: 0.5s;
+  -moz-transition: opacity 1s ease-out 0.5s;
+  -o-transition: opacity 1s ease-out 0.5s;
+  transition: opacity 1s ease-out 0.5s;
+}
+/* line 118, ../sass/screen/_map.scss */
+.map-content a.info {
+  padding-right: 30px;
+  background-image: url(../assets/images/info-icon.svg);
+  background-repeat: no-repeat;
+  background-position: right center;
+}
+
+/* line 128, ../sass/screen/_map.scss */
+#map-dist {
+  position: absolute;
+  top: 245px;
+  right: 155px;
+  font-size: .9rem;
+  max-width: 18em;
+  line-height: 1.3;
+  -webkit-transition: opacity 1s;
+  -moz-transition: opacity 1s;
+  -o-transition: opacity 1s;
+  transition: opacity 1s;
+}
+/* line 138, ../sass/screen/_map.scss */
+#map-dist.in {
+  opacity: 1;
+}
+
+/* line 143, ../sass/screen/_map.scss */
+#map-limit {
+  position: absolute;
+  top: 64px;
+  right: 115px;
+  font-size: .9rem;
+  max-width: 15em;
+  line-height: 1.3;
+  -webkit-transition: opacity 1s;
+  -moz-transition: opacity 1s;
+  -o-transition: opacity 1s;
+  transition: opacity 1s;
+}
+/* line 153, ../sass/screen/_map.scss */
+#map-limit.in {
+  opacity: 1;
+}
+
+/* line 158, ../sass/screen/_map.scss */
+#map-plus-1 {
+  position: absolute;
+  top: 450px;
+  left: 20%;
+}
+
+/* line 164, ../sass/screen/_map.scss */
+#map-plus-2 {
+  top: 450px;
+  right: 100px;
+}
+
+/* line 170, ../sass/screen/_map.scss */
+#map-plus-3 {
+  bottom: 30px;
+  right: 100px;
+}
+
+/* line 176, ../sass/screen/_map.scss */
+#map-credits {
+  margin-left: 1em;
+  bottom: 30px;
+}
+
+/* line 181, ../sass/screen/_map.scss */
+#map-tree {
+  border: 3px solid #666;
+  background-color: rgba(255, 255, 255, 0.5);
+  -webkit-transition: opacity 1s ease-out;
+  -webkit-transition-delay: 1s;
+  -moz-transition: opacity 1s ease-out 1s;
+  -o-transition: opacity 1s ease-out 1s;
+  transition: opacity 1s ease-out 1s;
+}
+/* line 188, ../sass/screen/_map.scss */
+#map-tree.in {
+  opacity: 1;
+}
+
+/* line 193, ../sass/screen/_map.scss */
+#map-tree-figure {
+  position: absolute;
+  left: 20%;
+  bottom: 30px;
+  width: 250px;
+}
+
+/* line 201, ../sass/screen/_map.scss */
+#elevation {
+  width: 50%;
+  height: 65%;
+  position: absolute;
+  left: 50%;
+  bottom: -12vh;
+  background-image: url(../assets/images/article1/elevation-small.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  border: 1px solid black;
+  background-color: white;
+}
+
+/* line 214, ../sass/screen/_map.scss */
+#elevation-html {
+  display: none;
+  height: 529px;
+  width: 733px;
+  margin: 0 auto;
+  position: relative;
+  background-image: url(../assets/images/article1/elevation-graphic.svg);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-color: white;
+  font-size: 1.5rem;
+}
+
+/* line 227, ../sass/screen/_map.scss */
+.elevation-label {
+  opacity: 1;
+  position: absolute;
+}
+
+/* line 232, ../sass/screen/_map.scss */
+#elevation-title {
+  bottom: 10px;
+  left: 50%;
+  font-weight: bold;
+}
+
+/* line 238, ../sass/screen/_map.scss */
+#elevation-label2 {
+  bottom: 19%;
+  left: 22%;
+  width: 24%;
+  height: 12%;
+  line-height: 1.5;
+  text-align: justify;
+  -webkit-shape-inside: polygon(0 0, 100% 0, 80% 100%, 0 100%);
+}
+
+/* line 248, ../sass/screen/_map.scss */
+#elevation-wetter {
+  right: 20%;
+  top: 34%;
+}
+
+/* line 253, ../sass/screen/_map.scss */
+#elevation-drier {
+  right: 3%;
+  top: 34%;
+}
+
+/* line 258, ../sass/screen/_map.scss */
+#elevation-mt {
+  right: 3%;
+  top: 20%;
+}
+
+/* line 263, ../sass/screen/_map.scss */
+#elevation-top {
+  left: 7%;
+  bottom: 33%;
+}
+
+/* line 268, ../sass/screen/_map.scss */
+#elevation-bottom {
+  left: 5%;
+  bottom: 15%;
+}
+
+/* line 273, ../sass/screen/_map.scss */
+#elevation-text {
+  padding: 1.5em;
+  top: 0;
+}
+/* line 277, ../sass/screen/_map.scss */
+#elevation-text b {
+  display: block;
+  font-weight: bold;
+  font-size: 1.8rem;
+}
+/* line 283, ../sass/screen/_map.scss */
+#elevation-text p {
+  margin-top: .7em;
+  height: 200px;
+  text-indent: 0;
+  font-size: 1.5rem;
+  line-height: 1.5;
+  -webkit-shape-inside: polygon(0 0, 60% 0, 30% 100%, 0 100%);
+}
+
+/* line 296, ../sass/screen/_map.scss */
+.low-perf #popup-forest svg {
+  -webkit-transition: opacity 0.4s ease-out;
+  -webkit-transition-delay: 2s;
+  -moz-transition: opacity 0.4s ease-out 2s;
+  -o-transition: opacity 0.4s ease-out 2s;
+  transition: opacity 0.4s ease-out 2s;
+  opacity: 0;
+}
+/* line 301, ../sass/screen/_map.scss */
+.low-perf #popup-forest.opened svg {
+  display: block;
+  opacity: 1;
+}
+
+/* line 307, ../sass/screen/_map.scss */
+#map-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* line 315, ../sass/screen/_map.scss */
+#curl-spot {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 200px;
+  height: 200px;
+  background: blue;
+}
+
+/* line 324, ../sass/screen/_map.scss */
+#map-back-button {
+  background-color: white;
+  padding: 5px;
+  color: black;
+  cursor: pointer;
+  font-family: arial, sans-serif;
+  font-size: 12px;
+  width: 100px;
+  height: 100px;
+}

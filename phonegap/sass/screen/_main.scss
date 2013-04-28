@@ -1,0 +1,183 @@
+html, body{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    font-size: 80%;
+    overflow: hidden;
+}
+
+#main{
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+.view{
+    position: absolute;
+}
+
+.page-container-view{
+    position: absolute;
+    padding: 5vh 10vw;
+    width: 80vw;
+    height: 90vh;
+    background-color: #1a1a1a;
+    overflow: hidden;
+}
+
+.page-container-shadows{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.page-scroll-view{
+    width: 80vw;
+    height: 90vh;
+}
+
+.page-content-view{
+    height: 100%;
+    background: white;
+}
+
+.page-view-full{
+    margin-right: 20vw;
+    margin-left: 20vw;
+}
+
+.page-view{
+    position: static;
+    float: left;
+    width: 80vw;
+    height: 80vh;
+}
+
+.article-container-view{
+    width: 100vw;
+    height: 100vh;
+}
+
+.article-content-view{
+    height: 100%;
+}
+
+.article-scroll-view{
+    width: 100vw;
+    height: 100vh;
+}
+
+.article-pages-scroll-view{
+    bottom: 0;
+    width: 100vw;
+    height: 100px;
+    background: blue;
+}
+
+.article-pages-content-view{
+    height: 100%;
+}
+
+.article-cover-view{
+    display: inline-block;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(255, 0, 255, 0.5);
+    background-size: cover;
+    background-position: center bottom;
+}
+
+.toc-title{
+    position: absolute;
+    right: 0;
+    padding: .5em;
+    color: white;
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size: 3rem;
+    font-weight: 800;
+    // text-shadow: 0px 3px 5px rgba(0, 0, 0, 0.5);
+
+    &.coming-soon{
+        color: #ccc;
+    }
+}
+
+.toc-logo{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 1rem;
+}
+
+.toc-contents{
+    -webkit-perspective: 500px;
+}
+
+.toc-view{
+    height: 100vh;
+    width: 100vw;
+    background-color: #2f2d2d;
+    overflow-x: scroll;
+    -webkit-overflow-scrolling: touch;
+}
+
+.toc-view-button{
+    // -webkit-transform-origin: 0 0;
+    // background-size: cover;
+    background-color: #333;
+    background-size: 100%;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    // box-shadow: 0 10px 22px rgba(0, 0, 0, .5);
+}
+
+.page-thumb-view{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: visible !important;
+    height: 20vh;
+    z-index: 5;
+    
+    .page-thumb-view-content{
+        height: 20vh;
+        
+        .page-thumb{
+            // width: 32vw;
+            height: 20vh;
+            background-color: black;
+            border-radius: 20px;
+        }
+    }
+}
+
+.intro-view{
+    background-color: white;
+}
+
+.transition-container{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    perspective: 3000;
+    pointer-events: none;
+    // background: rgba(255, 0, 0, 0.5);
+}
+
+.transition-element{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: 100%;
+    background-position: 50% 50%;
+}

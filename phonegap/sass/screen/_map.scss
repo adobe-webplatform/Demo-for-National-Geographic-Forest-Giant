@@ -1,0 +1,334 @@
+$lightblue: rgb(48, 145, 95);
+
+.map-content{
+	position: absolute;
+	// height: 600px;
+	height: 95vh;
+    width: 100%;
+	background-color: rgba(255, 255, 255, 0.99); //this fixes a bug in shaders that makes bg opaque
+    background-image: url(../assets/images/article1/map.jpg);
+	background-repeat: no-repeat;
+	background-size: auto 85%;
+	background-position: right top;
+    z-index: 10;
+
+    h2{
+        font-family: georgia;
+        font-size: 4rem;
+        text-align: right;
+        width: 30rem;
+        display: inline-block;
+    }
+
+    h5{
+        font-weight: bold;
+    }
+
+	.map-content-main{
+		position: relative;
+        margin-left: 5%;
+        margin-top: 1rem;
+        margin-left: 7rem;
+		padding: 2.7em 2em;
+        padding-bottom: 0;
+		width: 44vw;
+		text-align: right;
+
+        p{
+            margin: 1.9em 0;
+            line-height: 1.9;
+            text-align: justify;
+
+            display: block;
+            min-height: 200px;
+            margin-left: 3em;
+            margin-top: 22px;
+            padding-bottom: 0;
+            margin-bottom: 0;
+            font-size: 1.4rem;
+            text-indent: 0;
+            -webkit-shape-inside: polygon(30px 0, 100% 0, 100% 500px, 130px 500px, 0% 50px);
+        }
+
+		figure{
+			position: absolute;
+            top: 6rem;
+            left: -30px;
+            opacity: 1; //0.2;
+            @include transition(opacity 1s ease-out 1s);
+
+            &.in{
+                opacity: 1;
+            }
+		}
+	}
+
+    a{
+        position: absolute;
+        display: block;
+        padding: 1em;
+        line-height: 1.3;
+        text-transform: uppercase;
+        color: $lightblue;
+
+        &.plus{
+
+            width: 300px;
+
+            .low-perf &.in,
+            .high-perf &.in{
+
+                img{
+                    @include transform(scale(1));
+                }
+
+                span{
+                    opacity: 1;
+                }
+            }
+
+            .high-perf &:hover{
+                img{
+                    @include transform(scale(1.2) rotate(180deg));
+                }
+            }
+
+            img{
+                position: absolute;
+            }
+
+            .high-perf & img{
+                @include transform-origin(center, center);
+                @include transform(scale(.2));
+                @include transition(transform 1s);
+            }
+
+            span{
+                display: block;
+                //opacity: 0;
+                margin-left: 2.5em;
+                width: 200px;
+            }
+            
+            .high-perf & span{
+                @include transition(opacity 1s ease-out .5s);
+            }
+        }
+
+        &.info{
+            padding-right: 30px;
+            background-image: url(../assets/images/info-icon.svg);
+            background-repeat: no-repeat;
+            background-position: right center;
+
+        }
+    }
+}
+
+#map-dist{
+    position: absolute;
+    top: 245px;
+    right: 155px;
+    font-size: .9rem;
+    max-width: 18em;
+    line-height: 1.3;
+    //opacity: 0;
+    @include transition(opacity 1s);
+
+    &.in{
+        opacity: 1;
+    }
+}
+
+#map-limit{
+    position: absolute;
+    top: 64px;
+    right: 115px;
+    font-size: .9rem;
+    max-width: 15em;
+    line-height: 1.3;
+    //opacity: 0;
+    @include transition(opacity 1s);
+
+    &.in{
+        opacity: 1;
+    }
+}
+
+#map-plus-1{
+    position: absolute;
+    top: 450px;
+    left: 20%;
+}
+
+#map-plus-2{
+    top: 450px;
+    // left: 55%;
+    right: 100px;
+}
+
+#map-plus-3{
+    bottom: 30px;
+    // left: 55%;
+    right: 100px;
+}
+
+#map-credits{
+    margin-left: 1em;
+    bottom: 30px;
+}
+
+#map-tree{
+    border: 3px solid #666;
+    // margin-left: 3.5em;
+    background-color: rgba(255, 255, 255, .5);
+    //opacity: 0;
+    @include transition(opacity 1s ease-out 1s);
+
+    &.in{
+        opacity: 1;
+    }
+}
+
+#map-tree-figure{
+    position: absolute;
+    left: 20%;
+    bottom: 30px;
+    width: 250px;
+}
+
+///elevation
+#elevation{
+    width: 50%;
+    height: 65%; // .722
+    position: absolute;
+    left: 50%;
+    bottom: -12vh;
+    background-image: url(../assets/images/article1/elevation-small.png);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    border: 1px solid black;
+    background-color: white;
+}
+
+#elevation-html{
+    display: none;
+    height: 529px;
+    width: 733px;
+    margin: 0 auto;
+    position: relative;
+    background-image: url(../assets/images/article1/elevation-graphic.svg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-color: white;
+    font-size: 1.5rem;
+}
+
+.elevation-label{
+    opacity: 1;
+    position: absolute;
+}
+
+#elevation-title{
+    bottom: 10px; 
+    left: 50%;
+    font-weight: bold;
+}
+
+#elevation-label2{
+    bottom: 19%;
+    left: 22%;
+    width: 24%;
+    height: 12%;
+    line-height: 1.5;
+    text-align: justify;
+    -webkit-shape-inside: polygon(0 0, 100% 0, 80% 100%, 0 100%);
+}
+
+#elevation-wetter{
+    right: 20%;
+    top: 34%;
+}
+
+#elevation-drier{
+    right: 3%;
+    top: 34%;
+}
+
+#elevation-mt{
+    right: 3%;
+    top: 20%;
+}
+
+#elevation-top{
+    left: 7%;
+    bottom: 33%;
+}
+
+#elevation-bottom{
+    left: 5%;
+    bottom: 15%;
+}
+
+#elevation-text{
+    padding: 1.5em;
+    top: 0;
+
+    b{
+        display: block;
+        font-weight: bold;
+        font-size: 1.8rem;
+    }
+
+    p{
+        margin-top: .7em;
+        height: 200px;
+        text-indent: 0;
+        // text-align: left;
+        font-size: 1.5rem;
+        line-height: 1.5;
+        -webkit-shape-inside: polygon(0 0, 60% 0, 30% 100%, 0 100%);
+    }
+}
+
+
+.low-perf #popup-forest{
+    svg{
+        @include transition(opacity 0.4s ease-out 2s);
+        opacity: 0;
+    }
+    
+    &.opened svg{
+        display: block;
+        opacity: 1;
+    }
+}
+
+#map-canvas{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#curl-spot{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 200px;
+    height: 200px;
+    background: blue;
+}
+
+#map-back-button{
+    background-color: white;
+    padding: 5px;
+    color: black;
+    cursor: pointer;
+    font-family: arial, sans-serif;
+    font-size: 12px;
+    width: 100px;
+    height: 100px;
+}
+            
