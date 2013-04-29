@@ -261,7 +261,7 @@ define([], function (require) {
 				IMAGE_ARRAY.push({t: texture, m: material, src: srcString, img: image});
 
                 //add pre rendered textures for perf hit
-                geometry = new THREE.PlaneGeometry(10, 10);
+                geometry = new THREE.PlaneGeometry(1, 1);
                 material = new THREE.MeshBasicMaterial({map: texture});
                 mesh = new THREE.Mesh(geometry, material);
                 mesh.position.y = 5148 / 2;
