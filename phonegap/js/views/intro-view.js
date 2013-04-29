@@ -114,7 +114,7 @@ define([], function (require) {
 
         function runAnimation() {
             timeline.insert(TweenMax.to(camera.position, 17, {y: -2000 - verticalPadding, ease: Quad.easeOut}));
-            timeline.insert(TweenMax.to(camera.rotation, 7, {x: 0, delay: 10, ease: Quad.easeIn}));
+            timeline.insert(TweenMax.to(camera.rotation, 7, {x: 0, delay: 10, ease: Quad.easeInOut}));
             timeline.insert(TweenMax.to(camera.position, 7, {z: ZOOM_MIN, delay: 10, ease: Quad.easeInOut}));
             timeline.timeScale(animationSpeed);   
             TweenMax.ticker.addEventListener("tick", instance.draw);

@@ -25,7 +25,14 @@ define([], function (require) {
                 {img: 'article2.jpg', content: '<span class="toc-title coming-soon">Coming Soon</span>'},
                 {img: 'article5.jpg', content: '<span class="toc-title coming-soon">Coming Soon</span>'},
                 {img: 'article6.jpg', content: '<span class="toc-title coming-soon">Coming Soon</span>'},
-                {img: 'article7.jpg', content: '<span class="toc-title coming-soon">Coming Soon</span>'}
+                {img: 'article7.jpg', content: '<span class="toc-title coming-soon">Coming Soon</span>'},
+                {img: 'article3.jpg', content: '<span class="toc-title coming-soon">Coming Soon</span>'},
+                {img: 'article4.jpg', content: '<span class="toc-title coming-soon">Coming Soon</span>'},
+                {img: 'article2.jpg', content: '<span class="toc-title coming-soon">Coming Soon</span>'},
+                {img: 'article5.jpg', content: '<span class="toc-title coming-soon">Coming Soon</span>'},
+                {img: 'article6.jpg', content: '<span class="toc-title coming-soon">Coming Soon</span>'},
+                {img: 'article7.jpg', content: '<span class="toc-title coming-soon">Coming Soon</span>'},
+                {img: 'article2.jpg', content: '<span class="toc-title coming-soon">Coming Soon</span>'}
             ];
 
         function populateButtons() {
@@ -47,8 +54,8 @@ define([], function (require) {
                 button.render(); //.bind('click', handle_button_CLICK);
                 buttons.push(button);
 
-                if (x > window.innerWidth - (padding * 2)) {
-                    max_width = x + (window.innerWidth / scale) + padding;
+                if (i % Math.round(contents.length / 2) === 0 && i !== 0) {
+                    max_width = x;
                     y += (window.innerHeight / scale) + padding;
                     x = padding;
                 } else {
