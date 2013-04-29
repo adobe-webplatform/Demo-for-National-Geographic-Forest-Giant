@@ -5,7 +5,7 @@ National Geographic demo using new web layout features.
 
 BROWSER
 -------
-http://github.com/adobe-webplatform/Demo-for-National-Geographic-Forest-Giant/browser/src/
+http://adobe-webplatform.github.io/Demo-for-National-Geographic-Forest-Giant/browser/src/
 
 run this on a server when testing locally :D
 
