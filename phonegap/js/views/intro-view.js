@@ -14,6 +14,7 @@ define([], function (require) {
             scene,
             container,
             renderer,
+            intro = true,
             animating = false,
             updateInterval,
             imageLoadCount = 0,
@@ -27,13 +28,10 @@ define([], function (require) {
 			position = {x: 0, y: 0, z: 0},
 			friction = 0.97,
 			bounce = 0.2,
-            //animationSpeed = 1,
             animationSpeed = 1.2,
             verticalPadding = 3000,
-            //IMAGE_COUNT = 126,
             TILE_COUNT = 126,
             IMAGE_COUNT = 3,
-            //IMAGE_COUNT = 10,
             IMAGE_ARRAY,
             TILES,
             ZOOM_MIN = 500,
@@ -106,14 +104,18 @@ define([], function (require) {
         }
 
         function handle_animation_COMPLETE() {
-            AppEvent.GOTO_VIEW.dispatch(1);
+            if (intro) {
+                AppEvent.GOTO_VIEW.dispatch(1);
+                intro = false;
+            } else {
+                addEventListeners();
+            }
         }
 
         function runAnimation() {
-            console.log('runAnimation');
-            timeline.insert(TweenMax.to(camera.position, 20, {y: -2000 - verticalPadding, ease: Quad.easeOut}));
-            timeline.insert(TweenMax.to(camera.rotation, 10, {x: 0, ease: Quad.easeIn}));
-            timeline.insert(TweenMax.to(camera.position, 7, {z: ZOOM_MIN, delay: 5, ease: Quad.easeOut}));
+            timeline.insert(TweenMax.to(camera.position, 17, {y: -2000 - verticalPadding, ease: Quad.easeOut}));
+            timeline.insert(TweenMax.to(camera.rotation, 7, {x: 0, delay: 10, ease: Quad.easeIn}));
+            timeline.insert(TweenMax.to(camera.position, 7, {z: ZOOM_MIN, delay: 10, ease: Quad.easeInOut}));
             timeline.timeScale(animationSpeed);   
             TweenMax.ticker.addEventListener("tick", instance.draw);
             animating = true;
@@ -125,10 +127,8 @@ define([], function (require) {
 			var pad = 50,
 				_x_orig = 1957 / 2,
 				_x = -_x_orig + pad,
-				//_y = 5148 / 2,
 				_y = (5148 / 2) - verticalPadding,
                 i,
-                //j = -1,
                 j = 0,
                 col = 0,
                 row = 0,
