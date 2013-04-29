@@ -67,8 +67,7 @@ define([], function (require) {
                 // Show gmap
                 TweenMax.to(filter, 0.5, {
                     curlPosition: -1,
-                    onComplete: openResolve,
-                    onUpdate: function() { console.log('tweenmax update', filter.curlPosition) }
+                    onComplete: openResolve
                 });
             }
             

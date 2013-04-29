@@ -39,6 +39,12 @@ define([], function (require) {
 
         }
 
+        function handle_SCROLL_START(e) {
+            if(mapElement && e.target != 'curl-spot') {
+                mapElement.destroy();
+            }
+        }
+
         function handle_SCROLL_END() {
             var $currentSection,
                 fullscreenElement,
@@ -64,10 +70,6 @@ define([], function (require) {
                 if( !mapElement ) {
                     mapElement = new MapElement($currentSection);
                 }
-            } else {
-                if(mapElement) {
-                    mapElement.destroy();
-                }
             }
         }
 
@@ -78,7 +80,8 @@ define([], function (require) {
                 hScrollbar: false,
                 vScrollbar: false,
                 onScrollMove: handle_SCROLL_MOVE,
-                onScrollEnd: handle_SCROLL_END
+                onScrollEnd: handle_SCROLL_END,
+                onScrollStart: handle_SCROLL_START
             });
 
             $('#page-scroll-view').css('overflow', 'visible');
@@ -129,7 +132,7 @@ define([], function (require) {
             var touches = e.originalEvent.touches,
                 t1, t2;
                 
-            if(e.target.id == 'curl-spot') {
+            if(e.target.id == 'curl-spot' && mapElement) {
                 e.preventDefault();
                 mapElement.showMaps();
                 mapElement.handleTouchStart(e);
