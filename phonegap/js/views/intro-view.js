@@ -127,13 +127,15 @@ define([], function (require) {
 				//_y = 5148 / 2,
 				_y = (5148 / 2) - 2000,
                 i,
-                j = -1,
+                //j = -1,
+                j = 0,
                 col = 0,
                 row = 0,
+                page = 0,
                 tex,
                 texture,
                 xOffset = 0,
-                yOffset = 6,
+                yOffset = 5,
                 geometry,
                 material,
                 mesh,
@@ -147,13 +149,6 @@ define([], function (require) {
 
             for (i = 0; i < TILE_COUNT; i += 1) {
 				
-                //reset offset if new image
-                if (i % squares === 0) {
-                    j += 1;
-                    xOffset = 0;
-                    yOffset = 6;
-                }
-
                 //add geometry, ignore edge photos 
                 if (_x < _x_orig - 150) { 
 
@@ -182,16 +177,26 @@ define([], function (require) {
                 //manage rows
                 xOffset += 1;
 				_x += spriteSize;
-					
-				if (_x > _x_orig - 100) {
+				col += 1;
+
+                //new row
+                if (col > 6) {
                     xOffset = 0;
                     yOffset -= 1;
 					_x = -_x_orig + pad;
 					_y -= spriteSize;
-                } 
+                    col = 0;
+                    row += 1;
+
+                    //rows in photo
+                    if (row % 6 === 0) {
+                        j += 1;
+                        xOffset = 0;
+                        yOffset = 5;
+                    }
+                }
             }
             
-            console.log('draw');
             instance.draw();
             runAnimation();
         }
