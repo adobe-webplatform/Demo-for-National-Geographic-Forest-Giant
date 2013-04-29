@@ -30,7 +30,15 @@
         <![endif]-->
 
         <div id="main"></div>
-
+        
+        <script>
+            if (navigator.onLine) {
+                var googleMapScript = document.createElement('script');
+                googleMapScript.setAttribute('src', "https://maps.googleapis.com/maps/api/js?sensor=false");
+                googleMapScript.setAttribute('type', "text/javsacript");
+                document.body.appendChild(googleMapScript);
+            }
+        </script>
         <!-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script> -->
         
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.9.0.js"><\/script>')</script>

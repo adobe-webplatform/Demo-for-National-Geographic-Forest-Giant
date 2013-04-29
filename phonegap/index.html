@@ -32,7 +32,15 @@
 
         <div id="main"></div>
 
-        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+        <script>
+            if (navigator.onLine) {
+                var googleMapScript = document.createElement('script');
+                googleMapScript.setAttribute('src', "https://maps.googleapis.com/maps/api/js?sensor=false");
+                googleMapScript.setAttribute('type', "text/javsacript");
+                document.body.addChild(googleMapScript);
+            }
+        </script>
+        <!-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script> -->
         
         <script src="js/vendor/jquery-1.9.0.js"></script>
         <script src="js/plugins.js"></script>

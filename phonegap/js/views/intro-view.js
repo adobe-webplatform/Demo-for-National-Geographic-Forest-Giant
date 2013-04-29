@@ -29,6 +29,7 @@ define([], function (require) {
 			bounce = 0.2,
             //animationSpeed = 1,
             animationSpeed = 1.2,
+            verticalPadding = 3000,
             //IMAGE_COUNT = 126,
             TILE_COUNT = 126,
             IMAGE_COUNT = 3,
@@ -110,7 +111,7 @@ define([], function (require) {
 
         function runAnimation() {
             console.log('runAnimation');
-            timeline.insert(TweenMax.to(camera.position, 20, {y: -4000, ease: Quad.easeOut}));
+            timeline.insert(TweenMax.to(camera.position, 20, {y: -2000 - verticalPadding, ease: Quad.easeOut}));
             timeline.insert(TweenMax.to(camera.rotation, 10, {x: 0, ease: Quad.easeIn}));
             timeline.insert(TweenMax.to(camera.position, 7, {z: ZOOM_MIN, delay: 5, ease: Quad.easeOut}));
             timeline.timeScale(animationSpeed);   
@@ -125,7 +126,7 @@ define([], function (require) {
 				_x_orig = 1957 / 2,
 				_x = -_x_orig + pad,
 				//_y = 5148 / 2,
-				_y = (5148 / 2) - 2000,
+				_y = (5148 / 2) - verticalPadding,
                 i,
                 //j = -1,
                 j = 0,
@@ -171,7 +172,7 @@ define([], function (require) {
                     TILES.push(mesh);
 			        container.add(mesh);
 
-                    timeline.insert(new TweenMax.to(mesh.position, 2, {z: 0, ease: Quad.easeInOut, delay: 2 + (i / 10)}));
+                    timeline.insert(new TweenMax.to(mesh.position, 2, {z: 0, ease: Quad.easeInOut, delay: (verticalPadding / 1000) + (i / 10)}));
 				}
 
                 //manage rows
@@ -188,7 +189,7 @@ define([], function (require) {
                     col = 0;
                     row += 1;
 
-                    //rows in photo
+                    //new photo
                     if (row % 6 === 0) {
                         j += 1;
                         xOffset = 0;
