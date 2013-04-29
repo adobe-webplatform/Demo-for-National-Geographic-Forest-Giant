@@ -95,6 +95,10 @@ define([], function (require) {
 			pointer.x = e.originalEvent.touches[0].pageX;
 			pointer.y = e.originalEvent.touches[0].pageY;
 			pointerMove(pointer);
+
+            if (e.originalEvent.touches.length === 3) {
+                AppEvent.GOTO_VIEW.dispatch(1);
+            }
 		}
 
         function addEventListeners() {
@@ -103,13 +107,17 @@ define([], function (require) {
 			$el.bind('touchmove', handle_TOUCHMOVE);
         }
 
+        function removeEventListeners() {
+            $el.unbind('touchstart', handle_TOUCHSTART);
+			$el.unbind('touchend', handle_TOUCHEND);
+			$el.unbind('touchmove', handle_TOUCHMOVE);
+        }
+
         function handle_animation_COMPLETE() {
             if (intro) {
                 AppEvent.GOTO_VIEW.dispatch(1);
                 intro = false;
-            } else {
-                addEventListeners();
-            }
+            }         
         }
 
         function runAnimation() {
@@ -231,7 +239,6 @@ define([], function (require) {
                 width: '100%', 
                 height: '100%'
             });
-
         }
 
         function loadImages() {
@@ -246,7 +253,6 @@ define([], function (require) {
                 spriteSize = 300,
                 imageWidth = 1957,
                 imageHeight = 1800;
-
 
             TILES = [];
             IMAGE_ARRAY = [];
@@ -347,28 +353,26 @@ define([], function (require) {
         }
 
         function handle_CLICK(e) {
-            //console.log('intro: click');
-            timeline.kill();
-            AppEvent.GOTO_VIEW.dispatch(1);
+            if (intro) {
+                timeline.kill();
+                handle_animation_COMPLETE();
+            }
         }
 
         instance.init = function () {
-            //console.log('intro: init');
             createScene();
             loadImages();
-
-            //TweenMax.ticker.fps(30);
-            //updateInterval = setInterval(instance.update, 60 / 1000);
         };
 
         instance.update = function () {
-            if (!animating) {
-                updateInteractive();
-            }
+            updateInteractive();
         };
 
         instance.show = function () {
-            //console.log('intro: show');
+            if (!intro) {
+                addEventListeners();
+                updateInterval = setInterval(instance.update, 60 / 1000);
+            }
         };
 
         instance.render = function () {
@@ -377,26 +381,22 @@ define([], function (require) {
         };
 
         instance.draw = function () {
-            //if (animating) {
             renderer.render(scene, camera);
-            //    requestAnimationFrame(instance.draw);
-            //}
         };
 
         instance.animOut = function (callback) {
-            //console.log('intro: animout');
-
             animating = false;
             timeline.kill();
+            removeEventListeners();
             TweenMax.ticker.removeEventListener("tick", instance.draw);
             clearInterval(updateInterval);
             
-            var btn = $('.toc-view-button')[0];
+            var btn = $($('.toc-view-button')[0]);
             new TweenMax.to($el, 1, {
                 css: {
                     scale: 0.5, 
-                    x: $(btn).offset().left - ($(btn).width() * 0.6), 
-                    y: $(btn).offset().top - ($(btn).height() * 0.6), 
+                    x: btn.offset().left - (btn.width() * 0.6), 
+                    y: btn.offset().top - (btn.height() * 0.6), 
                     z: 0.01,
                     opacity: 0
                 }, 
@@ -407,16 +407,10 @@ define([], function (require) {
         };
 
         instance.destroy = function () {
-            //console.log('intro: destroy');
-
-            //timeline.kill();
-            //TweenMax.ticker.removeEventListener("tick");
-            //clearInterval(updateInterval);
+            renderer.clear();
             $el.unbind('click');
             $el.remove();
         };
-
-        //instance.init();
     };
 
 	return IntroView;

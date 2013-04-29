@@ -83,7 +83,7 @@ define([], function (require) {
         instance.show = function () {
             tocScroll = new iScroll('toc-view', {
                 momentum: true,
-                bounce: false,
+                bounce: true,
                 hScrollbar: false,
                 vScrollbar: false
             });

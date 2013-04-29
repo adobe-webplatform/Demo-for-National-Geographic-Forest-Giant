@@ -60,12 +60,12 @@ define([], function (require) {
                 animatables.push(fullscreenElement);
             }
             
-            if( $currentSection.find('.map-content').length == 1 ) {
-                if( !mapElement ) {
+            if ($currentSection.find('.map-content').length == 1) {
+                if (!mapElement) {
                     mapElement = new MapElement($currentSection);
                 }
             } else {
-                if(mapElement) {
+                if (mapElement) {
                     mapElement.destroy();
                 }
             }
@@ -129,41 +129,19 @@ define([], function (require) {
             var touches = e.originalEvent.touches,
                 t1, t2;
                 
-            if(e.target.id == 'curl-spot') {
+            if (e.target.id == 'curl-spot') {
                 e.preventDefault();
                 mapElement.showMaps();
                 mapElement.handleTouchStart(e);
                 return;
             }
-                
-            if (touches.length == 2) {
-                t1 = {x: touches[0].pageX, y: touches[0].pageY};
-                t2 = {x: touches[1].pageX, y: touches[1].pageY};
-
-                deltaDistance = getDistance(t1, t2);
-            } else {
-                deltaDistance = null;
-            }
         }
 
         function handle_TOUCHMOVE(e) {
-            var touches = e.originalEvent.touches,
-                t1, t2,
-                dist;
-
-            if (touches.length == 2 && deltaDistance) {
-
-                e.preventDefault();
-                e.stopPropagation();
-
-                t1 = {x: touches[0].pageX, y: touches[0].pageY};
-                t2 = {x: touches[1].pageX, y: touches[1].pageY};
- 
-                dist = getDistance(t1, t2);
-
-                if (dist - deltaDistance < -100) {
-                    AppEvent.GOTO_VIEW.dispatch(1);
-                }
+            var touches = e.originalEvent.touches;
+               
+            if (touches.length == 3) {
+                AppEvent.GOTO_VIEW.dispatch(1);
             }
         };
 
