@@ -19,7 +19,7 @@ define([], function (require) {
                 position: 'absolute',
                 top: '5vh',
                 left: '-10vw'
-            });
+            }).addClass('map-overlay');
             
             instance.hideMaps();
             
@@ -27,8 +27,10 @@ define([], function (require) {
         }
         
         function handle_TOUCHMOVE(e) {
+            var pageX = e.originalEvent.touches[0].pageX;
             e.originalEvent.stopPropagation();
             e.originalEvent.preventDefault();
+            setCurl( (pageX / window.innerWidth * 2) - 1 );
         }
         
         function handle_TOUCHEND(e) {
@@ -55,6 +57,7 @@ define([], function (require) {
             startX = e.originalEvent.touches[0].pageX;
             $('#curl-spot').bind('touchmove.map', handle_TOUCHMOVE);
             $('#curl-spot').bind('touchend.map', handle_TOUCHEND);
+            setCurl( (startX / window.innerWidth * 2) - 1 );
         }
         
         function addBackButton() {
@@ -67,6 +70,14 @@ define([], function (require) {
             });
         }
         
+        // 1 = no curl
+        // -1 = page all gone
+        function setCurl(curlPosition) {
+            console.log('curlPosition', curlPosition);
+            $mapCopy.css('webkitFilter',
+            'custom(url(assets/shaders/page-curl.vs) mix(url(/assets/shaders/page-curl.fs) normal source-atop), 50 50 border-box, transform perspective(1000) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg), curlPosition ' + curlPosition + ' 0, curlDirection 135, curlRadius 0.2, bleedThrough 0.5)');
+        }
+        
         instance.handleTouchStart = handle_TOUCHSTART;
         
         instance.showMaps = function() {
@@ -76,6 +87,10 @@ define([], function (require) {
             }
             $container.css('z-index', 1);
             $mapCopy.css('z-index', 1);
+            var curlPosition = 1;
+            setCurl(0.5);
+            $mapCopy.css('webkitFilter',
+            'custom(url(assets/shaders/page-curl.vs) mix(url(/assets/shaders/page-curl.fs) normal source-atop), 50 50 border-box, transform perspective(1000) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg), curlPosition ' + curlPosition + ' 0, curlDirection 135, curlRadius 0.2, bleedThrough 0.5)');
         }
 
         instance.hideMaps = function() {
