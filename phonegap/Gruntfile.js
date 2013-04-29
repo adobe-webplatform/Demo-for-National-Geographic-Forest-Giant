@@ -7,9 +7,9 @@ module.exports = function(grunt) {
 			compile: {
 				options: {
 					name: "main",
-		    		baseUrl: "www/js/",
-			        mainConfigFile: "www/js/config.js",
-		    		out: "www/js/main.min.js"
+		    		baseUrl: "js/",
+			        mainConfigFile: "js/config.js",
+		    		out: "js/main.min.js"
 				}
 			}
 		}
