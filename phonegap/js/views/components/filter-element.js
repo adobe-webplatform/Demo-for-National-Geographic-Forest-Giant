@@ -136,7 +136,7 @@ define([], function (require) {
             timeline.insert(new TweenMax(filter, 2, {fold: 0, ease: Linear.easeNone, delay: 2}));
             timeline.insert(new TweenMax(filter, 4, {scale: 1, ease: Linear.easeNone}));
             timeline.pause();
-            timeline.timeScale(4);
+            //timeline.timeScale(4);
         }
 
         function addFilterElement() {
@@ -194,8 +194,6 @@ define([], function (require) {
 
             $body.unbind('touchend');
             $body.unbind('touchmove');
-
-            //TweenMax.killTweensOf(filter); //KILL
 
             if (opening) {
                 new TweenMax.to(filter, 0.5, {
@@ -256,13 +254,8 @@ define([], function (require) {
                 opening = distance > 100 ? true : opening;
 
                 console.log('filter: touch move', timelinePosition);
-                //console.log(Math.abs(timelinePosition - timeline.time()));
 
-                //if (Math.abs(timelinePosition - timeline.time()) > 0.5) {
-                //    timeline.tweenTo(timelinePosition);
-                //} else {
                 timeline.seek(timelinePosition);
-                //}
             }
         }
 
@@ -300,7 +293,6 @@ define([], function (require) {
                 $body.bind('touchend', handle_filter_TOUCHEND);
                 $body.bind('touchmove', handle_filter_TOUCHMOVE);
 
-                //timeline.kill(); //KILL
                 timeline.tweenTo(2, {onComplete: function () {
                     animating = false;
                 }});
@@ -338,6 +330,7 @@ define([], function (require) {
         }
 
         function handle_resolveEl_CLICK(e) {
+            
             console.log('resolve click');
 
             dragging = true;
@@ -354,6 +347,7 @@ define([], function (require) {
         }
 
         function handle_el_CLICK(e) {
+            
             console.log('el click');
 
             dragging = true;
@@ -366,9 +360,8 @@ define([], function (require) {
 
             addTimeline();
             timeline.play();
-
+            
             new TweenMax.to(filter, 2, {x: 0, y: 0, onComplete: openResolve});
-
             scroll.disable();
             instance.startRequestAnimationFrame();
         }
