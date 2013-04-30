@@ -143,7 +143,7 @@ define([], function (require) {
                 $resolveEl.css({opacity: 0, 'pointer-events': 'none'});
                 $transformEl.css({'opacity': 1});
                 
-                instance.draw();
+                instance.startRequestAnimationFrame();
 
                 calculateDeltas(t1, t2);
 
@@ -171,7 +171,7 @@ define([], function (require) {
 
                 showTransformElement();
                 
-                instance.draw();
+                instance.startRequestAnimationFrame();
                 scroll.disable();
             
                 calculateDeltas(t1, t2);
@@ -258,7 +258,7 @@ define([], function (require) {
 
             showTransformElement();
             
-            instance.draw();
+            instance.startRequestAnimationFrame();
             scroll.disable();
             open();
         }
@@ -269,7 +269,7 @@ define([], function (require) {
             $resolveEl.css({opacity: 0, 'pointer-events': 'none'});
             $transformEl.css({'opacity': 1});
             
-            instance.draw();
+            instance.startRequestAnimationFrame();
 
             $resolveEl.unbind('touchstart');
             $resolveEl.unbind('click');
@@ -282,13 +282,22 @@ define([], function (require) {
             $el.bind('click', handle_CLICK);
             addContainer();
             addTransformElement();
+            instance.waitingRequestAnimationFrame = false;
         };
 
+        instance.startRequestAnimationFrame = function() {
+            if (instance.waitingRequestAnimationFrame)
+                return;
+            instance.waitingRequestAnimationFrame = true;
+            requestAnimationFrame(instance.draw);
+        }
+
         instance.draw = function () {
-            if (dragging) {
-                TweenMax.set($transformEl, {css: {x: transform.x, y: transform.y, scale: transform.scale, rotation: transform.rotation}});
-                requestAnimationFrame(instance.draw);
-            }
+            instance.waitingRequestAnimationFrame = false;
+            if (!dragging)
+                return;
+            TweenMax.set($transformEl, {css: {x: transform.x, y: transform.y, scale: transform.scale, rotation: transform.rotation}});
+            instance.startRequestAnimationFrame();
         };
 
         instance.render = function () {
