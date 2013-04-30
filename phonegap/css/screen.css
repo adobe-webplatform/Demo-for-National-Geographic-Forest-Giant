@@ -91,6 +91,14 @@ html, body {
 }
 
 /* line 19, ../sass/screen/_main.scss */
+#img-loader {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  background-image: url(../assets/images/toc/article1.jpg), url(../assets/images/article1/img2_bottom.jpg), url(../assets/images/article1/video.jpg), url(../assets/images/article1/img1_mist.jpg), url(../assets/images/article1/img3_dark.jpg);
+}
+
+/* line 26, ../sass/screen/_main.scss */
 #main {
   position: absolute;
   height: 100%;
@@ -98,12 +106,12 @@ html, body {
   overflow: hidden;
 }
 
-/* line 26, ../sass/screen/_main.scss */
+/* line 33, ../sass/screen/_main.scss */
 .view {
   position: absolute;
 }
 
-/* line 30, ../sass/screen/_main.scss */
+/* line 37, ../sass/screen/_main.scss */
 .page-container-view {
   position: absolute;
   padding: 5vh 10vw;
@@ -113,7 +121,7 @@ html, body {
   overflow: hidden;
 }
 
-/* line 39, ../sass/screen/_main.scss */
+/* line 46, ../sass/screen/_main.scss */
 .page-container-shadows {
   position: absolute;
   top: 0;
@@ -123,25 +131,25 @@ html, body {
   pointer-events: none;
 }
 
-/* line 48, ../sass/screen/_main.scss */
+/* line 55, ../sass/screen/_main.scss */
 .page-scroll-view {
   width: 80vw;
   height: 90vh;
 }
 
-/* line 53, ../sass/screen/_main.scss */
+/* line 60, ../sass/screen/_main.scss */
 .page-content-view {
   height: 100%;
   background: white;
 }
 
-/* line 58, ../sass/screen/_main.scss */
+/* line 65, ../sass/screen/_main.scss */
 .page-view-full {
   margin-right: 20vw;
   margin-left: 20vw;
 }
 
-/* line 63, ../sass/screen/_main.scss */
+/* line 70, ../sass/screen/_main.scss */
 .page-view {
   position: static;
   float: left;
@@ -149,24 +157,24 @@ html, body {
   height: 80vh;
 }
 
-/* line 70, ../sass/screen/_main.scss */
+/* line 77, ../sass/screen/_main.scss */
 .article-container-view {
   width: 100vw;
   height: 100vh;
 }
 
-/* line 75, ../sass/screen/_main.scss */
+/* line 82, ../sass/screen/_main.scss */
 .article-content-view {
   height: 100%;
 }
 
-/* line 79, ../sass/screen/_main.scss */
+/* line 86, ../sass/screen/_main.scss */
 .article-scroll-view {
   width: 100vw;
   height: 100vh;
 }
 
-/* line 84, ../sass/screen/_main.scss */
+/* line 91, ../sass/screen/_main.scss */
 .article-pages-scroll-view {
   bottom: 0;
   width: 100vw;
@@ -174,12 +182,12 @@ html, body {
   background: blue;
 }
 
-/* line 91, ../sass/screen/_main.scss */
+/* line 98, ../sass/screen/_main.scss */
 .article-pages-content-view {
   height: 100%;
 }
 
-/* line 95, ../sass/screen/_main.scss */
+/* line 102, ../sass/screen/_main.scss */
 .article-cover-view {
   display: inline-block;
   width: 100vw;
@@ -189,7 +197,7 @@ html, body {
   background-position: center bottom;
 }
 
-/* line 104, ../sass/screen/_main.scss */
+/* line 111, ../sass/screen/_main.scss */
 .toc-title {
   position: absolute;
   right: 0;
@@ -199,12 +207,12 @@ html, body {
   font-size: 3rem;
   font-weight: 800;
 }
-/* line 114, ../sass/screen/_main.scss */
+/* line 121, ../sass/screen/_main.scss */
 .toc-title.coming-soon {
   color: #ccc;
 }
 
-/* line 119, ../sass/screen/_main.scss */
+/* line 126, ../sass/screen/_main.scss */
 .toc-logo {
   position: absolute;
   bottom: 0;
@@ -212,12 +220,12 @@ html, body {
   margin: 1rem;
 }
 
-/* line 126, ../sass/screen/_main.scss */
+/* line 133, ../sass/screen/_main.scss */
 .toc-contents {
   -webkit-perspective: 500px;
 }
 
-/* line 130, ../sass/screen/_main.scss */
+/* line 137, ../sass/screen/_main.scss */
 .toc-view {
   height: 100vh;
   width: 100vw;
@@ -226,7 +234,7 @@ html, body {
   -webkit-overflow-scrolling: touch;
 }
 
-/* line 138, ../sass/screen/_main.scss */
+/* line 145, ../sass/screen/_main.scss */
 .toc-view-button {
   background-color: #333;
   background-size: 100%;
@@ -234,7 +242,7 @@ html, body {
   background-repeat: no-repeat;
 }
 
-/* line 148, ../sass/screen/_main.scss */
+/* line 155, ../sass/screen/_main.scss */
 .page-thumb-view {
   position: absolute;
   bottom: 0;
@@ -244,23 +252,23 @@ html, body {
   height: 20vh;
   z-index: 5;
 }
-/* line 157, ../sass/screen/_main.scss */
+/* line 164, ../sass/screen/_main.scss */
 .page-thumb-view .page-thumb-view-content {
   height: 20vh;
 }
-/* line 160, ../sass/screen/_main.scss */
+/* line 167, ../sass/screen/_main.scss */
 .page-thumb-view .page-thumb-view-content .page-thumb {
   height: 20vh;
   background-color: black;
   border-radius: 20px;
 }
 
-/* line 169, ../sass/screen/_main.scss */
+/* line 176, ../sass/screen/_main.scss */
 .intro-view {
   background-color: white;
 }
 
-/* line 173, ../sass/screen/_main.scss */
+/* line 180, ../sass/screen/_main.scss */
 .transition-container {
   position: fixed;
   top: 0;
@@ -272,7 +280,7 @@ html, body {
   pointer-events: none;
 }
 
-/* line 185, ../sass/screen/_main.scss */
+/* line 192, ../sass/screen/_main.scss */
 .transition-element {
   position: absolute;
   top: 0;
