@@ -81,7 +81,11 @@ define([], function (require) {
             $container.css('z-index', 1);
             dragging = false;
         }
-
+        
+        function closeResolve() {
+            dragging = false;
+            instance.hideMaps();
+        }
         
         function handle_TOUCHSTART(e) {
             startX = e.originalEvent.touches[0].pageX;
@@ -98,7 +102,18 @@ define([], function (require) {
             
             googleMap.controls[google.maps.ControlPosition.BOTTOM_LEFT].push(button);
             google.maps.event.addDomListener(button, 'click', function() {
-                instance.hideMaps();
+                //instance.hideMaps();
+                $mapCopy.css('z-index', 1);
+                dragging = true;
+                filter.curlPosition = -1;
+                instance.draw();
+                
+                TweenMax.to(filter, 2, {
+                    curlPosition: 1,
+                    ease: Quint.easeOut,
+                    onComplete: closeResolve
+                });
+
             });
         }
         
