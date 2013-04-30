@@ -19,6 +19,9 @@ define([], function (require) {
             if ($el.find('.page-full').length > 0) {
                 $el.addClass('page-view-full');
             }
+            if ($el.find('.page-exact').length > 0) {
+                $el.addClass('page-view-exact');
+            }
         };
 
         instance.render = function () {

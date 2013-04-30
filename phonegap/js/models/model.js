@@ -30,9 +30,6 @@ define([], function (require) {
                     article1_p6,
                     article1_p7,
                     article1_p8,*/
-                    
-                    article1_p3,
-                    
                     article1_p9,
                     article1_p10, 
                     article1_p11,
