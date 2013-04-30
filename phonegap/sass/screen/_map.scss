@@ -8,7 +8,7 @@ $lightblue: rgb(48, 145, 95);
 	background-color: rgba(255, 255, 255, 0.99); //this fixes a bug in shaders that makes bg opaque
     background-image: url(../assets/images/article1/map.jpg);
 	background-repeat: no-repeat;
-	background-size: auto 85%;
+	background-size: auto 100%;
 	background-position: right top;
     z-index: 10;
 
@@ -318,7 +318,7 @@ $lightblue: rgb(48, 145, 95);
     right: 0;
     width: 200px;
     height: 200px;
-    background: blue;
+    // background: blue;
 }
 
 #map-back-button{
