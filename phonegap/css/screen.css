@@ -450,7 +450,11 @@ section.page-view-full.in {
   -webkit-shape-inside: polygon(0 40%, 30% 0, 100% 0, 100% 100%, 0 100%);
 }
 
-/* line 152, ../sass/screen/_pages.scss */
+/* line 150, ../sass/screen/_pages.scss */
+#a1p10 {
+  background-color: #f4f3f0;
+}
+/* line 153, ../sass/screen/_pages.scss */
 #a1p10 .map-google {
   position: absolute;
   top: 0;
@@ -459,7 +463,7 @@ section.page-view-full.in {
   height: 100%;
 }
 
-/* line 161, ../sass/screen/_pages.scss */
+/* line 162, ../sass/screen/_pages.scss */
 #videoBtn {
   position: absolute;
   top: -10px;
@@ -472,7 +476,7 @@ section.page-view-full.in {
   background-repeat: no-repeat;
 }
 
-/* line 173, ../sass/screen/_pages.scss */
+/* line 174, ../sass/screen/_pages.scss */
 #logImage {
   position: absolute;
   bottom: -12vh;
@@ -485,7 +489,7 @@ section.page-view-full.in {
   background-repeat: no-repeat;
 }
 
-/* line 189, ../sass/screen/_pages.scss */
+/* line 190, ../sass/screen/_pages.scss */
 #fogImage {
   position: absolute;
   top: -10px;
@@ -508,7 +512,7 @@ section.page-view-full.in {
   transform: scale(0.93);
 }
 
-/* line 205, ../sass/screen/_pages.scss */
+/* line 206, ../sass/screen/_pages.scss */
 #darkImage {
   position: absolute;
   top: -10px;
@@ -531,13 +535,13 @@ section.page-view-full.in {
   transform: scale(0.93);
 }
 
-/* line 222, ../sass/screen/_pages.scss */
+/* line 223, ../sass/screen/_pages.scss */
 #elevation {
   width: 600px;
   height: 433px;
 }
 
-/* line 227, ../sass/screen/_pages.scss */
+/* line 228, ../sass/screen/_pages.scss */
 .drop-caps {
   float: left;
   margin-left: -.05em;
@@ -549,7 +553,7 @@ section.page-view-full.in {
   -webkit-shape-outside: ellipse(50px, 50px, 60px, 60px);
 }
 
-/* line 238, ../sass/screen/_pages.scss */
+/* line 239, ../sass/screen/_pages.scss */
 .transition-filter {
   position: absolute;
   top: 0;
@@ -566,7 +570,7 @@ section.page-view-full.in {
   transform: translateZ(0);
 }
 
-/* line 250, ../sass/screen/_pages.scss */
+/* line 251, ../sass/screen/_pages.scss */
 .transition-transform {
   position: absolute;
   background-size: contain;

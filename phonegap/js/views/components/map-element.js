@@ -8,6 +8,7 @@ define([], function (require) {
             $container,
             $mapPage,
             googleMap,
+            viewportAngle = 135,
             startX = 0,
             overlaysCreated = false,
             filter = null,
@@ -15,20 +16,26 @@ define([], function (require) {
 
         function resetFilter() {
             filter = {
-                curlPosition: 1
+                curlDirection: viewportAngle,
+                curlRadius: 0.2,
+                curlX: 1,
+                curlY: 1
             };
         }
+        
+        // Math.atan(x) * (180/Math.PI)
         
         // 1 = no curl
         // -1 = page all gone
         function updateFilter() {
             $mapPage.css('webkitFilter',
-            'custom(url(assets/shaders/page-curl.vs) mix(url(assets/shaders/page-curl.fs) normal source-atop), 50 50 border-box, transform perspective(1000) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg), curlPosition ' + filter.curlPosition + ' 0, curlDirection 135, curlRadius 0.2, bleedThrough 0.5)');
+            'custom(url(assets/shaders/page-curl.vs) mix(url(assets/shaders/page-curl.fs) normal source-atop), 50 50 border-box, transform perspective(1000) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg), '
+            + 'curlPosition ' + filter.curlX + ' ' + filter.curlY + ', curlDirection ' + filter.curlDirection + ', curlRadius ' + filter.curlRadius + ', bleedThrough 0.5)');
         }
 
         function openResolve() {
             instance.showMap();
-            $mapPage.hide();
+            $mapPage.css('transform', 'translateX(-' + window.innerWidth + 'px)');
             allowDrawing = false;
             pageScroll.disable();
         }
@@ -53,9 +60,16 @@ define([], function (require) {
             var pageY = e.originalEvent.touches[0].pageY;
             e.originalEvent.stopPropagation();
             e.originalEvent.preventDefault();
-            var x = (pageX / window.innerWidth * 2) - 1;
-            var y = (pageY / window.innerHeight * 2) - 1;
-            filter.curlPosition = Math.min(x, y);
+            var posX = pageX / window.innerWidth;
+            var posY = pageY / window.innerHeight;
+            // var diff = Math.abs( posX - posY );
+            var n = 0.4;
+            var x = (posX * n * 2.2) - n - 0.2; // 1 = 1, 0 = -1
+            var y = (posY * n * 2.2) - n - 0.2;
+            filter.curlX = x; // x = 1 => x = 0.7
+            filter.curlY = y;
+
+            filter.curlDirection = Math.atan(pageY / pageX) * (180/Math.PI) + 90;
         }
         
         function handle_TOUCHEND(e) {
@@ -64,15 +78,17 @@ define([], function (require) {
             
             var endX = e.originalEvent.changedTouches[0].pageX;
             
-            if(endX >= startX) {
+            // Close if still in righter 2/3rds
+            if( endX > window.innerWidth * (2/3) ) {
                 // Return to normal
-                $('#curl-spot').unbind('touchmove.map');
-                $('#curl-spot').unbind('touchend.map');
-                instance.hideMap();
+                $('#curl-spot').unbind('touchmove.map').unbind('touchend.map');
+                closeMap();
             } else {
                 // Show gmap
                 TweenMax.to(filter, 0.5, {
-                    curlPosition: -1.5,
+                    curlX: -0.6,
+                    curlY: -0.6,
+                    curlDirection: viewportAngle,
                     onComplete: openResolve
                 });
             }
@@ -80,6 +96,23 @@ define([], function (require) {
             console.log('touchend');
         }
         
+        function closeMap() {
+            var timeline = new TimelineMax();
+            timeline.add(new TweenMax(filter, 1.5, {
+                curlX: 0.5,
+                curlY: 0.5,
+                curlDirection: viewportAngle,
+                curlRadius: 0.2
+            }));
+            timeline.add(new TweenMax(filter, 1, {
+                curlX: 0.42,
+                curlY: 0.42,
+                curlDirection: 111,
+                curlRadius: 0.04,
+                onComplete: closeResolve
+            }));
+            timeline.play();
+        }
         
         function addBackButton() {
 
@@ -87,16 +120,16 @@ define([], function (require) {
             
             googleMap.controls[google.maps.ControlPosition.TOP_RIGHT].push(button);
             google.maps.event.addDomListener(button, 'click', function() {
-                $mapPage.show();
+                $mapPage.css('transform', 'none');
                 allowDrawing = true;
-                filter.curlPosition = -1.5;
+                filter = {
+                  curlX: -0.6,
+                  curlY: -0.6,
+                  curlDirection: 135,
+                  curlRadius: 0.2
+                };
                 instance.draw();
-                
-                TweenMax.to(filter, 1.5, {
-                    curlPosition: 1,
-                    onComplete: closeResolve
-                });
-
+                closeMap();
             });
         }
         
@@ -143,6 +176,7 @@ define([], function (require) {
         }
 
         instance.init = function () {
+            // viewportAngle = Math.atan(window.innerWidth / window.innerHeight) * (180/Math.PI) + 90;
             createOverlays();
             resetFilter();
             initGoogleMap();
@@ -150,9 +184,11 @@ define([], function (require) {
 
             allowDrawing = true;
             instance.draw();
-            filter.curlPosition = 1;
             TweenMax.to(filter, 1, {
-                curlPosition: 0.6,
+                curlX: 0.42,
+                curlY: 0.42,
+                curlDirection: 111,
+                curlRadius: 0.04,
                 onComplete: function() { allowDrawing = false; }
             });
         };
@@ -173,10 +209,7 @@ define([], function (require) {
         };
 
         instance.destroy = function () {
-            if( !$container ) {
-                return;
-            } 
-            // $container.remove();
+
         };
 
       
