@@ -70,6 +70,7 @@ define([], function (require) {
                 if( !mapElement ) {
                     mapElement = new MapElement($currentSection);
                 }
+                mapElement.prepareMaps();
             }
         }
 
