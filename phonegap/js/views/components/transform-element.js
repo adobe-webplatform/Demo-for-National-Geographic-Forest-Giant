@@ -285,7 +285,7 @@ define([], function (require) {
             instance.waitingRequestAnimationFrame = false;
         };
 
-        instance.startRequestAnimationFrame = function() {
+        instance.startRequestAnimationFrame = function () {
             if (instance.waitingRequestAnimationFrame)
                 return;
             instance.waitingRequestAnimationFrame = true;
