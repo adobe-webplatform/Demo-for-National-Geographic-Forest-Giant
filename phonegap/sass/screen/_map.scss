@@ -28,7 +28,7 @@ $lightblue: rgb(48, 145, 95);
 		position: relative;
         margin-left: 5%;
         margin-top: 1rem;
-        margin-left: 7rem;
+        margin-left: 5rem;
 		padding: 2.7em 2em;
         padding-bottom: 0;
 		width: 44vw;
@@ -322,13 +322,15 @@ $lightblue: rgb(48, 145, 95);
 }
 
 #map-back-button{
-    background-color: white;
-    padding: 5px;
-    color: black;
+    background-image: url(../assets/images/buttons/close-btn.png);
+    background-color: transparent;
+    background-size: 100%;
+    border: none;
+    padding: 0;
     cursor: pointer;
-    font-family: arial, sans-serif;
-    font-size: 12px;
-    width: 100px;
-    height: 100px;
+    width: 60px;
+    height: 60px;
+    margin-top: 5px;
+    margin-right: 5px;
 }
             
