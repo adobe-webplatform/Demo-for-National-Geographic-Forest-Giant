@@ -40,7 +40,7 @@ define([], function (require) {
         }
 
         function handle_SCROLL_START(e) {
-            if(mapElement && e.target != 'curl-spot') {
+            if (mapElement && e.target != 'curl-spot') {
                 mapElement.destroy();
             }
         }
@@ -66,8 +66,8 @@ define([], function (require) {
                 animatables.push(fullscreenElement);
             }
             
-            if( $currentSection.find('.map-content').length == 1 ) {
-                if( !mapElement ) {
+            if ($currentSection.find('.map-content').length == 1) {
+                if (!mapElement) {
                     mapElement = new MapElement($currentSection, pageScroll);
                 }
                 mapElement.prepareMaps();
@@ -112,62 +112,23 @@ define([], function (require) {
             pageScroll.refresh();
         }
 
-        function parseButtons() {
-            var transformElement,
-                filterElement;
-
-            /*
-            $('.js-transform-element').each(function () {
-                transformElement = new TransformElement(this);
-                //animatables.push(transformElement);
-            });
-
-            $('.js-filter-element').each(function () {
-                filterElement = new FilterElement(this, pageScroll);
-                //animatables.push(filterElement);
-            });
-            */
-        }
-
         function handle_TOUCHSTART(e) {
             var touches = e.originalEvent.touches,
                 t1, t2;
                 
-            if(e.target.id == 'curl-spot' && mapElement) {
+            if (e.target.id == 'curl-spot' && mapElement) {
                 e.preventDefault();
                 mapElement.showMap();
                 mapElement.handleTouchStart(e);
                 return;
             }
-                
-            if (touches.length == 2) {
-                t1 = {x: touches[0].pageX, y: touches[0].pageY};
-                t2 = {x: touches[1].pageX, y: touches[1].pageY};
-
-                deltaDistance = getDistance(t1, t2);
-            } else {
-                deltaDistance = null;
-            }
         }
 
         function handle_TOUCHMOVE(e) {
-            var touches = e.originalEvent.touches,
-                t1, t2,
-                dist;
-
-            if (touches.length == 2 && deltaDistance) {
-
-                e.preventDefault();
-                e.stopPropagation();
-
-                t1 = {x: touches[0].pageX, y: touches[0].pageY};
-                t2 = {x: touches[1].pageX, y: touches[1].pageY};
- 
-                dist = getDistance(t1, t2);
-
-                if (dist - deltaDistance < -100) {
-                    AppEvent.GOTO_VIEW.dispatch(1);
-                }
+            var touches = e.originalEvent.touches;
+               
+            if (touches.length == 3) {
+                AppEvent.GOTO_VIEW.dispatch(1);
             }
         };
 
@@ -185,7 +146,7 @@ define([], function (require) {
         instance.show = function () {
             addScroll();
             addPages();
-            parseButtons();
+            //parseButtons();
             //Hyphenator.run();  //performance hit
             $('.balance').balanceText();
             pageScroll.scrollToPage(0, 0, 0);

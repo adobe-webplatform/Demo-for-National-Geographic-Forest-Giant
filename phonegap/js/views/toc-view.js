@@ -31,8 +31,7 @@ define([], function (require) {
                 {img: 'article2.jpg', content: '<span class="toc-title coming-soon">Coming Soon</span>'},
                 {img: 'article5.jpg', content: '<span class="toc-title coming-soon">Coming Soon</span>'},
                 {img: 'article6.jpg', content: '<span class="toc-title coming-soon">Coming Soon</span>'},
-                {img: 'article7.jpg', content: '<span class="toc-title coming-soon">Coming Soon</span>'},
-                {img: 'article2.jpg', content: '<span class="toc-title coming-soon">Coming Soon</span>'}
+                {img: 'article7.jpg', content: '<span class="toc-title coming-soon">Coming Soon</span>'}
             ];
 
         function populateButtons() {
@@ -84,7 +83,7 @@ define([], function (require) {
         instance.show = function () {
             tocScroll = new iScroll('toc-view', {
                 momentum: true,
-                bounce: false,
+                bounce: true,
                 hScrollbar: false,
                 vScrollbar: false
             });
