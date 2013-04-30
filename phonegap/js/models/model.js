@@ -21,7 +21,7 @@ define([], function (require) {
         var instance = this,
             article1 = {
                 list: [
-                    article1_cover, /*
+                    article1_cover,
                     article1_p1,
                     article1_p2,
                     article1_p3,
@@ -29,10 +29,7 @@ define([], function (require) {
                     article1_p5,
                     article1_p6,
                     article1_p7,
-                    article1_p8,*/
-                    
-                    article1_p3,
-                    
+                    article1_p8,
                     article1_p9,
                     article1_p10, 
                     article1_p11,
