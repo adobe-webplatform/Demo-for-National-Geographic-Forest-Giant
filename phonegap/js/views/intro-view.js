@@ -128,7 +128,14 @@ define([], function (require) {
             TweenMax.ticker.addEventListener("tick", instance.draw);
             animating = true;
 
-			timeline.play();
+            var $splash = $('#splash');
+
+            $splash.css({opacity: 0});
+            
+            setTimeout(function () {
+                $splash.css({display: 'none'});
+                timeline.play();
+            }, 500);
         }
 
         function addPhotos() {

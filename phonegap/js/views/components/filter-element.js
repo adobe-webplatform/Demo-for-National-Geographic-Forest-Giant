@@ -26,11 +26,8 @@ define([], function (require) {
             basefilter = {
                 vert: filterPath + 'page-fold.vs',
                 frag: filterPath + 'page-fold.fs',
-                //x: 15,
-                //y: -78,
-                //scale: 0.75,
-                x: -100,
-                y: -5,
+                x: $el.data('filter-x'),
+                y: $el.data('filter-y'),
                 scale: 0.93,
                 rotateY: -90,
                 rotateX: 0,

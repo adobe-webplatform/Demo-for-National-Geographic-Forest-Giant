@@ -7,7 +7,17 @@ html, body{
     overflow: hidden;
 }
 
+#splash{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background: blue;
+    @include transition(opacity .5s linear);
+    z-index: 10000;
+}
+
 #main{
+    position: absolute;
     height: 100%;
     width: 100%;
     overflow: hidden;
