@@ -3,7 +3,7 @@ $lightblue: rgb(48, 145, 95);
 .map-content{
 	position: absolute;
 	// height: 600px;
-	height: 95vh;
+	height: 100vh;
     width: 100%;
 	background-color: rgba(255, 255, 255, 0.99); //this fixes a bug in shaders that makes bg opaque
     background-image: url(../assets/images/article1/map.jpg);

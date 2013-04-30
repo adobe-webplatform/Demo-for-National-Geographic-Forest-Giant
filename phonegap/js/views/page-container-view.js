@@ -68,8 +68,9 @@ define([], function (require) {
             
             if ($currentSection.find('.map-content').length == 1) {
                 if (!mapElement) {
-                    mapElement = new MapElement($currentSection);
+                    mapElement = new MapElement($currentSection, pageScroll);
                 }
+                mapElement.prepareMaps();
             }
         }
 
@@ -117,7 +118,7 @@ define([], function (require) {
                 
             if (e.target.id == 'curl-spot' && mapElement) {
                 e.preventDefault();
-                mapElement.showMaps();
+                mapElement.showMap();
                 mapElement.handleTouchStart(e);
                 return;
             }

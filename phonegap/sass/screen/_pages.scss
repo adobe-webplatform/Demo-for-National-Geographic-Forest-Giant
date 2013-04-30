@@ -16,7 +16,8 @@ section{
     }
 }
 
-.page-full{
+.page-full,
+.page-exact{
     position: relative;
     top: -5vh;
     left: -10vw;
@@ -25,6 +26,10 @@ section{
     background-size: 100%;
     background-position: center;
     // box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.page-exact{
+    height: 100vh;
 }
 
 .page{
