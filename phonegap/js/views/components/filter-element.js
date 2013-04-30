@@ -1,4 +1,23 @@
 /*global define $ TweenMax Quad Quint TimelineMax iScroll Linear*/
+
+/**
+ *
+ * Copyright (c) 2013 Adobe Systems Incorporated. All rights reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+
 define([], function (require) {
 
     var FilterElement;
@@ -117,11 +136,12 @@ define([], function (require) {
             timeline.insert(new TweenMax(filter, 2, {fold: 0, ease: Linear.easeNone, delay: 2}));
             timeline.insert(new TweenMax(filter, 4, {scale: 1, ease: Linear.easeNone}));
             timeline.pause();
-            timeline.timeScale(2);
+            timeline.timeScale(4);
         }
 
         function addFilterElement() {
 
+            console.log('add filter element');
             $filterEl = $('<div>');
             $filterEl.addClass('transition-filter');
             $filterEl.css({
@@ -137,6 +157,7 @@ define([], function (require) {
         }
 
         function showFilterElement() {
+            console.log('show filter element');
             $el.css({opacity: 0});
             $filterEl.css({opacity: 1});
         }
@@ -174,6 +195,8 @@ define([], function (require) {
             $body.unbind('touchend');
             $body.unbind('touchmove');
 
+            //TweenMax.killTweensOf(filter); //KILL
+
             if (opening) {
                 new TweenMax.to(filter, 0.5, {
                     x: 0, 
@@ -207,8 +230,6 @@ define([], function (require) {
                 distanceDifference,
                 timelinePosition;
 
-            console.log('filter: touch move');
-
             e.preventDefault();
             e.stopPropagation();
 
@@ -217,40 +238,37 @@ define([], function (require) {
                 t1 = {x: touches[0].pageX, y: touches[0].pageY};
                 t2 = {x: touches[1].pageX, y: touches[1].pageY};
 
-                //if (!animating) {
-                    //angle
-                    //newAngle = getAngle(t1, t2);
-                    //filter.rotateZ = newAngle;
-
-                //calculate animation based on distance
                 newDistance = getDistance(t1, t2);
                 distanceDifference = newDistance - deltaDistance;
                 distanceDifference = distanceDifference > 0 ? distanceDifference : 0;
 
-                //timelinePosition = distanceDifference / 50;
+                //get timline position
                 timelinePosition = newDistance / 100;
                 timelinePosition = timelinePosition > 2 ? timelinePosition : 2;
-                //timeline.seek(timelinePosition);
-                timeline.tweenTo(timelinePosition);
-        
                 opening = timelinePosition > 3 ? true : false;
-                //}
 
                 //calculate transform
                 newMidpoint = getMidpoint(t1, t2);
                 filter.x = (newMidpoint.x - deltaMidpoint.x) / filter.scale;
                 filter.y = (newMidpoint.y - deltaMidpoint.y) / filter.scale;
 
-
                 distance = getDistance(deltaMidpoint, newMidpoint);
                 opening = distance > 100 ? true : opening;
+
+                console.log('filter: touch move', timelinePosition);
+                //console.log(Math.abs(timelinePosition - timeline.time()));
+
+                //if (Math.abs(timelinePosition - timeline.time()) > 0.5) {
+                //    timeline.tweenTo(timelinePosition);
+                //} else {
+                timeline.seek(timelinePosition);
+                //}
             }
         }
 
         function calculateMidpoint(t1, t2) {
             deltaMidpoint = getMidpoint(t1, t2);
             deltaDistance = getDistance(t1, t2);
-            //deltaScale = transform.scale;
             deltaMidpoint = {x: deltaMidpoint.x - filter.x, y: deltaMidpoint.y - filter.y};
         }
 
@@ -275,30 +293,18 @@ define([], function (require) {
                 showFilterElement();
                 calculateMidpoint(t1, t2);
                 addTimeline();
-
-                instance.draw();
+                
+                instance.startRequestAnimationFrame();
                 scroll.disable();
 
                 $body.bind('touchend', handle_filter_TOUCHEND);
                 $body.bind('touchmove', handle_filter_TOUCHMOVE);
 
+                //timeline.kill(); //KILL
                 timeline.tweenTo(2, {onComplete: function () {
                     animating = false;
                 }});
             }
-        }
-
-        function handle_resolveEl_CLICK(e) {
-
-            dragging = true;
-            animating = true;
-
-            $resolveEl.css({opacity: 0, 'pointer-events': 'none'});
-            $filterEl.css({'opacity': 1});
-
-            timeline.reverse();
-            new TweenMax.to(filter, 2, {x: basefilter.x, y: basefilter.y, onComplete: closeResolve});
-            instance.draw();
         }
 
         function handle_resolveEl_TOUCHSTART(e) {
@@ -310,6 +316,8 @@ define([], function (require) {
 
             if (touches.length == 2) {
 
+                console.log('resolve touchstart');
+                
                 t1 = {x: touches[0].pageX, y: touches[0].pageY};
                 t2 = {x: touches[1].pageX, y: touches[1].pageY};
 
@@ -320,7 +328,7 @@ define([], function (require) {
                 $filterEl.css({'opacity': 1});
                 
                 calculateMidpoint(t1, t2);
-                instance.draw();
+                instance.startRequestAnimationFrame();
 
                 $body.bind('touchend', handle_filter_TOUCHEND);
                 $body.bind('touchmove', handle_filter_TOUCHMOVE);
@@ -329,8 +337,24 @@ define([], function (require) {
             }
         }
 
+        function handle_resolveEl_CLICK(e) {
+            console.log('resolve click');
+
+            dragging = true;
+            animating = true;
+                
+            $resolveEl.css({opacity: 0, 'pointer-events': 'none'});
+            $filterEl.css({'opacity': 1});
+
+            //TweenMax.killTweensOf(filter); //KILL
+            
+            timeline.reverse();
+            new TweenMax.to(filter, 2, {x: basefilter.x, y: basefilter.y, onComplete: closeResolve});
+            instance.startRequestAnimationFrame();
+        }
+
         function handle_el_CLICK(e) {
-            console.log('click');
+            console.log('el click');
 
             dragging = true;
             animating = true;
@@ -338,13 +362,15 @@ define([], function (require) {
             resetFilter();
             showFilterElement();
 
+            //TweenMax.killTweensOf(filter); //KILL
+
             addTimeline();
             timeline.play();
 
             new TweenMax.to(filter, 2, {x: 0, y: 0, onComplete: openResolve});
 
-            instance.draw();
             scroll.disable();
+            instance.startRequestAnimationFrame();
         }
 
         instance.init = function () {
@@ -354,13 +380,22 @@ define([], function (require) {
             addContainer();
             resetFilter();
             addFilterElement();
+            instance.waitingRequestAnimationFrame = false;
+        };
+
+        instance.startRequestAnimationFrame = function () {
+            if (instance.waitingRequestAnimationFrame) 
+                return;
+            instance.waitingRequestAnimationFrame = true;
+            requestAnimationFrame(instance.draw);
         };
 
         instance.draw = function () {
-            if (dragging) {
-                updateFilter();
-                requestAnimationFrame(instance.draw);
-            }
+            instance.waitingRequestAnimationFrame = false;
+            if (!dragging)
+                return;
+            updateFilter();
+            instance.startRequestAnimationFrame();
         };
 
         instance.render = function () {
