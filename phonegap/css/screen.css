@@ -237,11 +237,16 @@ html, body {
 
 /* line 146, ../sass/screen/_main.scss */
 .toc-view-button {
-  opacity: 0;
   background-color: #333;
   background-size: 100%;
   background-position: 50% 50%;
   background-repeat: no-repeat;
+  opacity: 0;
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  -o-transform: translateZ(0);
+  transform: translateZ(0);
 }
 
 /* line 157, ../sass/screen/_main.scss */
@@ -408,7 +413,7 @@ section.page-view-full.in {
 
 /* line 107, ../sass/screen/_pages.scss */
 #article1-page-cover {
-  background-image: url(../assets/images/toc/article1.jpg);
+  background-image: url(../assets/images/article1/article1.jpg);
   height: 100vh;
 }
 

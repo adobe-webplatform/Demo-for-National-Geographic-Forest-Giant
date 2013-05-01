@@ -146,12 +146,12 @@ html, body{
 .toc-view-button{
     // -webkit-transform-origin: 0 0;
     // background-size: cover;
-    opacity: 0;
     background-color: #333;
     background-size: 100%;
     background-position: 50% 50%;
     background-repeat: no-repeat;
-    // box-shadow: 0 10px 22px rgba(0, 0, 0, .5);
+    opacity: 0;
+    @include transform(translateZ(0));
 }
 
 .page-thumb-view{

@@ -72,6 +72,7 @@ define([], function (require) {
                 nextView.init();
                 $el.prepend(nextView.render());
                 nextView.show();
+                nextView.animIn();
                 instance.subviews.push({view: nextView});
             }
 

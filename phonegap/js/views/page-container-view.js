@@ -185,7 +185,7 @@ define([], function (require) {
         };
 
         instance.animIn = function (callback) {
-
+            
         };
 
         instance.animOut = function (callback) {

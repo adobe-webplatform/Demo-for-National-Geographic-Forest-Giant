@@ -31,75 +31,6 @@ define([], function (require) {
 
         instance.id = id;
 
-        /*
-        function handle_TRANSITION_COMPLETE() {
-            AppEvent.GOTO_VIEW.dispatch(id);
-        };
-        */
-
-        /*
-        function handle_CLICK(e) {
-            var $this = $(this),
-                size = $el.width() / window.innerWidth;
-
-            e.preventDefault();
-            e.stopPropagation();
-
-            $el.unbind('click');
-
-            $transitionContainer = $('<div>');
-            $transitionContainer.addClass('transition-container');
-            $('body').append($transitionContainer);
-
-            $transitionEl = $('<div>');
-            $transitionEl.addClass('transition-element');
-            $transitionEl.css({'background-image': $(this).css('background-image')});
-            $transitionContainer.append($transitionEl);
-
-            new TweenMax.set($transitionEl, {
-                css: {
-                    x: $(this).offset().left - ($(this).width() * 0.6), 
-                    y: $(this).offset().top - ($(this).height() * 0.6), 
-                    z: 0.01,
-                    scale: size
-                }
-            });
-
-            $el.css({'opacity': '0'});
-
-            timeline = new TimelineMax({onComplete: handle_TRANSITION_COMPLETE});
-            timeline.timeScale(0.5);
-
-            timeline.insert(
-                new TweenMax.to($transitionEl, 0.5, {
-                    css: {x: 0, y: 0},
-                    ease: Quint.easeInOut
-                })
-            );
-            timeline.insert(
-                new TweenMax.to($transitionEl, 0.5, {
-                    css: {rotationY: 20},
-                    ease: Quint.easeIn
-                })
-            );
-            timeline.insert(
-                new TweenMax.to($transitionEl, 0.5, {
-                    css: {rotationY: 0},
-                    delay: 0.5,
-                    ease: Quint.easeOut
-                })
-            );
-            timeline.insert(
-                new TweenMax.to($transitionEl, 1, {
-                    css: {scale: 1},
-                    ease: Quint.easeInOut
-                })
-            );
-            
-            AppEvent.GOTO_VIEW.dispatch(id);
-        }
-        */
-
         instance.init = function () {
             $el.css({backgroundImage: 'url(' + img + ')'});
         };
@@ -130,16 +61,6 @@ define([], function (require) {
         instance.show = function () {
             TweenMax.set($el, {scale: 1});
         };
-
-        /*
-        instance.animIn = function () {
-            new TweenMax.to($el, 0.5, {opacity: 1});
-        };
-
-        instance.animOut = function () {
-            new TweenMax.to($el, 0.5, {rotationY: 30, opacity: 0});
-        };
-        */
 
         instance.destroy = function () {
 
