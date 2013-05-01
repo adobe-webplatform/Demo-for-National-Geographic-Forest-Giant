@@ -408,6 +408,10 @@ define([], function (require) {
             renderer.render(scene, camera);
         };
 
+        instance.animIn = function (callback) {
+
+        };
+
         instance.animOut = function (callback) {
             animating = false;
             timeline.kill();

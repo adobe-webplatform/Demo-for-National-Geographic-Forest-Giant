@@ -88,7 +88,11 @@ define([], function (require) {
             return $el;
         };
 
-        instance.animOut = function () {
+        instance.animIn = function (callback) {
+
+        };
+
+        instance.animOut = function (callback) {
             
         };
 

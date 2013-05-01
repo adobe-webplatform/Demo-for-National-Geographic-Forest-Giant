@@ -31,10 +31,13 @@ define([], function (require) {
 
         instance.id = id;
 
+        /*
         function handle_TRANSITION_COMPLETE() {
             AppEvent.GOTO_VIEW.dispatch(id);
         };
+        */
 
+        /*
         function handle_CLICK(e) {
             var $this = $(this),
                 size = $el.width() / window.innerWidth;
@@ -42,7 +45,6 @@ define([], function (require) {
             e.preventDefault();
             e.stopPropagation();
 
-            console.log('toc click', instance.id);
             $el.unbind('click');
 
             $transitionContainer = $('<div>');
@@ -93,19 +95,20 @@ define([], function (require) {
                     ease: Quint.easeInOut
                 })
             );
+            
+            AppEvent.GOTO_VIEW.dispatch(id);
         }
+        */
 
         instance.init = function () {
             $el.css({backgroundImage: 'url(' + img + ')'});
         };
 
         instance.setSize = function (w, h) {
-            //var sizeW = window.innerWidth / window.innerHeight * h;
             $el.css({
                 width: w,
                 height: h
             });
-            //buttonScale = h / window.innerHeight;
         };
 
         instance.setPosition = function (x, y) {
@@ -120,20 +123,23 @@ define([], function (require) {
         };
 
         instance.render = function () {
+            $el.data('toc-id', id);
             return $el;
         };
 
         instance.show = function () {
-            $el.css({'opacity': '1'});
+            TweenMax.set($el, {scale: 1});
+        };
 
-            if (id < 3) {
-                $el.bind('click', handle_CLICK);
-            }
-        }
+        /*
+        instance.animIn = function () {
+            new TweenMax.to($el, 0.5, {opacity: 1});
+        };
 
         instance.animOut = function () {
-            
+            new TweenMax.to($el, 0.5, {rotationY: 30, opacity: 0});
         };
+        */
 
         instance.destroy = function () {
 

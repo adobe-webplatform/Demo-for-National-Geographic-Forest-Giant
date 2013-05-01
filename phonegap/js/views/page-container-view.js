@@ -184,6 +184,10 @@ define([], function (require) {
             return $el;
         };
 
+        instance.animIn = function (callback) {
+
+        };
+
         instance.animOut = function (callback) {
             var btn = $('.toc-view-button')[1];
                 

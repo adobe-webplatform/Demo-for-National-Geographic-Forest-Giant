@@ -20,6 +20,7 @@
 define([], function (require) {
 
     var TOCView,
+        AppEvent = require('events/app-event'),
         TOCViewButton = require('views/toc-view-button');
     
     require('iscroll');
@@ -28,7 +29,9 @@ define([], function (require) {
         var instance = this,
             $el = $('<div id="toc-view" class="view toc-view">'),
             $contents = $('<div class="view toc-contents">'),
+            $transitionContainer,
             dir = './assets/images/toc/',
+            selectedBtn,
             padding = 10,
             tocScroll,
             lgWidth = (window.innerWidth / 2) - (padding * 2),
@@ -52,6 +55,21 @@ define([], function (require) {
                 {img: 'article7.jpg', content: '<span class="toc-title coming-soon">Coming Soon</span>'}
             ];
 
+        function removeEventListeners() {
+            console.log('remove event listeners');
+            for (var i = 0; i < buttons.length; i += 1) {
+                buttons[i].render().unbind('click');
+            }
+        }
+
+        function handle_btn_CLICK(e) {
+            console.log('click');
+            var id = $(e.target).data('toc-id');
+            selectedBtn = id > 1 ? id - 1 : 0;
+            AppEvent.GOTO_VIEW.dispatch(id);
+            removeEventListeners();
+        }
+
         function populateButtons() {
             var i,
                 x = padding,
@@ -61,14 +79,13 @@ define([], function (require) {
                 scale = 2.2,
                 id;
 
+            console.log('populate');
             for (i = 0; i < contents.length; i += 1) {
-
                 id = i > 0 ? i + 1: 0;
-
                 button = new TOCViewButton(id, dir + contents[i].img);
                 button.setSize(window.innerWidth / scale, window.innerHeight / scale);
                 button.setPosition(x, y);
-                button.render(); //.bind('click', handle_button_CLICK);
+                button.render().bind('click', handle_btn_CLICK);
                 buttons.push(button);
 
                 if (i % Math.round(contents.length / 2) === 0 && i !== 0) {
@@ -87,14 +104,8 @@ define([], function (require) {
         }
 
         instance.init = function () {
-            console.log('toc: init2');
-
             if (buttons.length === 0) {
                 populateButtons();
-            }
-
-            for (var i = 0; i < buttons.length; i += 1) {
-                buttons[i].show();
             }
         };
 
@@ -106,6 +117,9 @@ define([], function (require) {
                 vScrollbar: false
             });
 
+            for (var i = 0; i < buttons.length; i += 1) {
+                buttons[i].show();
+            }
         };
 
         instance.render = function () {
@@ -113,12 +127,104 @@ define([], function (require) {
             return $el;
         };
 
-        instance.animOut = function (callback) {
+        instance.animIn = function (callback) {
+            for (var i = 0; i < buttons.length; i += 1) {
+
+                new TweenMax.to(buttons[i].render(), .6, {
+                    opacity: 1,
+                    delay: i / 10
+                });
+            }
+
             callback();
+        };
+
+        function buttonAnimate(callback) {
+            var $button = buttons[selectedBtn].render(),
+                size = $button.width() / window.innerWidth,
+                tween1, tween2, tween3, tween4,
+                $transitionEl;
+
+            $transitionContainer = $('<div>');
+            $transitionContainer.addClass('transition-container');
+            $('body').append($transitionContainer);
+
+            $transitionEl = $('<div>');
+            $transitionEl.addClass('transition-element');
+            $transitionEl.css({'background-image': $button.css('background-image')});
+            $transitionContainer.append($transitionEl);
+
+             new TweenMax.set($transitionEl, {
+                css: {
+                    x: $button.offset().left - ($button.width() * 0.6), 
+                    y: $button.offset().top - ($button.height() * 0.6), 
+                    z: 0.01,
+                    scale: size
+                }
+            });
+
+            $button.css({'opacity': '0'});
+
+            timeline = new TimelineMax({onComplete: callback});
+            timeline.timeScale(0.5);
+
+
+            tween1 = new TweenMax.to($transitionEl, 0.5, {
+                    css: {x: 0, y: 0},
+                    ease: Quint.easeInOut
+                });
+
+            tween2 = new TweenMax.to($transitionEl, 0.5, {
+                    css: {rotationY: 20},
+                    ease: Quint.easeIn
+                });
+
+            tween3 = new TweenMax.to($transitionEl, 0.5, {
+                    css: {rotationY: 0},
+                    delay: 0.5,
+                    ease: Quint.easeOut
+                });
+
+            tween4 = new TweenMax.to($transitionEl, 1, {
+                    css: {scale: 1},
+                    ease: Quint.easeInOut
+                });
+
+
+            timeline.insert(tween1);
+            timeline.insert(tween2);
+            timeline.insert(tween3);
+            timeline.insert(tween4);
+        }
+
+        instance.animOut = function (callback) {
+            var delay, i, wait = 0;
+
+            //tween out
+            for (i = 0; i < buttons.length; i += 1) {
+                delay = Math.abs(selectedBtn - i) / 10;
+
+                if (i !== selectedBtn) {
+
+                    new TweenMax.to(buttons[i].render(), .6, {
+                        scale: 0.5, 
+                        opacity: 0, 
+                        z: 0.01, 
+                        ease: Quint.easeOut,
+                        delay: delay                
+                    });
+                }
+            }
+
+            setTimeout(function () {
+                buttonAnimate(callback);
+            }, 1000);
         };
 
         instance.destroy = function () {
             tocScroll.destroy();
+
+            $transitionContainer.remove();
 
             for (var i = 0; i < buttons.length; i += 1) {
                 buttons[i].destroy();
