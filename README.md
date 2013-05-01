@@ -1,7 +1,7 @@
-National Geographic Demo
+Demo for National Geographic
 ========================
 
-National Geographic demo using new web layout features.
+Demo for National Geographic using new web layout features.
 
 BROWSER
 -------
