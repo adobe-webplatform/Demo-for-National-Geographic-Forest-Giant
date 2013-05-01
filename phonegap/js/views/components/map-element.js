@@ -36,8 +36,8 @@ define([], function (require) {
             filter = {
                 curlDirection: viewportAngle,
                 curlRadius: 0.2,
-                curlX: 1,
-                curlY: 1
+                curlX: 0.5,
+                curlY: 0.5
             };
         }
         
@@ -199,16 +199,19 @@ define([], function (require) {
             resetFilter();
             initGoogleMap();
             instance.hideMap();
-
-            allowDrawing = true;
-            instance.draw();
-            TweenMax.to(filter, 1, {
-                curlX: 0.42,
-                curlY: 0.42,
-                curlDirection: 111,
-                curlRadius: 0.04,
-                onComplete: function() { allowDrawing = false; }
-            });
+            
+            updateFilter();
+            setTimeout(function() {
+                allowDrawing = true;
+                instance.draw();
+                TweenMax.to(filter, 0.5, {
+                    curlX: 0.42,
+                    curlY: 0.42,
+                    curlDirection: 111,
+                    curlRadius: 0.04,
+                    onComplete: function() { allowDrawing = false; }
+                });
+            }, 1500);
         };
 
         instance.draw = function () {
