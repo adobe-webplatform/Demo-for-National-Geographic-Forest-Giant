@@ -148,6 +148,16 @@ define([], function (require) {
             timeline.insert(new TweenMax(filter.a[9], 1, {value: 0, ease: Quint.easeIn, delay: 1}));
             timeline.insert(new TweenMax(filter.a[10], 1, {value: 0, ease: Quint.easeIn, delay: 1}));
 
+            for (i = 0; i < 20; i += 1) {
+                if (i < 9) {
+                    timeline.insert(new TweenMax(filter.a[i], 1, {value: 9 - i}));
+                    timeline.insert(new TweenMax(filter.a[i], 1, {value: 0, delay: 1}));
+                } else if (i > 10) {
+                    timeline.insert(new TweenMax(filter.a[i], 1, {value: 10 - i}));
+                    timeline.insert(new TweenMax(filter.a[i], 1, {value: 0, delay: 1}));
+                }
+            }
+
             //timeline.insert(new TweenMax(filter, 2, {scale: 1, ease: Linear.easeNone}));
             timeline.pause();
         }
