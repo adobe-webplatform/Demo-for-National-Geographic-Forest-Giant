@@ -298,21 +298,11 @@ html, body {
   background-position: 50% 50%;
 }
 
-/* line 204, ../sass/screen/_main.scss */
-#a1p9 {
-  display: none;
-}
-
 /* Nexus 7 */
 @media only screen and (min-device-width: 603px) and (max-device-width: 966px) {
-  /* line 210, ../sass/screen/_main.scss */
+  /* line 206, ../sass/screen/_main.scss */
   html, body {
     font-size: 80%;
-  }
-
-  /* line 213, ../sass/screen/_main.scss */
-  #a1p9 {
-    display: block;
   }
 }
 /* line 8, ../sass/screen/_pages.scss */
@@ -369,77 +359,78 @@ section.page-view-full.in {
   text-align: justify;
   font-family: georgia;
   font-size: 1.2rem;
-  line-height: 1.7;
+  line-height: 2rem;
   hyphens: auto;
   -webkit-hyphens: auto;
   -webkit-flow-into: flow1;
 }
-/* line 59, ../sass/screen/_pages.scss */
+/* line 60, ../sass/screen/_pages.scss */
 #content1 p {
-  margin-top: 1em;
+  margin-top: 1.7em;
   text-indent: 2em;
 }
-/* line 63, ../sass/screen/_pages.scss */
+/* line 64, ../sass/screen/_pages.scss */
 #content1 p.first {
+  margin-top: 0;
   text-indent: 0;
 }
 
-/* line 69, ../sass/screen/_pages.scss */
+/* line 71, ../sass/screen/_pages.scss */
 .col-left-full {
   float: left;
   width: 47%;
   height: 80vh;
 }
 
-/* line 75, ../sass/screen/_pages.scss */
+/* line 77, ../sass/screen/_pages.scss */
 .col-right-full {
   float: right;
   width: 47%;
   height: 80vh;
 }
 
-/* line 81, ../sass/screen/_pages.scss */
+/* line 83, ../sass/screen/_pages.scss */
 .col-right-1 {
   float: right;
-  margin-top: 38vh;
+  margin-top: 39.63vh;
   width: 47%;
   height: 42vh;
 }
 
-/* line 88, ../sass/screen/_pages.scss */
+/* line 90, ../sass/screen/_pages.scss */
 .col-right-2 {
   float: right;
   margin-top: 0px;
   width: 47%;
-  height: 32vh;
+  height: 38vh;
 }
 
-/* line 95, ../sass/screen/_pages.scss */
+/* line 97, ../sass/screen/_pages.scss */
 .col-right-3 {
   float: right;
   width: 35%;
   height: 80vh;
 }
 
-/* line 101, ../sass/screen/_pages.scss */
+/* line 103, ../sass/screen/_pages.scss */
 .col-left-1 {
   float: left;
   width: 35%;
   height: 80vh;
 }
 
-/* line 107, ../sass/screen/_pages.scss */
+/* line 109, ../sass/screen/_pages.scss */
 #article1-page-cover {
   background-image: url(../assets/images/article1/article1.jpg);
   height: 100vh;
 }
 
-/* line 114, ../sass/screen/_pages.scss */
+/* line 116, ../sass/screen/_pages.scss */
 #a1p2 .col1,
 #a1p2 .col2 {
   height: 62vh;
 }
-/* line 117, ../sass/screen/_pages.scss */
+/* line 119, ../sass/screen/_pages.scss */
 #a1p2 blockquote {
   position: relative;
   top: .2em;
@@ -451,12 +442,12 @@ section.page-view-full.in {
   height: 6rem;
 }
 
-/* line 129, ../sass/screen/_pages.scss */
+/* line 131, ../sass/screen/_pages.scss */
 #a1p7 {
   background-image: url(../assets/images/article1/img2_bottom.jpg);
   background-position: bottom center;
 }
-/* line 133, ../sass/screen/_pages.scss */
+/* line 135, ../sass/screen/_pages.scss */
 #a1p7 p {
   position: absolute;
   bottom: 0;
@@ -473,11 +464,11 @@ section.page-view-full.in {
   -webkit-shape-inside: polygon(0 40%, 30% 0, 100% 0, 100% 100%, 0 100%);
 }
 
-/* line 150, ../sass/screen/_pages.scss */
+/* line 152, ../sass/screen/_pages.scss */
 #a1p10 {
-  background-color: #f4f3f0;
+  background-color: #888;
 }
-/* line 153, ../sass/screen/_pages.scss */
+/* line 155, ../sass/screen/_pages.scss */
 #a1p10 .map-google {
   position: absolute;
   top: 0;
@@ -486,7 +477,7 @@ section.page-view-full.in {
   height: 100%;
 }
 
-/* line 162, ../sass/screen/_pages.scss */
+/* line 164, ../sass/screen/_pages.scss */
 #videoBtn {
   position: absolute;
   top: -10px;
@@ -499,7 +490,7 @@ section.page-view-full.in {
   background-repeat: no-repeat;
 }
 
-/* line 174, ../sass/screen/_pages.scss */
+/* line 176, ../sass/screen/_pages.scss */
 #logImage {
   position: absolute;
   bottom: -12vh;
@@ -512,7 +503,7 @@ section.page-view-full.in {
   background-repeat: no-repeat;
 }
 
-/* line 190, ../sass/screen/_pages.scss */
+/* line 192, ../sass/screen/_pages.scss */
 #fogImage {
   position: absolute;
   top: -10px;
@@ -535,7 +526,7 @@ section.page-view-full.in {
   transform: scale(0.93);
 }
 
-/* line 206, ../sass/screen/_pages.scss */
+/* line 208, ../sass/screen/_pages.scss */
 #darkImage {
   position: absolute;
   top: -10px;
@@ -558,13 +549,13 @@ section.page-view-full.in {
   transform: scale(0.93);
 }
 
-/* line 223, ../sass/screen/_pages.scss */
+/* line 225, ../sass/screen/_pages.scss */
 #elevation {
   width: 600px;
   height: 433px;
 }
 
-/* line 228, ../sass/screen/_pages.scss */
+/* line 230, ../sass/screen/_pages.scss */
 .drop-caps {
   float: left;
   margin-left: -.05em;
@@ -576,7 +567,7 @@ section.page-view-full.in {
   -webkit-shape-outside: ellipse(50px, 50px, 60px, 60px);
 }
 
-/* line 239, ../sass/screen/_pages.scss */
+/* line 241, ../sass/screen/_pages.scss */
 .transition-filter {
   position: absolute;
   top: 0;
@@ -593,7 +584,7 @@ section.page-view-full.in {
   transform: translateZ(0);
 }
 
-/* line 251, ../sass/screen/_pages.scss */
+/* line 253, ../sass/screen/_pages.scss */
 .transition-transform {
   position: absolute;
   background-size: contain;
@@ -608,6 +599,13 @@ section.page-view-full.in {
   transform: translateZ(0);
 }
 
+/* Nexus 7 */
+@media only screen and (min-device-width: 603px) and (max-device-width: 966px) {
+  /* line 265, ../sass/screen/_pages.scss */
+  .col-right-1 {
+    margin-top: 37.8vh;
+  }
+}
 /* line 3, ../sass/screen/_map.scss */
 .map-content {
   position: absolute;

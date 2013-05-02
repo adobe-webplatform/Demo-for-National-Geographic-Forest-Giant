@@ -49,7 +49,8 @@ section{
     text-align: justify;
     font-family: georgia;
     font-size: 1.2rem;
-    line-height: 1.7;
+    // line-height: 1.7;
+    line-height: 2rem; // same as 1.7
     // widows: 3;
     // orphans: 3;
     hyphens: auto;
@@ -57,10 +58,11 @@ section{
     -webkit-flow-into: flow1;
 
     p{
-        margin-top: 1em;
+        margin-top: 1.7em;
         text-indent: 2em;
 
         &.first{
+            margin-top: 0;
             text-indent: 0;
         }
     }
@@ -80,7 +82,7 @@ section{
 
 .col-right-1{
     float: right;
-    margin-top: 38vh;
+    margin-top: 39.63vh; // for nexus 10
     width: 47%;
     height: 42vh;
 }
@@ -89,7 +91,7 @@ section{
     float: right;
     margin-top: 0px;
     width: 47%;
-    height: 32vh;
+    height: 38vh;
 }
 
 .col-right-3{
@@ -148,7 +150,7 @@ section{
 }
 
 #a1p10{
-    background-color: #f4f3f0;
+    background-color: #888;
     
     .map-google{
         position: absolute;
@@ -256,4 +258,11 @@ section{
     pointer-events: none;
     opacity: 0;
     @include transform(translateZ(0));
+}
+
+/* Nexus 7 */
+@media only screen and (min-device-width : 603px) and (max-device-width : 966px){
+    .col-right-1{
+        margin-top: 37.8vh;
+    }
 }
