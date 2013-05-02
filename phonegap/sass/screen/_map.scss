@@ -221,7 +221,7 @@ $lightblue: rgb(48, 145, 95);
     position: absolute;
     left: 50%;
     bottom: -12vh;
-    background-image: url(../assets/images/article1/elevation-small.png);
+    background-image: url(../assets/images/article1/elevation-small-n10.png);
     background-repeat: no-repeat;
     background-size: 100%;
     border: 1px solid #ccc;
@@ -230,8 +230,10 @@ $lightblue: rgb(48, 145, 95);
 
 #elevation-html{
     display: none;
-    height: 529px;
-    width: 733px;
+    //height: 529px;
+    //width: 733px;
+    height: 100vh;
+    width: 139vh;
     margin: 0 auto;
     position: relative;
     background-image: url(../assets/images/article1/elevation-graphic.svg);
@@ -351,3 +353,9 @@ $lightblue: rgb(48, 145, 95);
     margin-right: 5px;
 }
             
+/* Nexus 7 */
+@media only screen and (min-device-width : 603px) and (max-device-width : 966px){
+    #elevation{
+        background-image: url(../assets/images/article1/elevation-small.png);
+    }
+}
