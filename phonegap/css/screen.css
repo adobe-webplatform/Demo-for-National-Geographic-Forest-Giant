@@ -359,77 +359,78 @@ section.page-view-full.in {
   text-align: justify;
   font-family: georgia;
   font-size: 1.2rem;
-  line-height: 1.7;
+  line-height: 2rem;
   hyphens: auto;
   -webkit-hyphens: auto;
   -webkit-flow-into: flow1;
 }
-/* line 59, ../sass/screen/_pages.scss */
+/* line 60, ../sass/screen/_pages.scss */
 #content1 p {
-  margin-top: 1em;
+  margin-top: 1.7em;
   text-indent: 2em;
 }
-/* line 63, ../sass/screen/_pages.scss */
+/* line 64, ../sass/screen/_pages.scss */
 #content1 p.first {
+  margin-top: 0;
   text-indent: 0;
 }
 
-/* line 69, ../sass/screen/_pages.scss */
+/* line 71, ../sass/screen/_pages.scss */
 .col-left-full {
   float: left;
   width: 47%;
   height: 80vh;
 }
 
-/* line 75, ../sass/screen/_pages.scss */
+/* line 77, ../sass/screen/_pages.scss */
 .col-right-full {
   float: right;
   width: 47%;
   height: 80vh;
 }
 
-/* line 81, ../sass/screen/_pages.scss */
+/* line 83, ../sass/screen/_pages.scss */
 .col-right-1 {
   float: right;
-  margin-top: 38vh;
+  margin-top: 39.63vh;
   width: 47%;
   height: 42vh;
 }
 
-/* line 88, ../sass/screen/_pages.scss */
+/* line 90, ../sass/screen/_pages.scss */
 .col-right-2 {
   float: right;
   margin-top: 0px;
   width: 47%;
-  height: 32vh;
+  height: 38vh;
 }
 
-/* line 95, ../sass/screen/_pages.scss */
+/* line 97, ../sass/screen/_pages.scss */
 .col-right-3 {
   float: right;
   width: 35%;
   height: 80vh;
 }
 
-/* line 101, ../sass/screen/_pages.scss */
+/* line 103, ../sass/screen/_pages.scss */
 .col-left-1 {
   float: left;
   width: 35%;
   height: 80vh;
 }
 
-/* line 107, ../sass/screen/_pages.scss */
+/* line 109, ../sass/screen/_pages.scss */
 #article1-page-cover {
   background-image: url(../assets/images/article1/article1.jpg);
   height: 100vh;
 }
 
-/* line 114, ../sass/screen/_pages.scss */
+/* line 116, ../sass/screen/_pages.scss */
 #a1p2 .col1,
 #a1p2 .col2 {
   height: 62vh;
 }
-/* line 117, ../sass/screen/_pages.scss */
+/* line 119, ../sass/screen/_pages.scss */
 #a1p2 blockquote {
   position: relative;
   top: .2em;
@@ -441,12 +442,12 @@ section.page-view-full.in {
   height: 6rem;
 }
 
-/* line 129, ../sass/screen/_pages.scss */
+/* line 131, ../sass/screen/_pages.scss */
 #a1p7 {
   background-image: url(../assets/images/article1/img2_bottom.jpg);
   background-position: bottom center;
 }
-/* line 133, ../sass/screen/_pages.scss */
+/* line 135, ../sass/screen/_pages.scss */
 #a1p7 p {
   position: absolute;
   bottom: 0;
@@ -463,11 +464,11 @@ section.page-view-full.in {
   -webkit-shape-inside: polygon(0 40%, 30% 0, 100% 0, 100% 100%, 0 100%);
 }
 
-/* line 150, ../sass/screen/_pages.scss */
+/* line 152, ../sass/screen/_pages.scss */
 #a1p10 {
-  background-color: #f4f3f0;
+  background-color: #888;
 }
-/* line 153, ../sass/screen/_pages.scss */
+/* line 155, ../sass/screen/_pages.scss */
 #a1p10 .map-google {
   position: absolute;
   top: 0;
@@ -476,7 +477,7 @@ section.page-view-full.in {
   height: 100%;
 }
 
-/* line 162, ../sass/screen/_pages.scss */
+/* line 164, ../sass/screen/_pages.scss */
 #videoBtn {
   position: absolute;
   top: -10px;
@@ -489,7 +490,7 @@ section.page-view-full.in {
   background-repeat: no-repeat;
 }
 
-/* line 174, ../sass/screen/_pages.scss */
+/* line 176, ../sass/screen/_pages.scss */
 #logImage {
   position: absolute;
   bottom: -12vh;
@@ -502,7 +503,7 @@ section.page-view-full.in {
   background-repeat: no-repeat;
 }
 
-/* line 190, ../sass/screen/_pages.scss */
+/* line 192, ../sass/screen/_pages.scss */
 #fogImage {
   position: absolute;
   top: -10px;
@@ -525,7 +526,7 @@ section.page-view-full.in {
   transform: scale(0.93);
 }
 
-/* line 206, ../sass/screen/_pages.scss */
+/* line 208, ../sass/screen/_pages.scss */
 #darkImage {
   position: absolute;
   top: -10px;
@@ -548,13 +549,13 @@ section.page-view-full.in {
   transform: scale(0.93);
 }
 
-/* line 223, ../sass/screen/_pages.scss */
+/* line 225, ../sass/screen/_pages.scss */
 #elevation {
   width: 600px;
   height: 433px;
 }
 
-/* line 228, ../sass/screen/_pages.scss */
+/* line 230, ../sass/screen/_pages.scss */
 .drop-caps {
   float: left;
   margin-left: -0.05em;
@@ -566,7 +567,7 @@ section.page-view-full.in {
   -webkit-shape-outside: ellipse(50px, 50px, 60px, 60px);
 }
 
-/* line 239, ../sass/screen/_pages.scss */
+/* line 241, ../sass/screen/_pages.scss */
 .transition-filter {
   position: absolute;
   top: 0;
@@ -583,7 +584,7 @@ section.page-view-full.in {
   transform: translateZ(0);
 }
 
-/* line 251, ../sass/screen/_pages.scss */
+/* line 253, ../sass/screen/_pages.scss */
 .transition-transform {
   position: absolute;
   background-size: contain;
@@ -598,6 +599,13 @@ section.page-view-full.in {
   transform: translateZ(0);
 }
 
+/* Nexus 7 */
+@media only screen and (min-device-width: 603px) and (max-device-width: 966px) {
+  /* line 265, ../sass/screen/_pages.scss */
+  .col-right-1 {
+    margin-top: 37.8vh;
+  }
+}
 /* line 3, ../sass/screen/_map.scss */
 .map-content {
   position: absolute;
@@ -624,23 +632,22 @@ section.page-view-full.in {
 }
 /* line 27, ../sass/screen/_map.scss */
 .map-content .map-content-main {
-  position: relative;
-  margin-left: 5%;
-  margin-top: 1rem;
-  margin-left: 5rem;
-  padding: 2.7em 2em;
+  position: absolute;
+  top: 10%;
+  left: 6%;
+  right: 48%;
+  bottom: 0;
   padding-bottom: 0;
-  width: 44vw;
   text-align: right;
 }
-/* line 37, ../sass/screen/_map.scss */
+/* line 41, ../sass/screen/_map.scss */
 .map-content .map-content-main p {
   margin: 1.9em 0;
   line-height: 1.9;
   text-align: justify;
   display: block;
   min-height: 200px;
-  margin-left: 3em;
+  margin-left: 4.5em;
   margin-top: 22px;
   padding-bottom: 0;
   margin-bottom: 0;
@@ -648,11 +655,16 @@ section.page-view-full.in {
   text-indent: 0;
   -webkit-shape-inside: polygon(30px 0, 100% 0, 100% 500px, 130px 500px, 0% 50px);
 }
-/* line 53, ../sass/screen/_map.scss */
+/* line 57, ../sass/screen/_map.scss */
 .map-content .map-content-main figure {
   position: absolute;
   top: 6rem;
   left: -30px;
+  top: 27%;
+  left: -2%;
+  top: 3.7rem;
+  left: -7%;
+  width: 12rem;
   opacity: 1;
   -webkit-transition: opacity 1s ease-out;
   -webkit-transition-delay: 1s;
@@ -660,11 +672,16 @@ section.page-view-full.in {
   -o-transition: opacity 1s ease-out 1s;
   transition: opacity 1s ease-out 1s;
 }
-/* line 60, ../sass/screen/_map.scss */
+/* line 72, ../sass/screen/_map.scss */
 .map-content .map-content-main figure.in {
   opacity: 1;
 }
-/* line 66, ../sass/screen/_map.scss */
+/* line 76, ../sass/screen/_map.scss */
+.map-content .map-content-main figure #map-california {
+  width: 100%;
+  height: 100%;
+}
+/* line 83, ../sass/screen/_map.scss */
 .map-content a {
   position: absolute;
   display: block;
@@ -673,11 +690,11 @@ section.page-view-full.in {
   text-transform: uppercase;
   color: #30915f;
 }
-/* line 74, ../sass/screen/_map.scss */
+/* line 91, ../sass/screen/_map.scss */
 .map-content a.plus {
   width: 300px;
 }
-/* line 81, ../sass/screen/_map.scss */
+/* line 98, ../sass/screen/_map.scss */
 .low-perf .map-content a.plus.in img, .high-perf .map-content a.plus.in img {
   -webkit-transform: scale(1);
   -moz-transform: scale(1);
@@ -685,11 +702,11 @@ section.page-view-full.in {
   -o-transform: scale(1);
   transform: scale(1);
 }
-/* line 85, ../sass/screen/_map.scss */
+/* line 102, ../sass/screen/_map.scss */
 .low-perf .map-content a.plus.in span, .high-perf .map-content a.plus.in span {
   opacity: 1;
 }
-/* line 91, ../sass/screen/_map.scss */
+/* line 108, ../sass/screen/_map.scss */
 .high-perf .map-content a.plus:hover img {
   -webkit-transform: scale(1.2) rotate(180deg);
   -moz-transform: scale(1.2) rotate(180deg);
@@ -697,11 +714,11 @@ section.page-view-full.in {
   -o-transform: scale(1.2) rotate(180deg);
   transform: scale(1.2) rotate(180deg);
 }
-/* line 96, ../sass/screen/_map.scss */
+/* line 113, ../sass/screen/_map.scss */
 .map-content a.plus img {
   position: absolute;
 }
-/* line 100, ../sass/screen/_map.scss */
+/* line 117, ../sass/screen/_map.scss */
 .high-perf .map-content a.plus img {
   -webkit-transform-origin: center center;
   -moz-transform-origin: center center;
@@ -718,13 +735,13 @@ section.page-view-full.in {
   -o-transition: -o-transform 1s;
   transition: transform 1s;
 }
-/* line 106, ../sass/screen/_map.scss */
+/* line 123, ../sass/screen/_map.scss */
 .map-content a.plus span {
   display: block;
   margin-left: 2.5em;
   width: 200px;
 }
-/* line 113, ../sass/screen/_map.scss */
+/* line 130, ../sass/screen/_map.scss */
 .high-perf .map-content a.plus span {
   -webkit-transition: opacity 1s ease-out;
   -webkit-transition-delay: 0.5s;
@@ -732,7 +749,7 @@ section.page-view-full.in {
   -o-transition: opacity 1s ease-out 0.5s;
   transition: opacity 1s ease-out 0.5s;
 }
-/* line 118, ../sass/screen/_map.scss */
+/* line 135, ../sass/screen/_map.scss */
 .map-content a.info {
   padding-right: 30px;
   background-image: url(../assets/images/info-icon.svg);
@@ -740,11 +757,11 @@ section.page-view-full.in {
   background-position: right center;
 }
 
-/* line 128, ../sass/screen/_map.scss */
+/* line 145, ../sass/screen/_map.scss */
 #map-dist {
   position: absolute;
-  top: 245px;
-  right: 155px;
+  top: 49vh;
+  right: 16vw;
   font-size: .9rem;
   max-width: 18em;
   line-height: 1.3;
@@ -753,12 +770,12 @@ section.page-view-full.in {
   -o-transition: opacity 1s;
   transition: opacity 1s;
 }
-/* line 138, ../sass/screen/_map.scss */
+/* line 155, ../sass/screen/_map.scss */
 #map-dist.in {
   opacity: 1;
 }
 
-/* line 143, ../sass/screen/_map.scss */
+/* line 160, ../sass/screen/_map.scss */
 #map-limit {
   position: absolute;
   top: 64px;
@@ -771,37 +788,37 @@ section.page-view-full.in {
   -o-transition: opacity 1s;
   transition: opacity 1s;
 }
-/* line 153, ../sass/screen/_map.scss */
+/* line 170, ../sass/screen/_map.scss */
 #map-limit.in {
   opacity: 1;
 }
 
-/* line 158, ../sass/screen/_map.scss */
+/* line 175, ../sass/screen/_map.scss */
 #map-plus-1 {
   position: absolute;
   top: 450px;
   left: 20%;
 }
 
-/* line 164, ../sass/screen/_map.scss */
+/* line 181, ../sass/screen/_map.scss */
 #map-plus-2 {
   top: 450px;
   right: 100px;
 }
 
-/* line 170, ../sass/screen/_map.scss */
+/* line 187, ../sass/screen/_map.scss */
 #map-plus-3 {
   bottom: 30px;
   right: 100px;
 }
 
-/* line 176, ../sass/screen/_map.scss */
+/* line 193, ../sass/screen/_map.scss */
 #map-credits {
   margin-left: 1em;
   bottom: 30px;
 }
 
-/* line 181, ../sass/screen/_map.scss */
+/* line 198, ../sass/screen/_map.scss */
 #map-tree {
   border: 3px solid #666;
   background-color: rgba(255, 255, 255, 0.5);
@@ -811,12 +828,12 @@ section.page-view-full.in {
   -o-transition: opacity 1s ease-out 1s;
   transition: opacity 1s ease-out 1s;
 }
-/* line 188, ../sass/screen/_map.scss */
+/* line 205, ../sass/screen/_map.scss */
 #map-tree.in {
   opacity: 1;
 }
 
-/* line 193, ../sass/screen/_map.scss */
+/* line 210, ../sass/screen/_map.scss */
 #map-tree-figure {
   position: absolute;
   left: 20%;
@@ -824,7 +841,7 @@ section.page-view-full.in {
   width: 250px;
 }
 
-/* line 201, ../sass/screen/_map.scss */
+/* line 218, ../sass/screen/_map.scss */
 #elevation {
   width: 50%;
   height: 65%;
@@ -838,7 +855,7 @@ section.page-view-full.in {
   background-color: white;
 }
 
-/* line 214, ../sass/screen/_map.scss */
+/* line 231, ../sass/screen/_map.scss */
 #elevation-html {
   display: none;
   height: 529px;
@@ -852,20 +869,20 @@ section.page-view-full.in {
   font-size: 1.5rem;
 }
 
-/* line 227, ../sass/screen/_map.scss */
+/* line 244, ../sass/screen/_map.scss */
 .elevation-label {
   opacity: 1;
   position: absolute;
 }
 
-/* line 232, ../sass/screen/_map.scss */
+/* line 249, ../sass/screen/_map.scss */
 #elevation-title {
   bottom: 10px;
   left: 50%;
   font-weight: bold;
 }
 
-/* line 238, ../sass/screen/_map.scss */
+/* line 255, ../sass/screen/_map.scss */
 #elevation-label2 {
   bottom: 19%;
   left: 22%;
@@ -876,48 +893,48 @@ section.page-view-full.in {
   -webkit-shape-inside: polygon(0 0, 100% 0, 80% 100%, 0 100%);
 }
 
-/* line 248, ../sass/screen/_map.scss */
+/* line 265, ../sass/screen/_map.scss */
 #elevation-wetter {
   right: 20%;
   top: 34%;
 }
 
-/* line 253, ../sass/screen/_map.scss */
+/* line 270, ../sass/screen/_map.scss */
 #elevation-drier {
   right: 3%;
   top: 34%;
 }
 
-/* line 258, ../sass/screen/_map.scss */
+/* line 275, ../sass/screen/_map.scss */
 #elevation-mt {
   right: 3%;
   top: 20%;
 }
 
-/* line 263, ../sass/screen/_map.scss */
+/* line 280, ../sass/screen/_map.scss */
 #elevation-top {
   left: 7%;
   bottom: 33%;
 }
 
-/* line 268, ../sass/screen/_map.scss */
+/* line 285, ../sass/screen/_map.scss */
 #elevation-bottom {
   left: 5%;
   bottom: 15%;
 }
 
-/* line 273, ../sass/screen/_map.scss */
+/* line 290, ../sass/screen/_map.scss */
 #elevation-text {
   padding: 1.5em;
   top: 0;
 }
-/* line 277, ../sass/screen/_map.scss */
+/* line 294, ../sass/screen/_map.scss */
 #elevation-text b {
   display: block;
   font-weight: bold;
   font-size: 1.8rem;
 }
-/* line 283, ../sass/screen/_map.scss */
+/* line 300, ../sass/screen/_map.scss */
 #elevation-text p {
   margin-top: .7em;
   height: 200px;
@@ -927,7 +944,7 @@ section.page-view-full.in {
   -webkit-shape-inside: polygon(0 0, 60% 0, 30% 100%, 0 100%);
 }
 
-/* line 296, ../sass/screen/_map.scss */
+/* line 313, ../sass/screen/_map.scss */
 .low-perf #popup-forest svg {
   -webkit-transition: opacity 0.4s ease-out;
   -webkit-transition-delay: 2s;
@@ -936,13 +953,13 @@ section.page-view-full.in {
   transition: opacity 0.4s ease-out 2s;
   opacity: 0;
 }
-/* line 301, ../sass/screen/_map.scss */
+/* line 318, ../sass/screen/_map.scss */
 .low-perf #popup-forest.opened svg {
   display: block;
   opacity: 1;
 }
 
-/* line 307, ../sass/screen/_map.scss */
+/* line 324, ../sass/screen/_map.scss */
 #map-canvas {
   position: absolute;
   top: 0;
@@ -951,7 +968,7 @@ section.page-view-full.in {
   height: 100%;
 }
 
-/* line 315, ../sass/screen/_map.scss */
+/* line 332, ../sass/screen/_map.scss */
 #curl-spot {
   position: absolute;
   bottom: 0;
@@ -960,7 +977,7 @@ section.page-view-full.in {
   height: 200px;
 }
 
-/* line 324, ../sass/screen/_map.scss */
+/* line 341, ../sass/screen/_map.scss */
 #map-back-button {
   background-image: url(../assets/images/buttons/close-btn.png);
   background-color: transparent;

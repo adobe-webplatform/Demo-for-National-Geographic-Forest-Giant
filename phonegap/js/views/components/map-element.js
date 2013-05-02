@@ -30,12 +30,14 @@ define([], function (require) {
             startX = 0,
             overlaysCreated = false,
             filter = null,
-            allowDrawing = false;
+            allowDrawing = false,
+            BIG_CURL = 0.2,
+            SMALL_CURL = 0.04
 
         function resetFilter() {
             filter = {
                 curlDirection: viewportAngle,
-                curlRadius: 0.2,
+                curlRadius: BIG_CURL,
                 curlX: 0.5,
                 curlY: 0.5
             };
@@ -81,7 +83,7 @@ define([], function (require) {
             var posX = pageX / window.innerWidth;
             var posY = pageY / window.innerHeight;
             // var diff = Math.abs( posX - posY );
-            var n = 0.4;
+            var n = 0.45;
             var x = (posX * n * 2.2) - n - 0.2; // 1 = 1, 0 = -1
             var y = (posY * n * 2.2) - n - 0.2;
             filter.curlX = x; // x = 1 => x = 0.7
@@ -120,13 +122,13 @@ define([], function (require) {
                 curlX: 0.5,
                 curlY: 0.5,
                 curlDirection: viewportAngle,
-                curlRadius: 0.2
+                curlRadius: BIG_CURL
             }));
             timeline.add(new TweenMax(filter, 1, {
                 curlX: 0.42,
                 curlY: 0.42,
                 curlDirection: 111,
-                curlRadius: 0.04,
+                curlRadius: SMALL_CURL,
                 onComplete: closeResolve
             }));
             timeline.play();
@@ -139,15 +141,17 @@ define([], function (require) {
             googleMap.controls[google.maps.ControlPosition.TOP_RIGHT].push(button);
             google.maps.event.addDomListener(button, 'click', function() {
                 $mapPage.css('transform', 'none');
-                allowDrawing = true;
-                filter = {
-                  curlX: -0.6,
-                  curlY: -0.6,
-                  curlDirection: 135,
-                  curlRadius: 0.2
-                };
-                instance.draw();
-                closeMap();
+                setTimeout(function() {
+                    allowDrawing = true;
+                    filter = {
+                      curlX: -0.6,
+                      curlY: -0.6,
+                      curlDirection: 135,
+                      curlRadius: BIG_CURL
+                    };
+                    instance.draw();
+                    closeMap();
+                }, 500);
             });
         }
         
@@ -208,7 +212,7 @@ define([], function (require) {
                     curlX: 0.42,
                     curlY: 0.42,
                     curlDirection: 111,
-                    curlRadius: 0.04,
+                    curlRadius: SMALL_CURL,
                     onComplete: function() { allowDrawing = false; }
                 });
             }, 1500);
