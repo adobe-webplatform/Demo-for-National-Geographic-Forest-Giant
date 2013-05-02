@@ -202,10 +202,10 @@ define([], function (require) {
         function open() {
             var fullscale;
 
-            if ($el.width() > $el.height()) {
-                fullscale = window.innerWidth / $el.width();
-            } else {
+            if ($el.width() < $el.height() || $el.data('square')) {
                 fullscale = window.innerHeight / $el.height();
+            } else {
+                fullscale = window.innerWidth / $el.width();
             }
             
             new TweenMax.to(transform, 0.5, {
