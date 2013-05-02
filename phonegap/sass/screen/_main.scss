@@ -201,9 +201,16 @@ html, body{
     background-position: 50% 50%;
 }
 
+#a1p9{
+    display: none;
+}
+
 /* Nexus 7 */
 @media only screen and (min-device-width : 603px) and (max-device-width : 966px){
     html, body{
         font-size: 80%;
+    }
+    #a1p9{
+        display: block;
     }
 }

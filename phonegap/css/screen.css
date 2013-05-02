@@ -298,11 +298,21 @@ html, body {
   background-position: 50% 50%;
 }
 
+/* line 204, ../sass/screen/_main.scss */
+#a1p9 {
+  display: none;
+}
+
 /* Nexus 7 */
 @media only screen and (min-device-width: 603px) and (max-device-width: 966px) {
-  /* line 206, ../sass/screen/_main.scss */
+  /* line 210, ../sass/screen/_main.scss */
   html, body {
     font-size: 80%;
+  }
+
+  /* line 213, ../sass/screen/_main.scss */
+  #a1p9 {
+    display: block;
   }
 }
 /* line 8, ../sass/screen/_pages.scss */
@@ -628,7 +638,7 @@ section.page-view-full.in {
   top: 10%;
   left: 6%;
   right: 48%;
-  height: 100%;
+  bottom: 0;
   padding-bottom: 0;
   text-align: right;
 }
