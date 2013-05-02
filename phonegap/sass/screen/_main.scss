@@ -3,7 +3,7 @@ html, body{
     padding: 0;
     height: 100%;
     width: 100%;
-    font-size: 80%;
+    font-size: 100%;
     overflow: hidden;
 }
 
@@ -150,7 +150,8 @@ html, body{
     background-size: 100%;
     background-position: 50% 50%;
     background-repeat: no-repeat;
-    // box-shadow: 0 10px 22px rgba(0, 0, 0, .5);
+    opacity: 0;
+    @include transform(translateZ(0));
 }
 
 .page-thumb-view{
@@ -198,4 +199,10 @@ html, body{
     height: 100%;
     background-size: 100%;
     background-position: 50% 50%;
+}
+
+@media screen and (device-width: 600px) and (device-height: 905px) and (-webkit-min-device-pixel-ratio: 1.331) and (-webkit-max-device-pixel-ratio: 1.332) {
+    body{
+        font-size: 80%;
+    }
 }

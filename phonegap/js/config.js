@@ -22,7 +22,7 @@ var require = {
 
     paths: {
         jquery: 'vendor/jquery-1.9.0',
-        fastclick: 'vendor/fastclick',
+        //fastclick: 'vendor/fastclick',
         tweenmax: 'vendor/greensock/TweenMax',
         three: 'vendor/three',
         hyphenate: 'vendor/hyphenate',

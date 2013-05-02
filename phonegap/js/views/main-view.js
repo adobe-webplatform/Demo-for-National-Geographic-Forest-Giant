@@ -38,9 +38,14 @@ define([], function (require) {
         
         instance.subviews = [];
 
+        function handle_animIn_COMPLETE() {
+            console.log('in');
+        }
+
         function handle_animOut_COMPLETE() {
             instance.subviews[0].view.destroy();
             instance.subviews.splice(0, 1);
+            instance.subviews[0].view.animIn(handle_animIn_COMPLETE);
         }
 
         instance.init = function () {
@@ -52,8 +57,6 @@ define([], function (require) {
 
             var nextView;
  
-            console.log('goto: ', newView);
-
             if (instance.subviews.length > 0) {
                 
                 nextView = VIEW_LIST[newView];
@@ -69,6 +72,7 @@ define([], function (require) {
                 nextView.init();
                 $el.prepend(nextView.render());
                 nextView.show();
+                nextView.animIn();
                 instance.subviews.push({view: nextView});
             }
 

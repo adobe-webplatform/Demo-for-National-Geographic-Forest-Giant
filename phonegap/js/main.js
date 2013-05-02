@@ -18,7 +18,6 @@
  */
 
 require(['app', 
-    'fastclick', 
     'tweenmax', 
     'three',
     'raf',
@@ -58,6 +57,6 @@ require(['app',
     'controllers/controller',
     'models/model'], function (App) {
 	
-    FastClick.attach(document.body);
+    //FastClick.attach(document.body);
     App.init();
 });

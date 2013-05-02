@@ -31,9 +31,10 @@ define([], function (require) {
             $resolveEl,
             filterPath = 'assets/shaders/',
             opening = false,
-            rotateTimeline,
-            openTimeline,
             timeline,
+            unfoldTween,
+            closeTween,
+            openTween,
             filter,
             animating = false,
             dragging = false,
@@ -136,12 +137,12 @@ define([], function (require) {
             timeline.insert(new TweenMax(filter, 2, {fold: 0, ease: Linear.easeNone, delay: 2}));
             timeline.insert(new TweenMax(filter, 4, {scale: 1, ease: Linear.easeNone}));
             timeline.pause();
-            //timeline.timeScale(4);
         }
 
         function addFilterElement() {
 
             console.log('add filter element');
+
             $filterEl = $('<div>');
             $filterEl.addClass('transition-filter');
             $filterEl.css({
@@ -157,13 +158,16 @@ define([], function (require) {
         }
 
         function showFilterElement() {
+
             console.log('show filter element');
+
             $el.css({opacity: 0});
             $filterEl.css({opacity: 1});
         }
 
         function openResolve() {
-            console.log('open resolve');
+
+            console.log('open resolve', filter.fold);
             
             dragging = false;
 
@@ -176,6 +180,7 @@ define([], function (require) {
         }
 
         function closeResolve() {
+
             console.log('close resolve');
 
             dragging = false;
@@ -196,7 +201,7 @@ define([], function (require) {
             $body.unbind('touchmove');
 
             if (opening) {
-                new TweenMax.to(filter, 0.5, {
+                openTween = new TweenMax.to(filter, 0.5, {
                     x: 0, 
                     y: 0, 
                     fold: 0, 
@@ -206,7 +211,7 @@ define([], function (require) {
                     onComplete: openResolve
                 });
             } else {
-                new TweenMax.to(filter, 0.5, {
+                closeTween = new TweenMax.to(filter, 0.5, {
                     x: basefilter.x, 
                     y: basefilter.y, 
                     fold: basefilter.fold, 
@@ -255,6 +260,7 @@ define([], function (require) {
 
                 console.log('filter: touch move', timelinePosition);
 
+                unfoldTween.kill();
                 timeline.seek(timelinePosition);
             }
         }
@@ -293,9 +299,7 @@ define([], function (require) {
                 $body.bind('touchend', handle_filter_TOUCHEND);
                 $body.bind('touchmove', handle_filter_TOUCHMOVE);
 
-                timeline.tweenTo(2, {onComplete: function () {
-                    animating = false;
-                }});
+                unfoldTween = timeline.tweenTo(2);
             }
         }
 
@@ -309,13 +313,19 @@ define([], function (require) {
             if (touches.length == 2) {
 
                 console.log('resolve touchstart');
+             
+                //NOTE filter flashes wrong position!!
                 
                 t1 = {x: touches[0].pageX, y: touches[0].pageY};
                 t2 = {x: touches[1].pageX, y: touches[1].pageY};
 
                 dragging = true;
-                animating = false;
+                //animating = false;
 
+                console.log('--fold:', filter.fold);
+                filter.fold = 0;
+
+                updateFilter();
                 $resolveEl.css({opacity: 0, 'pointer-events': 'none'});
                 $filterEl.css({'opacity': 1});
                 
@@ -339,8 +349,6 @@ define([], function (require) {
             $resolveEl.css({opacity: 0, 'pointer-events': 'none'});
             $filterEl.css({'opacity': 1});
 
-            //TweenMax.killTweensOf(filter); //KILL
-            
             timeline.reverse();
             new TweenMax.to(filter, 2, {x: basefilter.x, y: basefilter.y, onComplete: closeResolve});
             instance.startRequestAnimationFrame();
@@ -355,8 +363,6 @@ define([], function (require) {
 
             resetFilter();
             showFilterElement();
-
-            //TweenMax.killTweensOf(filter); //KILL
 
             addTimeline();
             timeline.play();

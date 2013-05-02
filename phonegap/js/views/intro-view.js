@@ -384,8 +384,8 @@ define([], function (require) {
         }
 
         instance.init = function () {
-            createScene();
-            loadImages();
+            //createScene();
+            //loadImages();
         };
 
         instance.update = function () {
@@ -393,10 +393,10 @@ define([], function (require) {
         };
 
         instance.show = function () {
-            if (!intro) {
-                addEventListeners();
-                updateInterval = setInterval(instance.update, 60 / 1000);
-            }
+            //if (!intro) {
+            //    addEventListeners();
+            //    updateInterval = setInterval(instance.update, 60 / 1000);
+            //}
         };
 
         instance.render = function () {
@@ -406,6 +406,18 @@ define([], function (require) {
 
         instance.draw = function () {
             renderer.render(scene, camera);
+        };
+
+        instance.animIn = function (callback) {
+            console.log('intro animin');
+            
+            createScene();
+            loadImages();
+
+            if (!intro) {
+                addEventListeners();
+                updateInterval = setInterval(instance.update, 60 / 1000);
+            }
         };
 
         instance.animOut = function (callback) {
