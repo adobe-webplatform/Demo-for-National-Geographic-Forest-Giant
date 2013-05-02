@@ -2,7 +2,7 @@
  * In this file you should write your main styles. (or centralize your imports)
  * Import this file using the following HTML or equivalent:
  * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
-/* line 17, ../../../../../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 17, ../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -24,45 +24,45 @@ time, mark, audio, video {
   vertical-align: baseline;
 }
 
-/* line 22, ../../../../../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 22, ../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 html {
   line-height: 1;
 }
 
-/* line 24, ../../../../../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 24, ../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 ol, ul {
   list-style: none;
 }
 
-/* line 26, ../../../../../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 26, ../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 table {
   border-collapse: collapse;
   border-spacing: 0;
 }
 
-/* line 28, ../../../../../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 28, ../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 caption, th, td {
   text-align: left;
   font-weight: normal;
   vertical-align: middle;
 }
 
-/* line 30, ../../../../../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 30, ../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 q, blockquote {
   quotes: none;
 }
-/* line 103, ../../../../../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 103, ../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 q:before, q:after, blockquote:before, blockquote:after {
   content: "";
   content: none;
 }
 
-/* line 32, ../../../../../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 32, ../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 a img {
   border: none;
 }
 
-/* line 116, ../../../../../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 116, ../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
   display: block;
 }
@@ -558,7 +558,7 @@ section.page-view-full.in {
 /* line 230, ../sass/screen/_pages.scss */
 .drop-caps {
   float: left;
-  margin-left: -0.05em;
+  margin-left: -.05em;
   font-size: 9em;
   width: 120px;
   height: 130px;
@@ -848,7 +848,7 @@ section.page-view-full.in {
   position: absolute;
   left: 50%;
   bottom: -12vh;
-  background-image: url(../assets/images/article1/elevation-small.png);
+  background-image: url(../assets/images/article1/elevation-small-n10.png);
   background-repeat: no-repeat;
   background-size: 100%;
   border: 1px solid #ccc;
@@ -858,8 +858,8 @@ section.page-view-full.in {
 /* line 231, ../sass/screen/_map.scss */
 #elevation-html {
   display: none;
-  height: 529px;
-  width: 733px;
+  height: 100vh;
+  width: 139vh;
   margin: 0 auto;
   position: relative;
   background-image: url(../assets/images/article1/elevation-graphic.svg);
@@ -869,20 +869,20 @@ section.page-view-full.in {
   font-size: 1.5rem;
 }
 
-/* line 244, ../sass/screen/_map.scss */
+/* line 246, ../sass/screen/_map.scss */
 .elevation-label {
   opacity: 1;
   position: absolute;
 }
 
-/* line 249, ../sass/screen/_map.scss */
+/* line 251, ../sass/screen/_map.scss */
 #elevation-title {
   bottom: 10px;
   left: 50%;
   font-weight: bold;
 }
 
-/* line 255, ../sass/screen/_map.scss */
+/* line 257, ../sass/screen/_map.scss */
 #elevation-label2 {
   bottom: 19%;
   left: 22%;
@@ -893,48 +893,48 @@ section.page-view-full.in {
   -webkit-shape-inside: polygon(0 0, 100% 0, 80% 100%, 0 100%);
 }
 
-/* line 265, ../sass/screen/_map.scss */
+/* line 267, ../sass/screen/_map.scss */
 #elevation-wetter {
   right: 20%;
   top: 34%;
 }
 
-/* line 270, ../sass/screen/_map.scss */
+/* line 272, ../sass/screen/_map.scss */
 #elevation-drier {
   right: 3%;
   top: 34%;
 }
 
-/* line 275, ../sass/screen/_map.scss */
+/* line 277, ../sass/screen/_map.scss */
 #elevation-mt {
   right: 3%;
   top: 20%;
 }
 
-/* line 280, ../sass/screen/_map.scss */
+/* line 282, ../sass/screen/_map.scss */
 #elevation-top {
   left: 7%;
   bottom: 33%;
 }
 
-/* line 285, ../sass/screen/_map.scss */
+/* line 287, ../sass/screen/_map.scss */
 #elevation-bottom {
   left: 5%;
   bottom: 15%;
 }
 
-/* line 290, ../sass/screen/_map.scss */
+/* line 292, ../sass/screen/_map.scss */
 #elevation-text {
   padding: 1.5em;
   top: 0;
 }
-/* line 294, ../sass/screen/_map.scss */
+/* line 296, ../sass/screen/_map.scss */
 #elevation-text b {
   display: block;
   font-weight: bold;
   font-size: 1.8rem;
 }
-/* line 300, ../sass/screen/_map.scss */
+/* line 302, ../sass/screen/_map.scss */
 #elevation-text p {
   margin-top: .7em;
   height: 200px;
@@ -944,7 +944,7 @@ section.page-view-full.in {
   -webkit-shape-inside: polygon(0 0, 60% 0, 30% 100%, 0 100%);
 }
 
-/* line 313, ../sass/screen/_map.scss */
+/* line 315, ../sass/screen/_map.scss */
 .low-perf #popup-forest svg {
   -webkit-transition: opacity 0.4s ease-out;
   -webkit-transition-delay: 2s;
@@ -953,13 +953,13 @@ section.page-view-full.in {
   transition: opacity 0.4s ease-out 2s;
   opacity: 0;
 }
-/* line 318, ../sass/screen/_map.scss */
+/* line 320, ../sass/screen/_map.scss */
 .low-perf #popup-forest.opened svg {
   display: block;
   opacity: 1;
 }
 
-/* line 324, ../sass/screen/_map.scss */
+/* line 326, ../sass/screen/_map.scss */
 #map-canvas {
   position: absolute;
   top: 0;
@@ -968,7 +968,7 @@ section.page-view-full.in {
   height: 100%;
 }
 
-/* line 332, ../sass/screen/_map.scss */
+/* line 334, ../sass/screen/_map.scss */
 #curl-spot {
   position: absolute;
   bottom: 0;
@@ -977,7 +977,7 @@ section.page-view-full.in {
   height: 200px;
 }
 
-/* line 341, ../sass/screen/_map.scss */
+/* line 343, ../sass/screen/_map.scss */
 #map-back-button {
   background-image: url(../assets/images/buttons/close-btn.png);
   background-color: transparent;
@@ -989,4 +989,12 @@ section.page-view-full.in {
   height: 60px;
   margin-top: 5px;
   margin-right: 5px;
+}
+
+/* Nexus 7 */
+@media only screen and (min-device-width: 603px) and (max-device-width: 966px) {
+  /* line 358, ../sass/screen/_map.scss */
+  #elevation {
+    background-image: url(../assets/images/article1/elevation-small.png);
+  }
 }

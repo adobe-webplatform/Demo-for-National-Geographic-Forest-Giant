@@ -151,7 +151,7 @@ define([], function (require) {
                     };
                     instance.draw();
                     closeMap();
-                }, 500);
+                }, 1000);
             });
         }
         
