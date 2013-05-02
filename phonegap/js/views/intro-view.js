@@ -338,22 +338,6 @@ define([], function (require) {
             }
         }
 
-        /*
-        function updateAnimation() {
-            if (camera.position.y > -2000) {
-                camera.position.y -= 10;
-            }
-
-            if (camera.position.z > ZOOM_MIN) {
-                camera.position.z -= 1;
-            }
-
-            if (camera.rotation.x > 0) {
-                camera.rotation.x -= 0.01;
-            }
-        }
-        */
-
         function updateInteractive() {
             if (dragging) {
 				trackVelocity();
@@ -409,8 +393,6 @@ define([], function (require) {
         };
 
         instance.animIn = function (callback) {
-            console.log('intro animin');
-            
             createScene();
             loadImages();
 

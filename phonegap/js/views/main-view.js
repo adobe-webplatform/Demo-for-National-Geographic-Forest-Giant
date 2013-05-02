@@ -39,7 +39,7 @@ define([], function (require) {
         instance.subviews = [];
 
         function handle_animIn_COMPLETE() {
-            console.log('in');
+        
         }
 
         function handle_animOut_COMPLETE() {
