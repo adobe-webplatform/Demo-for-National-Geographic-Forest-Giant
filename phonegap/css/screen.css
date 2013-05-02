@@ -73,7 +73,7 @@ html, body {
   padding: 0;
   height: 100%;
   width: 100%;
-  font-size: 80%;
+  font-size: 100%;
   overflow: hidden;
 }
 
@@ -298,6 +298,12 @@ html, body {
   background-position: 50% 50%;
 }
 
+@media screen and (device-width: 600px) and (device-height: 905px) and (-webkit-min-device-pixel-ratio: 1.331) and (-webkit-max-device-pixel-ratio: 1.332) {
+  /* line 205, ../sass/screen/_main.scss */
+  body {
+    font-size: 80%;
+  }
+}
 /* line 8, ../sass/screen/_pages.scss */
 section.page-view-full {
   -webkit-transform: scale(1.1);
