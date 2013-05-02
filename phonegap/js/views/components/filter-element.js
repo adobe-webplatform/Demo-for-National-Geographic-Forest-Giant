@@ -132,10 +132,10 @@ define([], function (require) {
 
         function addTimeline() {
             timeline = new TimelineMax();
-            timeline.insert(new TweenMax(filter, 1, {rotateY: 0, ease: Quint.easeOut}));
-            timeline.insert(new TweenMax(filter, 2, {fold: 1.4, ease: Quint.easeOut}));
-            timeline.insert(new TweenMax(filter, 2, {fold: 0, ease: Linear.easeNone, delay: 2}));
-            timeline.insert(new TweenMax(filter, 4, {scale: 1, ease: Linear.easeNone}));
+            timeline.insert(new TweenMax.to(filter, 1, {rotateY: 0, ease: Quint.easeOut}));
+            timeline.insert(new TweenMax.to(filter, 2, {fold: 1.4, ease: Quint.easeOut}));
+            timeline.insert(new TweenMax.to(filter, 2, {fold: 0, ease: Linear.easeNone, delay: 2}));
+            timeline.insert(new TweenMax.to(filter, 4, {scale: 1, ease: Linear.easeNone}));
             timeline.pause();
         }
 

@@ -32,6 +32,7 @@ define([], function (require) {
             filterPath = 'assets/shaders/',
             opening = false,
             timeline,
+            foldtimeline,
             unfoldTween,
             closeTween,
             openTween,
@@ -98,7 +99,7 @@ define([], function (require) {
                 'webkitFilter': 
                     'custom(url(' + filter.vert + ') mix(url(' + filter.frag + ') multiply source-atop), 20 8 border-box, ' + 
                     'ambientLight ' + filter.ambient + ', ' + 
-                    'perspective 1000, ' + 
+                    'perspective 5000, ' + 
                     'translation ' + filter.x + ' ' + filter.y + ' 0, ' + 
                     'rotation ' + filter.rotateX + ' ' + filter.rotateY + ' ' + filter.rotateZ + ', ' + 
                     'scale ' + filter.scale + ', ' + 
@@ -139,24 +140,28 @@ define([], function (require) {
                 time,
                 delay;
 
-            timeline = new TimelineMax();
-            timeline.insert(new TweenMax(filter, 1, {rotateY: 0, ambient: 0.3, ease: Quint.easeOut}));
+            //fold
+            foldtimeline = new TimelineMax();
+            foldtimeline.insert(new TweenMax.to(filter.a[9], 1, {value: -70}));
+            foldtimeline.insert(new TweenMax.to(filter.a[10], 1, {value: 70}));
             
-            timeline.insert(new TweenMax(filter.a[9], 1, {value: -70, ease: Quint.easeOut}));
-            timeline.insert(new TweenMax(filter.a[10], 1, {value: 70, ease: Quint.easeOut}));
-            
-            timeline.insert(new TweenMax(filter.a[9], 1, {value: 0, ease: Quint.easeIn, delay: 1}));
-            timeline.insert(new TweenMax(filter.a[10], 1, {value: 0, ease: Quint.easeIn, delay: 1}));
+            foldtimeline.insert(new TweenMax.to(filter.a[9], 2, {value: 0, delay: 1}));
+            foldtimeline.insert(new TweenMax.to(filter.a[10], 2, {value: 0, delay: 1}));
 
             for (i = 0; i < 20; i += 1) {
                 if (i < 9) {
-                    timeline.insert(new TweenMax(filter.a[i], 1, {value: 9 - i}));
-                    timeline.insert(new TweenMax(filter.a[i], 1, {value: 0, delay: 1}));
+                    foldtimeline.insert(new TweenMax.fromTo(filter.a[i], 1, {value: 0}, {value: 9 - i}));
+                    foldtimeline.insert(new TweenMax.to(filter.a[i], 2, {value: 0, delay: 1}));
                 } else if (i > 10) {
-                    timeline.insert(new TweenMax(filter.a[i], 1, {value: 10 - i}));
-                    timeline.insert(new TweenMax(filter.a[i], 1, {value: 0, delay: 1}));
+                    foldtimeline.insert(new TweenMax.fromTo(filter.a[i], 1, {value: 0}, {value: 10 - i}));
+                    foldtimeline.insert(new TweenMax.to(filter.a[i], 2, {value: 0, delay: 1}));
                 }
             }
+
+            //rotation
+            timeline = new TimelineMax();
+            timeline.insert(foldtimeline);
+            timeline.insert(new TweenMax.to(filter, 1, {rotateY: 0, ambient: 0.3, ease: Quint.easeOut}));
 
             //timeline.insert(new TweenMax(filter, 2, {scale: 1, ease: Linear.easeNone}));
             timeline.pause();
@@ -224,23 +229,18 @@ define([], function (require) {
             timeline.pause();
 
             if (opening) {
-                openTween = timeline.tweenTo(2);
+                timeline.tweenTo(3, {onComplete: openResolve});
                 openTween = new TweenMax.to(filter, 0.5, {
                     x: 0, 
                     y: 0, 
-                    rotateY: 0, 
-                    rotateZ: 0, 
-                    scale: 1, 
-                    onComplete: openResolve
+                    scale: 1
                 });
             } else {
+                timeline.tweenTo(0, {onComplete: closeResolve});
                 closeTween = new TweenMax.to(filter, 0.5, {
                     x: basefilter.x, 
                     y: basefilter.y, 
-                    rotateY: basefilter.rotateY, 
-                    rotateZ: basefilter.rotateZ, 
-                    scale: basefilter.scale, 
-                    onComplete: closeResolve
+                    scale: basefilter.scale
                 });
             }
         }
@@ -269,18 +269,18 @@ define([], function (require) {
 
                 //get timline position
                 timelinePosition = newDistance / 100;
-                timelinePosition = timelinePosition > 2 ? timelinePosition : 2;
-                opening = timelinePosition > 3 ? true : false;
+                timelinePosition = timelinePosition > 1 ? timelinePosition : 1;
+                opening = timelinePosition > 2 ? true : false;
 
                 //calculate transform
                 newMidpoint = getMidpoint(t1, t2);
-                filter.x = (newMidpoint.x - deltaMidpoint.x) / filter.scale;
-                filter.y = (newMidpoint.y - deltaMidpoint.y) / filter.scale;
+                filter.x = (newMidpoint.x - deltaMidpoint.x) / 1000; // / filter.scale;
+                filter.y = (newMidpoint.y - deltaMidpoint.y) / 1000; // / filter.scale;
 
                 distance = getDistance(deltaMidpoint, newMidpoint);
                 opening = distance > 100 ? true : opening;
 
-                console.log('filter: touch move', timelinePosition);
+                console.log('filter: touch move');
 
                 unfoldTween.kill();
                 timeline.seek(timelinePosition);
@@ -318,10 +318,12 @@ define([], function (require) {
                 instance.startRequestAnimationFrame();
                 scroll.disable();
 
+                $body.unbind('touchend', handle_filter_TOUCHEND);
+                $body.unbind('touchmove', handle_filter_TOUCHMOVE);
                 $body.bind('touchend', handle_filter_TOUCHEND);
                 $body.bind('touchmove', handle_filter_TOUCHMOVE);
 
-                unfoldTween = timeline.tweenTo(2);
+                unfoldTween = timeline.tweenTo(1);
             }
         }
 
@@ -336,15 +338,12 @@ define([], function (require) {
 
                 console.log('resolve touchstart');
              
-                //NOTE filter flashes wrong position!!
-                
                 t1 = {x: touches[0].pageX, y: touches[0].pageY};
                 t2 = {x: touches[1].pageX, y: touches[1].pageY};
 
                 dragging = true;
-                //animating = false;
 
-                filter.fold = 0;
+                timeline.seek(3);
 
                 updateFilter();
                 $resolveEl.css({opacity: 0, 'pointer-events': 'none'});
@@ -370,6 +369,7 @@ define([], function (require) {
             $resolveEl.css({opacity: 0, 'pointer-events': 'none'});
             $filterEl.css({'opacity': 1});
 
+            timeline.timeScale(2);
             timeline.reverse();
             new TweenMax.to(filter, 2, {x: basefilter.x, y: basefilter.y, scale: basefilter.scale, onComplete: closeResolve});
             instance.startRequestAnimationFrame();
@@ -386,11 +386,13 @@ define([], function (require) {
             showFilterElement();
 
             addTimeline();
+            timeline.seek(0);
+            //timeline.timeScale(2);
             timeline.play();
-            
-            //new TweenMax.to(filter, 2, {x: 0, y: 0, onComplete: openResolve});
             new TweenMax.to(filter, 2, {x: 0, y: 0, scale: 1, onComplete: openResolve});
+
             scroll.disable();
+
             instance.startRequestAnimationFrame();
         }
 
