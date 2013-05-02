@@ -25,13 +25,17 @@ $lightblue: rgb(48, 145, 95);
     }
 
 	.map-content-main{
-		position: relative;
-        margin-left: 5%;
-        margin-top: 1rem;
-        margin-left: 5rem;
-		padding: 2.7em 2em;
+		position: absolute;
+		top: 10%;
+		left: 6%;
+		right: 48%;
+		height: 100%;
+        // margin-left: 5%;
+        // margin-top: 1rem;
+        // margin-left: 5rem;
+		// padding: 2.7em 2em;
         padding-bottom: 0;
-		width: 44vw;
+		//width: 44vw;
 		text-align: right;
 
         p{
@@ -41,7 +45,7 @@ $lightblue: rgb(48, 145, 95);
 
             display: block;
             min-height: 200px;
-            margin-left: 3em;
+            margin-left: 4.5em;
             margin-top: 22px;
             padding-bottom: 0;
             margin-bottom: 0;
@@ -54,11 +58,24 @@ $lightblue: rgb(48, 145, 95);
 			position: absolute;
             top: 6rem;
             left: -30px;
+
+            top: 27%;
+            left: -2%;            
+            
+            top: 3.7rem;
+            left: -7%;
+            width: 12rem;            
+            
             opacity: 1; //0.2;
             @include transition(opacity 1s ease-out 1s);
 
             &.in{
                 opacity: 1;
+            }
+            
+            #map-california{
+                width: 100%;
+                height: 100%;
             }
 		}
 	}
@@ -127,8 +144,8 @@ $lightblue: rgb(48, 145, 95);
 
 #map-dist{
     position: absolute;
-    top: 245px;
-    right: 155px;
+    top: 49vh;
+    right: 16vw;
     font-size: .9rem;
     max-width: 18em;
     line-height: 1.3;
