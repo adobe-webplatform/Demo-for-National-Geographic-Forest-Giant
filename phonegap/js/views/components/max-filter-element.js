@@ -47,10 +47,10 @@ define([], function (require) {
                 ambient: 1,
                 vert: filterPath + 'max-fold.vs',
                 frag: filterPath + 'max-fold.fs',
-                x: 0, //$el.data('filter-x'),
+                x: -0.07, //$el.data('filter-x'),
                 y: 0, //$el.data('filter-y'),
                 z: 0,
-                scale: 0.93,
+                scale: 0.93,//0.93,
                 rotateY: -90,
                 rotateX: 0,
                 rotateZ: 0
@@ -361,7 +361,7 @@ define([], function (require) {
             $filterEl.css({'opacity': 1});
 
             timeline.reverse();
-            new TweenMax.to(filter, 2, {x: basefilter.x, y: basefilter.y, onComplete: closeResolve});
+            new TweenMax.to(filter, 2, {x: basefilter.x, y: basefilter.y, scale: basefilter.scale, onComplete: closeResolve});
             instance.startRequestAnimationFrame();
         }
 
