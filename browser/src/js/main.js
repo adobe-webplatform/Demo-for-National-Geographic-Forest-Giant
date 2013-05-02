@@ -84,7 +84,11 @@ require([
         function handle_RESIZE(e) {
             var _width = $window.width(),
                 _halfwidth = $window.width() / 2;
-
+			
+			if (overlay.visible) {
+		    	toggleOverlay();
+			}
+			
             $('.balance').balanceText();
             UserEvent.RESIZE.dispatch();
             $('.popup-box video').css({width: _width, height: _width, marginLeft: -_halfwidth, marginTop: -_halfwidth});

@@ -3,7 +3,7 @@ html, body{
     padding: 0;
     height: 100%;
     width: 100%;
-    font-size: 80%;
+    font-size: 100%;
     overflow: hidden;
 }
 
@@ -199,4 +199,11 @@ html, body{
     height: 100%;
     background-size: 100%;
     background-position: 50% 50%;
+}
+
+/* Nexus 7 */
+@media only screen and (min-device-width : 603px) and (max-device-width : 966px){
+    html, body{
+        font-size: 80%;
+    }
 }

@@ -144,22 +144,25 @@ define([], function (require) {
                 max_width = padding,
                 button,
                 scale = 2.2,
+                btn_width = window.innerWidth / scale,
                 id;
 
             for (i = 0; i < contents.length; i += 1) {
+
                 id = i > 0 ? i + 1: 0;
                 button = new TOCViewButton(id, dir + contents[i].img);
-                button.setSize(window.innerWidth / scale, window.innerHeight / scale);
+                button.setSize(btn_width, window.innerHeight / scale);
                 button.setPosition(x, y);
                 button.render();
                 buttons.push(button);
 
-                if (i % Math.round(contents.length / 2) === 0 && i !== 0) {
-                    max_width = x;
+
+                if (i == 6) {
+                    max_width = x + btn_width + padding;
                     y += (window.innerHeight / scale) + padding;
                     x = padding;
                 } else {
-                    x += (window.innerWidth / scale) + padding;
+                    x += btn_width + padding;
                 }
 
                 button.render().html(contents[i].content);
