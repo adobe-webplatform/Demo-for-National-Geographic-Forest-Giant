@@ -201,8 +201,9 @@ html, body{
     background-position: 50% 50%;
 }
 
+/* Nexus 7 */
 @media only screen and (min-device-width : 603px) and (max-device-width : 966px){
-    html{
+    html, body{
         font-size: 80%;
     }
 }

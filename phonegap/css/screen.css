@@ -298,9 +298,10 @@ html, body {
   background-position: 50% 50%;
 }
 
+/* Nexus 7 */
 @media only screen and (min-device-width: 603px) and (max-device-width: 966px) {
-  /* line 205, ../sass/screen/_main.scss */
-  html {
+  /* line 206, ../sass/screen/_main.scss */
+  html, body {
     font-size: 80%;
   }
 }
@@ -343,8 +344,8 @@ section.page-view-full.in {
   position: relative;
   width: 100%;
   height: 80vh;
-  box-sizing: border-box;
   padding: 2em;
+  box-sizing: border-box;
 }
 
 /* line 43, ../sass/screen/_pages.scss */
@@ -842,7 +843,7 @@ section.page-view-full.in {
   background-image: url(../assets/images/article1/elevation-small.png);
   background-repeat: no-repeat;
   background-size: 100%;
-  border: 1px solid black;
+  border: 1px solid #ccc;
   background-color: white;
 }
 
