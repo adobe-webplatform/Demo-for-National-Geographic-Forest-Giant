@@ -48,8 +48,8 @@ define([], function (require) {
                 ambient: 1,
                 vert: filterPath + 'max-fold.vs',
                 frag: filterPath + 'max-fold.fs',
-                x: -0.07, //$el.data('filter-x'),
-                y: 0, //$el.data('filter-y'),
+                x: $el.data('filter-x'),
+                y: $el.data('filter-y'),
                 z: 0,
                 scale: 0.93,//0.93,
                 rotateY: -90,
@@ -318,8 +318,6 @@ define([], function (require) {
                 instance.startRequestAnimationFrame();
                 scroll.disable();
 
-                $body.unbind('touchend', handle_filter_TOUCHEND);
-                $body.unbind('touchmove', handle_filter_TOUCHMOVE);
                 $body.bind('touchend', handle_filter_TOUCHEND);
                 $body.bind('touchmove', handle_filter_TOUCHMOVE);
 
