@@ -1,4 +1,4 @@
-national-geographic
+Demo for National Geographic Forest Giant
 ===================
 
 run this on a server when testing locally :D
