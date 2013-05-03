@@ -40,7 +40,6 @@ define([], function (require) {
             animating = false,
             dragging = false,
             deltaMidpoint = {x: 0, y: 0},
-            deltaDistance = 0,
             deltaAngle = 0,
             deltaRotation = 0,
             SCALE_DIVIDER = 100,
@@ -95,9 +94,7 @@ define([], function (require) {
         }
 
         function updateFilter() {
-            $filterEl.css({
-                'webkitFilter': 
-                    'custom(url(' + filter.vert + ') mix(url(' + filter.frag + ') multiply source-atop), 20 8 border-box, ' + 
+            var str = 'custom(url(' + filter.vert + ') mix(url(' + filter.frag + ') multiply source-atop), 20 8 border-box, ' + 
                     'ambientLight ' + filter.ambient + ', ' + 
                     'perspective 5000, ' + 
                     'translation ' + filter.x + ' ' + filter.y + ' 0, ' + 
@@ -124,8 +121,11 @@ define([], function (require) {
                     'a16 ' + filter.a[16].value + ', ' + 
                     'a17 ' + filter.a[17].value + ', ' + 
                     'a18 ' + filter.a[18].value + ', ' + 
-                    'a19 ' + filter.a[19].value + ')'
+                    'a19 ' + filter.a[19].value + ')';
+            $filterEl.css({
+                'webkitFilter': str
             });
+            // console.log(str);
         }
 
         function addContainer() {
@@ -140,8 +140,9 @@ define([], function (require) {
                 time,
                 delay;
 
-            //fold
             foldtimeline = new TimelineMax();
+            
+            //fold
             foldtimeline.insert(new TweenMax.to(filter.a[9], 2, {value: -70}));
             foldtimeline.insert(new TweenMax.to(filter.a[10], 2, {value: 70}));
             
@@ -198,7 +199,7 @@ define([], function (require) {
 
             $container.css({'pointer-events': 'auto'});
             $resolveEl.css({opacity: 1, 'pointer-events': 'auto'});
-            //$resolveEl.bind('touchstart', handle_resolveEl_TOUCHSTART);
+            $resolveEl.bind('touchstart', handle_resolveEl_TOUCHSTART);
             $resolveEl.bind('click', handle_resolveEl_CLICK);
 
             $filterEl.css({opacity: 0});
@@ -214,7 +215,7 @@ define([], function (require) {
             $el.css({opacity: 1});
             scroll.enable();
         }
-
+        
         function handle_filter_TOUCHEND(e) {
 
             console.log('filter: touch end');
@@ -226,7 +227,10 @@ define([], function (require) {
             $body.unbind('touchmove');
 
             timeline.pause();
-
+            
+            // dragging = false;
+            // return;
+            
             if (opening) {
                 timeline.tweenTo(timeline.totalDuration(), {onComplete: openResolve});
                 openTween = new TweenMax.to(filter, 0.5, {
@@ -251,7 +255,6 @@ define([], function (require) {
                 newMidpoint,
                 newDistance,
                 distance,
-                distanceDifference,
                 timelinePosition;
 
             e.preventDefault();
@@ -263,8 +266,6 @@ define([], function (require) {
                 t2 = {x: touches[1].pageX, y: touches[1].pageY};
 
                 newDistance = getDistance(t1, t2);
-                distanceDifference = newDistance - deltaDistance;
-                distanceDifference = distanceDifference > 0 ? distanceDifference : 0;
 
                 //get timline position
                 timelinePosition = newDistance / 100;
@@ -272,12 +273,13 @@ define([], function (require) {
                 opening = timelinePosition > 2 ? true : false;
 
                 //calculate transform
+                setTranslate(t1, t2);
                 newMidpoint = getMidpoint(t1, t2);
-                filter.x = (newMidpoint.x - deltaMidpoint.x) / 1000; // / filter.scale;
-                filter.y = (newMidpoint.y - deltaMidpoint.y) / 1000; // / filter.scale;
+                // filter.x = (newMidpoint.x - deltaMidpoint.x) / 1000; // / filter.scale;
+                // filter.y = (newMidpoint.y - deltaMidpoint.y) / 1000; // / filter.scale;
 
                 distance = getDistance(deltaMidpoint, newMidpoint);
-                opening = distance > 100 ? true : opening;
+                opening = distance > 200 ? true : opening;
 
                 console.log('filter: touch move');
 
@@ -285,11 +287,17 @@ define([], function (require) {
                 timeline.seek(timelinePosition);
             }
         }
-
+        
+        function setTranslate(t1, t2) {
+            var newMidpoint = getMidpoint(t1, t2);
+            filter.x = newMidpoint.x / window.innerWidth - 0.5;
+            filter.y = newMidpoint.y / window.innerHeight - 0.5;
+        }
+        
         function calculateMidpoint(t1, t2) {
             deltaMidpoint = getMidpoint(t1, t2);
-            deltaDistance = getDistance(t1, t2);
-            deltaMidpoint = {x: deltaMidpoint.x - filter.x, y: deltaMidpoint.y - filter.y};
+            // deltaDistance = getDistance(t1, t2);
+            // deltaMidpoint = {x: deltaMidpoint.x - filter.x, y: deltaMidpoint.y - filter.y};
         }
 
         function handle_el_TOUCHSTART(e) {
@@ -311,16 +319,20 @@ define([], function (require) {
 
                 resetFilter();
                 showFilterElement();
-                calculateMidpoint(t1, t2);
-                //addTimeline();
+
+                setTimeout(function() {
+                    calculateMidpoint(t1, t2);
+                    setTranslate(t1, t2);
+                    //addTimeline();
                 
-                instance.startRequestAnimationFrame();
-                scroll.disable();
+                    instance.startRequestAnimationFrame();
+                    scroll.disable();
 
-                $body.bind('touchend', handle_filter_TOUCHEND);
-                $body.bind('touchmove', handle_filter_TOUCHMOVE);
+                    $body.bind('touchend', handle_filter_TOUCHEND);
+                    $body.bind('touchmove', handle_filter_TOUCHMOVE);
 
-                unfoldTween = timeline.tweenTo(1);
+                    unfoldTween = timeline.tweenTo(1);
+                }, 1000);
             }
         }
 
@@ -386,12 +398,14 @@ define([], function (require) {
             resetFilter();
             showFilterElement();
 
-            //animate from beginning to end
-            timeline.seek(0);
-            timeline.timeScale(2);
-            timeline.tweenTo(timeline.totalDuration(), {onComplete: openResolve});
-            new TweenMax.to(filter, timeline.totalDuration() / speed, {x: 0, y: 0, scale: 1});
-            instance.startRequestAnimationFrame();
+            setTimeout(function() {
+                //animate from beginning to end
+                timeline.seek(0);
+                timeline.timeScale(speed);
+                timeline.tweenTo(timeline.totalDuration(), {onComplete: openResolve});
+                new TweenMax.to(filter, timeline.totalDuration() / speed, {x: 0, y: 0, scale: 1});
+                instance.startRequestAnimationFrame();
+            }, 200);
             
             scroll.disable();
         }
@@ -400,7 +414,7 @@ define([], function (require) {
             var i;
 
             $body = $('body');
-            //$el.bind('touchstart', handle_el_TOUCHSTART);
+            $el.bind('touchstart', handle_el_TOUCHSTART);
             $el.bind('click', handle_el_CLICK);
 
             basefilter.a = [];
