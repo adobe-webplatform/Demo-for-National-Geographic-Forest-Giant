@@ -142,28 +142,27 @@ define([], function (require) {
 
             //fold
             foldtimeline = new TimelineMax();
-            foldtimeline.insert(new TweenMax.to(filter.a[9], 1, {value: -70}));
-            foldtimeline.insert(new TweenMax.to(filter.a[10], 1, {value: 70}));
+            foldtimeline.insert(new TweenMax.to(filter.a[9], 2, {value: -70}));
+            foldtimeline.insert(new TweenMax.to(filter.a[10], 2, {value: 70}));
             
-            foldtimeline.insert(new TweenMax.to(filter.a[9], 2, {value: 0, delay: 1}));
-            foldtimeline.insert(new TweenMax.to(filter.a[10], 2, {value: 0, delay: 1}));
+            foldtimeline.insert(new TweenMax.to(filter.a[9], 4, {value: 0, delay: 2}));
+            foldtimeline.insert(new TweenMax.to(filter.a[10], 4, {value: 0, delay: 2}));
 
             for (i = 0; i < 20; i += 1) {
                 if (i < 9) {
-                    foldtimeline.insert(new TweenMax.fromTo(filter.a[i], 1, {value: 0}, {value: 9 - i}));
-                    foldtimeline.insert(new TweenMax.to(filter.a[i], 2, {value: 0, delay: 1}));
+                    foldtimeline.insert(new TweenMax.to(filter.a[i], 2, {value: 0}, {value: 9 - i}));
+                    foldtimeline.insert(new TweenMax.to(filter.a[i], 2, {value: 0, delay: 2, ease: Quad.easeOut}));
                 } else if (i > 10) {
-                    foldtimeline.insert(new TweenMax.fromTo(filter.a[i], 1, {value: 0}, {value: 10 - i}));
-                    foldtimeline.insert(new TweenMax.to(filter.a[i], 2, {value: 0, delay: 1}));
+                    foldtimeline.insert(new TweenMax.to(filter.a[i], 2, {value: 0}, {value: 10 - i}));
+                    foldtimeline.insert(new TweenMax.to(filter.a[i], 2, {value: 0, delay: 2, ease: Quad.easeOut}));
                 }
             }
 
             //rotation
             timeline = new TimelineMax();
             timeline.insert(foldtimeline);
-            timeline.insert(new TweenMax.to(filter, 1, {rotateY: 0, ambient: 0.3, ease: Quint.easeOut}));
+            timeline.insert(new TweenMax.to(filter, 2, {rotateY: 0, ambient: 0.3, ease: Quint.easeOut}));
 
-            //timeline.insert(new TweenMax(filter, 2, {scale: 1, ease: Linear.easeNone}));
             timeline.pause();
         }
 
@@ -199,7 +198,7 @@ define([], function (require) {
 
             $container.css({'pointer-events': 'auto'});
             $resolveEl.css({opacity: 1, 'pointer-events': 'auto'});
-            $resolveEl.bind('touchstart', handle_resolveEl_TOUCHSTART);
+            //$resolveEl.bind('touchstart', handle_resolveEl_TOUCHSTART);
             $resolveEl.bind('click', handle_resolveEl_CLICK);
 
             $filterEl.css({opacity: 0});
@@ -229,7 +228,7 @@ define([], function (require) {
             timeline.pause();
 
             if (opening) {
-                timeline.tweenTo(3, {onComplete: openResolve});
+                timeline.tweenTo(timeline.totalDuration(), {onComplete: openResolve});
                 openTween = new TweenMax.to(filter, 0.5, {
                     x: 0, 
                     y: 0, 
@@ -313,7 +312,7 @@ define([], function (require) {
                 resetFilter();
                 showFilterElement();
                 calculateMidpoint(t1, t2);
-                addTimeline();
+                //addTimeline();
                 
                 instance.startRequestAnimationFrame();
                 scroll.disable();
@@ -358,7 +357,8 @@ define([], function (require) {
         }
 
         function handle_resolveEl_CLICK(e) {
-            
+            var speed = 2;
+
             console.log('resolve click');
 
             dragging = true;
@@ -367,13 +367,16 @@ define([], function (require) {
             $resolveEl.css({opacity: 0, 'pointer-events': 'none'});
             $filterEl.css({'opacity': 1});
 
-            timeline.timeScale(2);
-            timeline.reverse();
-            new TweenMax.to(filter, 2, {x: basefilter.x, y: basefilter.y, scale: basefilter.scale, onComplete: closeResolve});
+            //animate from end to beginning
+            timeline.seek(timeline.totalDuration());
+            timeline.timeScale(speed);
+            timeline.tweenTo(0, {onComplete: closeResolve});
+            new TweenMax.to(filter, timeline.totalDuration() / speed, {x: basefilter.x, y: basefilter.y, scale: basefilter.scale});
             instance.startRequestAnimationFrame();
         }
 
         function handle_el_CLICK(e) {
+            var speed = 2;
             
             console.log('el click');
 
@@ -383,22 +386,21 @@ define([], function (require) {
             resetFilter();
             showFilterElement();
 
-            addTimeline();
+            //animate from beginning to end
             timeline.seek(0);
-            //timeline.timeScale(2);
-            timeline.play();
-            new TweenMax.to(filter, 2, {x: 0, y: 0, scale: 1, onComplete: openResolve});
-
-            scroll.disable();
-
+            timeline.timeScale(2);
+            timeline.tweenTo(timeline.totalDuration(), {onComplete: openResolve});
+            new TweenMax.to(filter, timeline.totalDuration() / speed, {x: 0, y: 0, scale: 1});
             instance.startRequestAnimationFrame();
+            
+            scroll.disable();
         }
 
         instance.init = function () {
             var i;
 
             $body = $('body');
-            $el.bind('touchstart', handle_el_TOUCHSTART);
+            //$el.bind('touchstart', handle_el_TOUCHSTART);
             $el.bind('click', handle_el_CLICK);
 
             basefilter.a = [];
@@ -410,6 +412,7 @@ define([], function (require) {
 
             addContainer();
             resetFilter();
+            addTimeline();
             addFilterElement();
             instance.waitingRequestAnimationFrame = false;
         };
