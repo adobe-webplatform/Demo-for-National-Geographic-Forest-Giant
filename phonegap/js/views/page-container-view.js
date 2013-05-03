@@ -22,7 +22,8 @@ define([], function (require) {
     var PageContainerView,
         PageView = require('views/page-view'),
         TransformElement = require('views/components/transform-element'),
-        FilterElement = require('views/components/filter-element'),
+        //FilterElement = require('views/components/filter-element'),
+        FilterElement = require('views/components/max-filter-element'),
         MapElement = require('views/components/map-element'),
         AppEvent = require('events/app-event');
 
@@ -177,9 +178,6 @@ define([], function (require) {
 
             $el.bind('touchstart', handle_TOUCHSTART);
             $el.bind('touchmove', handle_TOUCHMOVE);
-            //$('body').bind('keydown', function (e) {
-            //    AppEvent.GOTO_VIEW.dispatch(1);
-            //});
             
             return $el;
         };
