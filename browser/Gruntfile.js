@@ -9,14 +9,14 @@ module.exports = function(grunt) {
 					{
 						src: ['*'],
 						cwd: 'src/', 
-						dest: 'app/assets/www/', 
+						dest: 'www/', 
 						filter: 'isFile',
 						expand: true
 					},
 					{
 						src: ['assets/**', 'css/**'],
 						cwd: 'src/', 
-						dest: 'app/assets/www/',
+						dest: 'www/',
 						expand: true,		
 					}
 		      	]
@@ -29,7 +29,7 @@ module.exports = function(grunt) {
 					name: "main",
 		    		baseUrl: "src/js/",
 			        mainConfigFile: "src/js/config.js",
-		    		out: "app/assets/www/js/main.js"
+		    		out: "www/js/main.js"
 				}
 			}
 		}

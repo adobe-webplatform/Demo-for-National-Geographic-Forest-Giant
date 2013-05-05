@@ -1,2 +1,4 @@
+browser/external/node_modules
+browser/www
 browser/src/.sass-cache
 .sass-cache
