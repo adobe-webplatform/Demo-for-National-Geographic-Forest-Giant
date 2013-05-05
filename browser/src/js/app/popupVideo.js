@@ -25,9 +25,34 @@ define([], function (require) {
     PopupVideo = function () {
         var instance = this,
             canAutoPlay = true,
+            videoLoaded = false,
             videoReady = false,
             video,
             $video;
+
+        function playVideo() {
+            if( !videoReady ) {
+                initVideo();
+            }
+
+            video.play();
+
+            if( !canAutoPlay ) {
+                setTimeout(function() {
+                    video.play();
+                }, 1000);
+            }
+        }
+
+        function handle_video_LOAD_COMPLETE(e) {
+            playVideo();    
+        }
+
+        function loadVideo() {
+            $video.attr("src", "assets/videos/Sequoia_in_Snow.mp4");
+            video.addEventListener('loadeddata', handle_video_LOAD_COMPLETE);
+            video.load();
+        }
 
         function handle_close_COMPLETE() {
             var $popup = $('#popup-video');
@@ -67,11 +92,7 @@ define([], function (require) {
             $('#popup-video .popup-close').bind('click', handle_close_CLICK);
             $video.css({opacity: 1, width: _width, height: _width, marginLeft: - _halfwidth, marginTop: - _halfwidth});
             
-            //$('.popup-box video')[0].seek(0);
-            if( !videoReady ) {
-                initVideo();
-            }
-            video.play();
+            loadVideo();
         }
 
         function handle_open_CLICK() {
@@ -99,12 +120,7 @@ define([], function (require) {
             timeline = new TimelineMax({onComplete: handle_open_COMPLETE});
             timeline.add(tween1);
             timeline.add(tween2);
-            if( !canAutoPlay ) {
-                // Call play() as result of timeout for Android
-                setTimeout(function() {
-                    video.play();
-                }, 1000);
-            }
+            
             instance.isOpen = true;
             if( history.state != 'video' ) {
                 history.pushState('video', 'video', location.pathname + '#video');
