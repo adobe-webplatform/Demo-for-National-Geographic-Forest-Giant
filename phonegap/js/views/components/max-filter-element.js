@@ -112,7 +112,7 @@ define([], function (require) {
                     'translation ' + filter.x + ' ' + filter.y + ' 0, ' + 
                     'rotation ' + filter.rotateX + ' ' + filter.rotateY + ' ' + filter.rotateZ + ', ' + 
                     'scale ' + filter.scale + ', ' + 
-                    'lightPosition 0 0 1, ' + 
+                    'lightPosition 0 0 0, ' + 
                     'anchorIndex 10, ' + 
                     'a0 ' + filter.a0 + ', ' + 
                     'a1 ' + filter.a1 + ', ' + 
@@ -243,7 +243,7 @@ define([], function (require) {
             $body.unbind('touchmove');
             
             console.log('foldLevel',foldLevel);
-            if( foldLevel < 0.4 ) {
+            if( foldLevel < 0.3 ) {
                 // animate to folded
                 closeTween = new TweenMax.to(filter, 0.5, {
                     x: basefilter.x, 
@@ -359,29 +359,32 @@ define([], function (require) {
                 scroll.disable();
                 resetFilter();
                 showFilterElement();
-                instance.startRequestAnimationFrame();
-
-                t1 = {x: touches[0].pageX, y: touches[0].pageY};
-                t2 = {x: touches[1].pageX, y: touches[1].pageY};
                 
-                var distance = Math.abs(touches[0].pageX - touches[1].pageX);
-                foldLevel = distance / window.innerWidth;
+                setTimeout(function() {
+                    instance.startRequestAnimationFrame();
 
-                var newPosition = getTranslate(t1, t2);
-                var unfoldValues = getUnfoldValues(foldLevel);
+                    t1 = {x: touches[0].pageX, y: touches[0].pageY};
+                    t2 = {x: touches[1].pageX, y: touches[1].pageY};
                 
-                // Tween to folded drag position
-                var moveTween = new TweenMax.to(filter, FOLD_PREPARE_TIME / 2, {
-                    x: newPosition.x,
-//                    y: newPosition.y,
-                    ease: Linear.easeNone,
-                    a9: unfoldValues.a9,
-                    a10: unfoldValues.a10
-                });
-                dragging = true;
+                    var distance = Math.abs(touches[0].pageX - touches[1].pageX);
+                    foldLevel = distance / window.innerWidth;
 
-                moveTween.play();
-                rotateTween.seek(0).play();
+                    var newPosition = getTranslate(t1, t2);
+                    var unfoldValues = getUnfoldValues(foldLevel);
+                
+                    // Tween to folded drag position
+                    var moveTween = new TweenMax.to(filter, FOLD_PREPARE_TIME / 2, {
+                        x: newPosition.x,
+    //                    y: newPosition.y,
+                        ease: Linear.easeNone,
+                        a9: unfoldValues.a9,
+                        a10: unfoldValues.a10
+                    });
+                    dragging = true;
+
+                    moveTween.play();
+                    rotateTween.seek(0).play();
+                }, 1000);
             }
         }
 
@@ -414,28 +417,31 @@ define([], function (require) {
                 e.stopPropagation();
 
                 showFilterElement();
-                instance.startRequestAnimationFrame();
-
-                t1 = {x: touches[0].pageX, y: touches[0].pageY};
-                t2 = {x: touches[1].pageX, y: touches[1].pageY};
                 
-                var distance = Math.abs(touches[0].pageX - touches[1].pageX);
-                foldLevel = distance / window.innerWidth;
+                setTimeout(function() {
+                    instance.startRequestAnimationFrame();
 
-                var newPosition = getTranslate(t1, t2);
-                var unfoldValues = getUnfoldValues(foldLevel);
+                    t1 = {x: touches[0].pageX, y: touches[0].pageY};
+                    t2 = {x: touches[1].pageX, y: touches[1].pageY};
                 
-                // Tween to folded drag position
-                var moveTween = new TweenMax.to(filter, FOLD_PREPARE_TIME / 2, {
-                    x: newPosition.x,
-//                    y: newPosition.y,
-                    ease: Linear.easeNone,
-                    a9: unfoldValues.a9,
-                    a10: unfoldValues.a10
-                });
-                dragging = true;
+                    var distance = Math.abs(touches[0].pageX - touches[1].pageX);
+                    foldLevel = distance / window.innerWidth;
 
-                moveTween.play();
+                    var newPosition = getTranslate(t1, t2);
+                    var unfoldValues = getUnfoldValues(foldLevel);
+                
+                    // Tween to folded drag position
+                    var moveTween = new TweenMax.to(filter, FOLD_PREPARE_TIME / 2, {
+                        x: newPosition.x,
+    //                    y: newPosition.y,
+                        ease: Linear.easeNone,
+                        a9: unfoldValues.a9,
+                        a10: unfoldValues.a10
+                    });
+                    dragging = true;
+
+                    moveTween.play();
+                }, 1000);
             }
         }
 
