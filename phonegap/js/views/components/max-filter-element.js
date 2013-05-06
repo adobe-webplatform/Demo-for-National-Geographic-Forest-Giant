@@ -33,7 +33,7 @@ define([], function (require) {
             opening = false,
             timeline,
             foldtimeline,
-            linearFoldTimeline,
+            fullTimeline,
             rotateTween,
             unfoldTween,
             closeTween,
@@ -47,7 +47,8 @@ define([], function (require) {
             foldLevel = 0, // 0 = folded in half, 1 = unfolded
             SCALE_DIVIDER = 100,
             FOLD_PREPARE_TIME = 0.3, // time from init to dragging
-            fakeDistance = 700,
+            fakeDistance = 200,
+            useFakeTouches = false,
             basefilter = {
                 ambient: 1,
                 vert: filterPath + 'max-fold.vs',
@@ -62,7 +63,11 @@ define([], function (require) {
                 a9: -89,
                 a10: 90
             };
-
+        
+        window.setD = function(d) {
+            fakeDistance = d;
+        };
+        
         function getAngle(p1, p2) {
             var angle,
                 dx, dy;
@@ -132,11 +137,9 @@ define([], function (require) {
             $filterEl.css({
                 'webkitFilter': str
             });
-            console.log('rotateY', filter.rotateY);
+            // console.log('rotateY', filter.rotateY);
         }
         
-        window.updateFilter = updateFilter; // debug
-
         function addContainer() {
             $container = $('<div>');
             $container.addClass('transition-container');
@@ -166,9 +169,10 @@ define([], function (require) {
             console.log('show filter element');
 
             $el.css({opacity: 0});
+            $resolveEl.css({opacity: 0, 'pointer-events': 'none'});
             $filterEl.css({opacity: 1});
         }
-            
+
         function rotateResolve() {
         
         }    
@@ -178,9 +182,6 @@ define([], function (require) {
             dragging = false;
             console.log('filter', filter);
             updateFilter(); // Needed for last frame
-
-            
-            return; //debug
 
             $container.css({'pointer-events': 'auto'});
             $resolveEl.css({opacity: 1, 'pointer-events': 'auto'});
@@ -196,7 +197,7 @@ define([], function (require) {
             
             dragging = false;
             rotateTween.seek(0);
-            linearFoldTimeline.seek(0);
+            fullTimeline.seek(0);
             
             $container.css({'pointer-events': 'none'});
             $filterEl.css({opacity: 0});
@@ -205,18 +206,6 @@ define([], function (require) {
         }
         
         function makeTweens() {
-            var dragFoldFilter = {};
-            
-            linearFoldTimeline = new TimelineMax();
-            
-            linearFoldTimeline.insert( new TweenMax.to(filter, 1, {
-                a9: 0,
-                a10: 0,
-                ease: Linear.easeNone,
-                onComplete: openResolve
-            }) );
-            linearFoldTimeline.pause();
-            
             rotateTween = new TweenMax.to(filter, FOLD_PREPARE_TIME, {
                 rotateY: 0,
                 ease: Linear.easeNone,
@@ -224,6 +213,23 @@ define([], function (require) {
             });
             rotateTween.timeScale(2);
             rotateTween.pause();
+
+            
+            fullTimeline = new TimelineMax();
+
+            fullTimeline.insert( new TweenMax.to(filter, 1.5, {
+                a9: 0,
+                a10: 0,
+                ease: Bounce.easeOut,
+                x: 0,
+                y: 0,
+                scale: 1,
+                rotateY: 0,
+                onComplete: openResolve
+            }) );
+            
+            fullTimeline.pause();
+            
         }
         
         function handle_filter_TOUCHEND(e) {
@@ -272,15 +278,17 @@ define([], function (require) {
             e.preventDefault();
             e.stopPropagation();
 
-            // For desktop debug only!
-            var fakeTouches = [
-                touches[0],
-                {
-                    pageX: touches[0].pageX + fakeDistance,
-                    pageY: touches[0].pageY
-                }
-            ];
-            touches = fakeTouches;
+            if( useFakeTouches ) {
+                // For desktop debug only!
+                var fakeTouches = [
+                    touches[0],
+                    {
+                        pageX: touches[0].pageX + fakeDistance,
+                        pageY: touches[0].pageY
+                    }
+                ];
+                touches = fakeTouches;
+            }
 
             if (touches.length == 2) {
 
@@ -327,16 +335,17 @@ define([], function (require) {
                 t1, t2,
                 distance;
                 
-            // For desktop debug only!
-            var fakeTouches = [
-                touches[0],
-                {
-                    pageX: touches[0].pageX + fakeDistance,
-                    pageY: touches[0].pageY
-                }
-            ];
-            touches = fakeTouches;
-
+            if( useFakeTouches ) {
+                // For desktop debug only!
+                var fakeTouches = [
+                    touches[0],
+                    {
+                        pageX: touches[0].pageX + fakeDistance,
+                        pageY: touches[0].pageY
+                    }
+                ];
+                touches = fakeTouches;
+            }
 
             if (touches.length == 2) {
 
@@ -367,64 +376,93 @@ define([], function (require) {
 //                    y: newPosition.y,
                     ease: Linear.easeNone,
                     a9: unfoldValues.a9,
-                    a10: unfoldValues.a10,
-                    onComplete: function() {
-                        setTimeout(function() {
-                            console.log('filter', filter);
-                        }, 1000);
-                    }
-                })
+                    a10: unfoldValues.a10
+                });
                 dragging = true;
 
                 moveTween.play();
                 rotateTween.seek(0).play();
             }
         }
-/*
+
+
         function handle_resolveEl_TOUCHSTART(e) {
             var touches = e.originalEvent.touches,
-                t1, t2;
-    
-            //e.preventDefault();
-            e.stopPropagation();
-            
-            // For desktop debug only!
-            var fakeTouches = [
-                touches[0],
-                {
-                    pageX: touches[0].pageX + fakeDistance,
-                    pageY: touches[0].pageY
-                }
-            ];
-            touches = fakeTouches;
+                t1, t2,
+                distance;
+                
+            if( useFakeTouches ) {
+                // For desktop debug only!
+                var fakeTouches = [
+                    touches[0],
+                    {
+                        pageX: touches[0].pageX + fakeDistance,
+                        pageY: touches[0].pageY
+                    }
+                ];
+                touches = fakeTouches;
+            }
 
             if (touches.length == 2) {
 
-                console.log('resolve touchstart');
-             
+                console.log('resolve el touchstart');
+                
+                $body.bind('touchend', handle_filter_TOUCHEND);
+                $body.bind('touchmove', handle_filter_TOUCHMOVE);
+
+                e.preventDefault();
+                e.stopPropagation();
+
+                showFilterElement();
+                instance.startRequestAnimationFrame();
+
                 t1 = {x: touches[0].pageX, y: touches[0].pageY};
                 t2 = {x: touches[1].pageX, y: touches[1].pageY};
+                
+                var distance = Math.abs(touches[0].pageX - touches[1].pageX);
+                foldLevel = distance / window.innerWidth;
+
                 var newPosition = getTranslate(t1, t2);
+                var unfoldValues = getUnfoldValues(foldLevel);
                 
                 // Tween to folded drag position
-                var moveTween = new TweenMax.to(filter, FOLD_PREPARE_TIME, {
+                var moveTween = new TweenMax.to(filter, FOLD_PREPARE_TIME / 2, {
                     x: newPosition.x,
-                    y:newPosition.y,
-                    ease: Linear.easeNone
-                })
-                moveTween.play();
-                rotateTween.play();
-                var timelinePosition = 0.5;
-                linearFoldTimeline.timeScale(1 / FOLD_PREPARE_TIME);
-                linearFoldTimeline.tweenTo(timelinePosition);
-
+//                    y: newPosition.y,
+                    ease: Linear.easeNone,
+                    a9: unfoldValues.a9,
+                    a10: unfoldValues.a10
+                });
                 dragging = true;
+
+                moveTween.play();
             }
         }
-*/
+
         function handle_resolveEl_CLICK(e) {
             console.log('resolve click');
 
+            dragging = true;
+            animating = true;
+            showFilterElement();
+            
+            instance.startRequestAnimationFrame();
+            dragging = true;
+            
+            fullTimeline.tweenTo(0, {onComplete: closeResolve, ease: Quart.easeOut});
+            /*
+            new TweenMax.to(filter, 2, {
+                x: basefilter.x,
+                y: basefilter.y,
+                ease: Linear.easeNone,
+                a9: basefilter.a9,
+                a10: basefilter.a10,
+                scale: basefilter.scale,
+                onComplete: closeResolve
+            });
+            rotateTween.timeScale(0.5);
+            rotateTween.seek(rotateTween.duration()).reverse();
+            */
         }
 
         function handle_el_CLICK(e) {
@@ -436,9 +474,22 @@ define([], function (require) {
             showFilterElement();
             
             instance.startRequestAnimationFrame();
-            linearFoldTimeline.seek(0);
-            linearFoldTimeline.play();
+            dragging = true;
+            
+            fullTimeline.play();
+            /*
+            new TweenMax.to(filter, 2, {
+                x: 0,
+                y: 0,
+                ease: Linear.easeNone,
+                a9: 0,
+                a10: 0,
+                scale: 1,
+                onComplete: openResolve
+            });
+            rotateTween.timeScale(0.5);
             rotateTween.play();
+            */
         }
 
         instance.init = function () {
@@ -448,7 +499,7 @@ define([], function (require) {
             $body = $('body');
 
             $el.bind('touchstart', handle_el_TOUCHSTART);
-            // $el.bind('click', handle_el_CLICK);
+            $el.bind('click', handle_el_CLICK);
             
             for (i = 0; i < 20; i += 1) {
                 if( i == 9 || i == 10 ) {
