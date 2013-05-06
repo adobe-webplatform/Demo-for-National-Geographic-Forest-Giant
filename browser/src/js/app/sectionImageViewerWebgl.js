@@ -46,9 +46,13 @@ define([], function (require) {
 			position = {x: 0, y: 0, z: 0},
 			friction = 0.97,
 			bounce = 0.2,
+            animationSpeed = 1.2,
+            verticalPadding = 0,
+            TILE_COUNT = 126,
+            IMAGE_COUNT = 3,
+            IMAGE_ARRAY,
+            TILES,
             imageLoadCount = 0,
-            IMAGE_COUNT = 126,
-            IMAGE_ARRAY = [],
             ZOOM_MIN = 500,
             ZOOM_MAX = 400,
 			RIGHT_BOUNDS = 83,
@@ -265,7 +269,7 @@ define([], function (require) {
         function runAnimation() {
             $loader.fadeOut();
             animate();
-            TweenMax.to(camera.position, 20, {y: -2000, ease: Quad.easeOut, onComplete: addEventListeners});
+            TweenMax.to(camera.position, 20, {y: -2200, ease: Quad.easeOut, onComplete: addEventListeners});
             TweenMax.to(camera.rotation, 10, {x: 0, ease: Quad.easeIn});
             TweenMax.to(camera.position, 7, {z: ZOOM_MIN, delay: 5, ease: Quad.easeOut}); 
         }
@@ -274,41 +278,71 @@ define([], function (require) {
 			var pad = 50,
 				_x_orig = 1957 / 2,
 				_x = -_x_orig + pad,
-				_y = 5148 / 2,
+				_y = (5148 / 2) - verticalPadding,
                 i,
+                j = 0,
+                col = 0,
+                row = 0,
+                page = 0,
+                tex,
+                texture,
+                xOffset = 0,
+                yOffset = 5,
                 geometry,
                 material,
-                mesh;
+                mesh,
+                squares = 48,
+                spriteSize = 300,
+                imageWidth = 1957,
+                imageHeight = 1800;
 				
-			for (i = 0; i < IMAGE_ARRAY.length; i += 1) {
+			for (i = 0; i < TILE_COUNT; i += 1) {
 				
                 if (_x < _x_orig - 150) { //ignore edge photos
 
-					geometry = new THREE.PlaneGeometry(IMAGE_ARRAY[i].t.image.naturalHeight, IMAGE_ARRAY[i].t.image.naturalWidth);
-                    material = new THREE.MeshLambertMaterial({
-                        color: 0xCC0000,
-                        lights: true,
-                        shadows: true,
-                        overdraw: true,
-                        map: THREE.ImageUtils.loadTexture(IMAGE_ARRAY[i].src)
-                    });
-                    
+                    geometry = new THREE.PlaneGeometry(spriteSize, spriteSize);
+                    geometry.faceVertexUvs[0][0] = [
+                        new THREE.Vector2(xOffset, yOffset + 1),
+                        new THREE.Vector2(xOffset, yOffset),
+                        new THREE.Vector2(xOffset + 1, yOffset),
+                        new THREE.Vector2(xOffset + 1, yOffset + 1)
+                    ];
+
+                    texture = IMAGE_ARRAY[j].t;
+                    material = new THREE.MeshBasicMaterial({map: texture});
+
                     mesh = new THREE.Mesh(geometry, material);
 					mesh.position.x = _x;
 					mesh.position.y = _y;
 					mesh.position.z = 100 + Math.random() * 500;
-					mesh.castShadow = true;
-					mesh.receiveShadow = true;
+                    
+                    TILES.push(mesh);
 			        container.add(mesh);
+
 			        TweenMax.to(mesh.position, 2, {z: 0, ease: Quad.easeInOut, delay: (i / 10)});
 				}
 
-				_x += IMAGE_ARRAY[i].t.image.naturalWidth;
-					
-				if (_x > _x_orig - 100) {
+                //manage rows
+                xOffset += 1;
+				_x += spriteSize;
+				col += 1;
+
+                //new row
+                if (col > 6) {
+                    xOffset = 0;
+                    yOffset -= 1;
 					_x = -_x_orig + pad;
-					_y -= IMAGE_ARRAY[i].t.image.naturalHeight;
-				}
+					_y -= spriteSize;
+                    col = 0;
+                    row += 1;
+
+                    //new photo
+                    if (row % 6 === 0) {
+                        j += 1;
+                        xOffset = 0;
+                        yOffset = 5;
+                    }
+                }
 			}
 
 			setTimeout(runAnimation, 10);
@@ -341,6 +375,7 @@ define([], function (require) {
 	        light = new THREE.AmbientLight(0x333333); // soft white light
 			scene.add(light);
 			
+            /*
             IMAGE_ARRAY = [];
             imageLoadCount = 0;
 
@@ -350,19 +385,54 @@ define([], function (require) {
 				texture = THREE.ImageUtils.loadTexture(srcString, {}, handle_texture_LOADED);				
 				IMAGE_ARRAY.push({t: texture, src: srcString});
 			}
+            */
 
-	        renderer = new THREE.CanvasRenderer();
-			renderer.shadowMapEnabled = true;
-			renderer.shadowMapType = THREE.PCFShadowMap;
+            renderer = new THREE.WebGLRenderer();
+			//renderer.shadowMapEnabled = true;
+			//renderer.shadowMapType = THREE.PCFShadowMap;
 
 	        renderer.setSize(window.innerWidth, window.innerHeight);
+
+	        $imageViewer.prepend(renderer.domElement);
+            $canvas = $('#imageViewer canvas');
+        }
+
+        function loadImages() {
+            var imgName,
+                srcString,
+                texture,
+                material,
+                image,
+                i,
+                geometry,
+                mesh,
+                spriteSize = 300,
+                imageWidth = 1957,
+                imageHeight = 1800;
+
+            TILES = [];
+            IMAGE_ARRAY = [];
+            //imageLoadCount = 0;
+
+			for (i = 1; i < IMAGE_COUNT + 1; i += 1) {
+				srcString = 'assets/images/xl/lg/segment_' + i + '.jpg';
+				texture = THREE.ImageUtils.loadTexture(srcString, {}, handle_texture_LOADED);
+                texture.repeat.x = spriteSize / imageWidth;
+                texture.repeat.y = spriteSize / imageHeight;
+
+				IMAGE_ARRAY.push({t: texture, m: material, src: srcString, img: image});
+
+                //add pre rendered textures for perf hit
+                geometry = new THREE.PlaneGeometry(1, 1);
+                material = new THREE.MeshBasicMaterial({map: texture});
+                mesh = new THREE.Mesh(geometry, material);
+                mesh.position.y = 5148 / 2;
+                scene.add(mesh);
+            }
 
             if (imageLoadCount >= IMAGE_COUNT) {
                 addPhotos();
             }
-
-	        $imageViewer.prepend(renderer.domElement);
-            $canvas = $('#imageViewer canvas');
         }
 
         instance.show = function () {
@@ -380,6 +450,7 @@ define([], function (require) {
 			position = {x: 0, y: 0, z: 0};
 
 			createScene();
+            loadImages();
         };
 
         instance.destroy = function () {
