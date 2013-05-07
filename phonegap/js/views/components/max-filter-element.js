@@ -47,12 +47,12 @@ define([], function (require) {
             foldLevel = 0, // 0 = folded in half, 1 = unfolded
             SCALE_DIVIDER = 100,
             FOLD_PREPARE_TIME = 0.3, // time from init to dragging
-            fakeDistance = 200,
-            useFakeTouches = false,
+            fakeDistance = 100,
+            useFakeTouches = true,
             basefilter = {
                 ambient: 1,
-                vert: filterPath + 'max-fold.vs',
-                frag: filterPath + 'max-fold.fs',
+                vert: filterPath + 'max-fold2.vs',
+                frag: filterPath + 'max-fold2.fs',
                 x: $el.data('filter-x'),
                 y: $el.data('filter-y'),
                 z: 0,
@@ -106,14 +106,14 @@ define([], function (require) {
         }
 
         function updateFilter() {
-            var str = 'custom(url(' + filter.vert + ') mix(url(' + filter.frag + ') multiply source-atop), 20 8 border-box, ' + 
-                    'ambientLight ' + filter.ambient + ', ' + 
+            var str = 'custom(url(' + filter.vert + ') mix(url(' + filter.frag + ') multiply source-atop), 20 8 detached, ' + 
                     'perspective 5000, ' + 
                     'translation ' + filter.x + ' ' + filter.y + ' 0, ' + 
                     'rotation ' + filter.rotateX + ' ' + filter.rotateY + ' ' + filter.rotateZ + ', ' + 
                     'scale ' + filter.scale + ', ' + 
-                    'lightPosition 0 0 0, ' + 
-                    'anchorIndex 10, ' + 
+                    'lightPosition 0 0 1, ' + 
+                    'ambientLight ' + filter.ambient + ', ' + 
+//                    'anchorIndex 10, ' + 
                     'a0 ' + filter.a0 + ', ' + 
                     'a1 ' + filter.a1 + ', ' + 
                     'a2 ' + filter.a2 + ', ' + 
