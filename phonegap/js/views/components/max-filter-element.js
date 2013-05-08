@@ -47,7 +47,7 @@ define([], function (require) {
             foldLevel = 0, // 0 = folded in half, 1 = unfolded
             SCALE_DIVIDER = 100,
             FOLD_PREPARE_TIME = 0.3, // time from init to dragging
-            fakeDistance = 300,
+            fakeDistance = 500,
             useFakeTouches = navigator.userAgent.indexOf('Android') == -1,
             basefilter = {
                 ambient: 1,
@@ -137,7 +137,7 @@ define([], function (require) {
             $filterEl.css({
                 'webkitFilter': str
             });
-            console.log('str', str);
+            // console.log('str', str);
         }
         
         function addContainer() {
@@ -198,6 +198,7 @@ define([], function (require) {
             dragging = false;
             rotateTween.seek(0);
             fullTimeline.seek(0);
+            updateFilter();
             
             $container.css({'pointer-events': 'none'});
             $filterEl.css({opacity: 0});
@@ -216,17 +217,19 @@ define([], function (require) {
 
             
             fullTimeline = new TimelineMax();
-
-            fullTimeline.insert( new TweenMax.to(filter, 1.5, {
-                a9: 0,
-                a10: 0,
+            var values = {
                 ease: Bounce.easeOut,
                 x: 0,
                 y: 0,
                 scale: 1,
                 rotateY: 0,
                 onComplete: openResolve
-            }) );
+            };
+            for( var i = 0; i < 20; i++ ) {
+                values['a' + i] = 0;
+            }
+            
+            fullTimeline.insert( new TweenMax.to(filter, 1.5, values) );
             
             fullTimeline.pause();
             
@@ -245,7 +248,7 @@ define([], function (require) {
             console.log('foldLevel',foldLevel);
             if( foldLevel < 0.3 ) {
                 // animate to folded
-                closeTween = new TweenMax.to(filter, 0.5, {
+                var values = {
                     x: basefilter.x, 
                     y: basefilter.y, 
                     scale: basefilter.scale,
@@ -253,19 +256,29 @@ define([], function (require) {
                     a10: basefilter.a10,
                     rotateY: basefilter.rotateY,
                     onComplete: closeResolve
-                });
+                };
+                for( var i = 0; i < 20; i++ ) {
+                    if( i == 9 || i == 10 ) {
+                        continue;
+                    }
+                    values['a' + i] = 0;
+                }
+
+                closeTween = new TweenMax.to(filter, 0.5, values);
 
             } else {
                 // animate to unfolded
-                openTween = new TweenMax.to(filter, 0.5, {
+                var values = {
                     x: 0, 
                     y: 0, 
                     scale: 1,
-                    a9: 0,
-                    a10: 0,
                     rotateY: 0,
                     onComplete: openResolve
-                });
+                };
+                for( var i = 0; i < 20; i++ ) {
+                    values['a' + i] = 0;
+                }
+                openTween = new TweenMax.to(filter, 0.5, values);
             }
         }
 
