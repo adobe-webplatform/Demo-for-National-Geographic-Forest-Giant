@@ -30,8 +30,8 @@ define([], function (require) {
             $el = $('#main'),
             currentView,
             VIEW_LIST = [
-//                new IntroView(),
-//                new TOCView(),
+                new IntroView(),
+                new TOCView(),
                 new PageContainerView(Model.articles[0])
             ];
 
