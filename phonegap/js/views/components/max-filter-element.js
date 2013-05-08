@@ -47,7 +47,7 @@ define([], function (require) {
             foldLevel = 0, // 0 = folded in half, 1 = unfolded
             SCALE_DIVIDER = 100,
             FOLD_PREPARE_TIME = 0.3, // time from init to dragging
-            fakeDistance = 100,
+            fakeDistance = 300,
             useFakeTouches = true,
             basefilter = {
                 ambient: 1,
@@ -107,7 +107,7 @@ define([], function (require) {
 
         function updateFilter() {
             var str = 'custom(url(' + filter.vert + ') mix(url(' + filter.frag + ') multiply source-atop), 20 8 detached, ' + 
-                    'perspective 5000, ' + 
+                    'perspective 3000, ' + 
                     'translation ' + filter.x + ' ' + filter.y + ' 0, ' + 
                     'rotation ' + filter.rotateX + ' ' + filter.rotateY + ' ' + filter.rotateZ + ', ' + 
                     'scale ' + filter.scale + ', ' + 
@@ -302,8 +302,14 @@ define([], function (require) {
                 var unfoldValues = getUnfoldValues(foldLevel);
                 
                 filter.x = newPosition.x;
-                filter.a9 = unfoldValues.a9;
-                filter.a10 = unfoldValues.a10;
+
+                copyValues(unfoldValues, filter);
+            }
+        }
+        
+        function copyValues(source, destination) {
+            for( var key in source) {
+                destination[key] = source[key];
             }
         }
         
@@ -317,10 +323,46 @@ define([], function (require) {
         
         function getUnfoldValues(newLevel) {
             var n = 1 - newLevel;
-            var values = {
-                a9: n * -89,
-                a10: n * 90
-            };
+            var angle, values = {};
+            /*
+
+                a0 5, a1 4, a2 3, a3 2, a4 1, a5 1, a6 2, a7 3, a8 4, a9 5,
+                a10 95, a11 -4, a12 -3, a13 -2, a14 -1, a15 -1, a16 -2, a17 -3, a18 -4, a19 -5
+                
+                n = 0, angle = 0
+                n = 0.33, angle = 5
+                n = 0.66, angle = 5
+                n = 1, angle = 0
+            */
+            console.log('n', n);
+            for( var i = 0; i < 20; i++ ) {
+                if( i < 5 ) {
+                    angle = 5 - i;
+                } else if( i < 9 ) {
+                    angle = i - 5;
+                } else if( i < 15 ) {
+                    angle = i - 15; // 11 = -4, 12 = -3
+                } else {
+                    angle = 15 - i;
+                }
+                
+                if( n < 0.25 ) {
+                    angle = angle * n * 4;
+                } else if( n > .75 ) {
+                    // n = .8, angle = 5
+                    // x = 1 - n 
+                    // .25, .2, .1, 0 (*4)
+                    // 1, .8, .4, 0
+                    // new angle = (1 - .75) 
+                    console.log('angle1: ', angle);
+                    angle = (1 - n)  * angle * 4;
+                    console.log('i: ', i, 'n: ', n, 'angle: ', angle);
+                }
+                values['a' + i] = n * angle;
+            }
+            values.a9 = n * -89;
+            values.a10 = n * 90;
+
             return values;
         }
         
@@ -372,14 +414,16 @@ define([], function (require) {
                     var newPosition = getTranslate(t1, t2);
                     var unfoldValues = getUnfoldValues(foldLevel);
                 
-                    // Tween to folded drag position
-                    var moveTween = new TweenMax.to(filter, FOLD_PREPARE_TIME / 2, {
+                    var values = {
                         x: newPosition.x,
     //                    y: newPosition.y,
-                        ease: Linear.easeNone,
-                        a9: unfoldValues.a9,
-                        a10: unfoldValues.a10
-                    });
+                        ease: Linear.easeNone
+                    };
+                    
+                    copyValues(unfoldValues, values);
+                
+                    // Tween to folded drag position
+                    var moveTween = new TweenMax.to(filter, FOLD_PREPARE_TIME / 2, values);
                     dragging = true;
 
                     moveTween.play();
@@ -429,15 +473,15 @@ define([], function (require) {
 
                     var newPosition = getTranslate(t1, t2);
                     var unfoldValues = getUnfoldValues(foldLevel);
-                
-                    // Tween to folded drag position
-                    var moveTween = new TweenMax.to(filter, FOLD_PREPARE_TIME / 2, {
+                    var values = {
                         x: newPosition.x,
     //                    y: newPosition.y,
-                        ease: Linear.easeNone,
-                        a9: unfoldValues.a9,
-                        a10: unfoldValues.a10
-                    });
+                        ease: Linear.easeNone
+                    };
+                    copyValues(unfoldValues, values);
+                    
+                    // Tween to folded drag position
+                    var moveTween = new TweenMax.to(filter, FOLD_PREPARE_TIME / 2, values);
                     dragging = true;
 
                     moveTween.play();

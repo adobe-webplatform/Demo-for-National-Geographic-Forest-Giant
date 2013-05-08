@@ -156,6 +156,10 @@ define([], function (require) {
         }
         
         function initGoogleMap() {
+            if( !window.google ) {
+                
+                return;
+            }
             var mapOptions = {
                 center: new google.maps.LatLng(36.4333, -118.6833),
                 zoom: 8,

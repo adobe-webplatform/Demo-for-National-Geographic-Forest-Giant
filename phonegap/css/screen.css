@@ -87,7 +87,6 @@ html, body {
   -moz-transition: opacity 0.5s linear;
   -o-transition: opacity 0.5s linear;
   transition: opacity 0.5s linear;
-  z-index: 10000;
 }
 
 /* line 19, ../sass/screen/_main.scss */
