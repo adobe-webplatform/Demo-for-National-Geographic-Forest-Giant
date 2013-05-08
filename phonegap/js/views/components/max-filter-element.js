@@ -34,6 +34,7 @@ define([], function (require) {
             timeline,
             foldtimeline,
             fullTimeline,
+            fullTimelineBack,
             rotateTween,
             unfoldTween,
             closeTween,
@@ -195,12 +196,13 @@ define([], function (require) {
 
             console.log('close resolve');
             
-            dragging = false;
             rotateTween.seek(0);
-            fullTimeline.seek(0);
+            // fullTimeline.seek(0);
             updateFilter();
+            dragging = false;
             
             $container.css({'pointer-events': 'none'});
+            $resolveEl.css({opacity: 0});
             $filterEl.css({opacity: 0});
             $el.css({opacity: 1});
             scroll.enable();
@@ -221,18 +223,31 @@ define([], function (require) {
                 ease: Bounce.easeOut,
                 x: 0,
                 y: 0,
+                a9: 0,
+                a10: 0,
                 scale: 1,
                 rotateY: 0,
                 onComplete: openResolve
             };
-            for( var i = 0; i < 20; i++ ) {
-                values['a' + i] = 0;
-            }
             
             fullTimeline.insert( new TweenMax.to(filter, 1.5, values) );
             
             fullTimeline.pause();
             
+            // Return animation
+            fullTimelineBack = new TimelineMax();
+            values = {
+                x: basefilter.x,
+                y: basefilter.y,
+                a9: basefilter.a9,
+                a10: basefilter.a10,
+                scale: basefilter.scale,
+                rotateY: basefilter.rotateY,
+                onComplete: closeResolve,
+                ease: Quart.easeOut
+            };
+            fullTimelineBack.insert( new TweenMax.to(filter, 1.5, values) );
+            fullTimelineBack.pause();
         }
         
         function handle_filter_TOUCHEND(e) {
@@ -510,23 +525,13 @@ define([], function (require) {
             animating = true;
             showFilterElement();
             
-            instance.startRequestAnimationFrame();
-            dragging = true;
+            setTimeout( function() {
+
+                instance.startRequestAnimationFrame();
+                dragging = true;
             
-            fullTimeline.tweenTo(0, {onComplete: closeResolve, ease: Quart.easeOut});
-            /*
-            new TweenMax.to(filter, 2, {
-                x: basefilter.x,
-                y: basefilter.y,
-                ease: Linear.easeNone,
-                a9: basefilter.a9,
-                a10: basefilter.a10,
-                scale: basefilter.scale,
-                onComplete: closeResolve
-            });
-            rotateTween.timeScale(0.5);
-            rotateTween.seek(rotateTween.duration()).reverse();
-            */
+                fullTimelineBack.seek(0).play();
+            }, 500);
         }
 
         function handle_el_CLICK(e) {
@@ -537,23 +542,12 @@ define([], function (require) {
             animating = true;
             showFilterElement();
             
-            instance.startRequestAnimationFrame();
-            dragging = true;
+            setTimeout( function() {
+                instance.startRequestAnimationFrame();
+                dragging = true;
             
-            fullTimeline.play();
-            /*
-            new TweenMax.to(filter, 2, {
-                x: 0,
-                y: 0,
-                ease: Linear.easeNone,
-                a9: 0,
-                a10: 0,
-                scale: 1,
-                onComplete: openResolve
-            });
-            rotateTween.timeScale(0.5);
-            rotateTween.play();
-            */
+                fullTimeline.seek(0).play();
+            }, 500);
         }
 
         instance.init = function () {
