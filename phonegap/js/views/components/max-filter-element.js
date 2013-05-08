@@ -48,7 +48,7 @@ define([], function (require) {
             SCALE_DIVIDER = 100,
             FOLD_PREPARE_TIME = 0.3, // time from init to dragging
             fakeDistance = 300,
-            useFakeTouches = true,
+            useFakeTouches = navigator.userAgent.indexOf('Android') == -1,
             basefilter = {
                 ambient: 1,
                 vert: filterPath + 'max-fold2.vs',
@@ -111,7 +111,7 @@ define([], function (require) {
                     'translation ' + filter.x + ' ' + filter.y + ' 0, ' + 
                     'rotation ' + filter.rotateX + ' ' + filter.rotateY + ' ' + filter.rotateZ + ', ' + 
                     'scale ' + filter.scale + ', ' + 
-                    'lightPosition 0 0 1, ' + 
+                    'lightPosition 0 0 0, ' + 
                     'ambientLight ' + filter.ambient + ', ' + 
 //                    'anchorIndex 10, ' + 
                     'a0 ' + filter.a0 + ', ' + 
@@ -137,7 +137,7 @@ define([], function (require) {
             $filterEl.css({
                 'webkitFilter': str
             });
-            // console.log('rotateY', filter.rotateY);
+            console.log('str', str);
         }
         
         function addContainer() {
@@ -402,6 +402,7 @@ define([], function (require) {
                 resetFilter();
                 showFilterElement();
                 
+                // debugger;
                 setTimeout(function() {
                     instance.startRequestAnimationFrame();
 
