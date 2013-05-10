@@ -181,7 +181,6 @@ define([], function (require) {
         function openResolve() {
 
             dragging = false;
-            console.log('filter', filter);
             updateFilter(); // Needed for last frame
 
             $container.css({'pointer-events': 'auto'});
@@ -260,7 +259,6 @@ define([], function (require) {
             $body.unbind('touchend');
             $body.unbind('touchmove');
             
-            console.log('foldLevel',foldLevel);
             if( foldLevel < 0.3 ) {
                 // animate to folded
                 var values = {
@@ -362,7 +360,6 @@ define([], function (require) {
                 n = 0.66, angle = 5
                 n = 1, angle = 0
             */
-            console.log('n', n);
             for( var i = 0; i < 20; i++ ) {
                 if( i < 5 ) {
                     angle = 5 - i;
@@ -382,9 +379,7 @@ define([], function (require) {
                     // .25, .2, .1, 0 (*4)
                     // 1, .8, .4, 0
                     // new angle = (1 - .75) 
-                    console.log('angle1: ', angle);
                     angle = (1 - n)  * angle * 4;
-                    console.log('i: ', i, 'n: ', n, 'angle: ', angle);
                 }
                 values['a' + i] = n * angle;
             }
