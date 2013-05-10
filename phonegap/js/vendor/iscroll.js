@@ -101,6 +101,7 @@ var m = Math,
 			momentum: true,
 			lockDirection: true,
 			useTransform: true,
+			transformChildren: false,
 			useTransition: false,
 			topOffset: 0,
 			checkDOMChanges: false,		// Experimental
@@ -167,7 +168,11 @@ var m = Math,
 		that.scroller.style[transformOrigin] = '0 0';
 		if (that.options.useTransition) that.scroller.style[transitionTimingFunction] = 'cubic-bezier(0.33,0.66,0.66,1)';
 		
-		if (that.options.useTransform) that.scroller.style[transform] = 'translate(' + that.x + 'px,' + that.y + 'px)' + translateZ;
+		if (that.options.useTransform) {
+		    // that.scroller.style[transform] = 'translate(' + that.x + 'px,' + that.y + 'px)' + translateZ;
+		    that.updateChildren();
+		    that.setTransform(that.scroller, 'translate(' + that.x + 'px,' + that.y + 'px)' + translateZ);
+		}
 		else that.scroller.style.cssText += ';position:absolute;top:' + that.y + 'px;left:' + that.x + 'px';
 
 		if (that.options.useTransition) that.options.fixedScrollbar = true;
@@ -198,6 +203,31 @@ iScroll.prototype = {
 	pagesX: [], pagesY: [],
 	aniTime: null,
 	wheelZoomCount: 0,
+	
+	updateChildren: function() {
+        if( this.options.transformChildren ) {
+            var transformChildren = [];
+	        var allChildren = this.scroller.children;
+	        for( var i = 0; i < allChildren.length; i++ ) {
+	            var child = allChildren[i];
+	            if( !child.classList.contains('hidden-page') ) {
+                    transformChildren.push(child);
+	            }
+	        }
+	        this.children = transformChildren;
+        }
+    },
+	
+	setTransform: function(elem, val) {
+	    if( this.options.transformChildren ) {
+	        var children = this.children;
+	        for( var i = 0; i < children.length; i++ ) {
+                children[i].style[transform] = val;
+	        }
+	    } else {
+	        elem.style[transform] = val;
+	    }
+	},
 	
 	handleEvent: function (e) {
 		var that = this;
@@ -292,7 +322,8 @@ iScroll.prototype = {
 		y = this.vScroll ? y : 0;
 
 		if (this.options.useTransform) {
-			this.scroller.style[transform] = 'translate(' + x + 'px,' + y + 'px) scale(' + this.scale + ')' + translateZ;
+		    this.setTransform(this.scroller, 'translate(' + x + 'px,' + y + 'px) scale(' + this.scale + ')' + translateZ);
+			// this.scroller.style[transform] = 'translate(' + x + 'px,' + y + 'px) scale(' + this.scale + ')' + translateZ;
 		} else {
 			x = m.round(x);
 			y = m.round(y);
@@ -350,7 +381,8 @@ iScroll.prototype = {
 		if (that.options.onBeforeScrollStart) that.options.onBeforeScrollStart.call(that, e);
 
 		if (that.options.useTransition || that.options.zoom) that._transitionTime(0);
-
+            
+        that.updateChildren();
 		that.moved = false;
 		that.animating = false;
 		that.zoomed = false;

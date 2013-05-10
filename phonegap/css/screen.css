@@ -140,16 +140,18 @@ html, body {
 .page-content-view {
   height: 100%;
   background: white;
+  margin-left: -10vw;
+  padding-left: 10vw;
 }
 
-/* line 66, ../sass/screen/_main.scss */
+/* line 68, ../sass/screen/_main.scss */
 .page-view-full,
 .page-view-exact {
   margin-right: 20vw;
   margin-left: 20vw;
 }
 
-/* line 71, ../sass/screen/_main.scss */
+/* line 73, ../sass/screen/_main.scss */
 .page-view {
   position: static;
   float: left;
@@ -157,24 +159,24 @@ html, body {
   height: 80vh;
 }
 
-/* line 78, ../sass/screen/_main.scss */
+/* line 80, ../sass/screen/_main.scss */
 .article-container-view {
   width: 100vw;
   height: 100vh;
 }
 
-/* line 83, ../sass/screen/_main.scss */
+/* line 85, ../sass/screen/_main.scss */
 .article-content-view {
   height: 100%;
 }
 
-/* line 87, ../sass/screen/_main.scss */
+/* line 89, ../sass/screen/_main.scss */
 .article-scroll-view {
   width: 100vw;
   height: 100vh;
 }
 
-/* line 92, ../sass/screen/_main.scss */
+/* line 94, ../sass/screen/_main.scss */
 .article-pages-scroll-view {
   bottom: 0;
   width: 100vw;
@@ -182,12 +184,12 @@ html, body {
   background: blue;
 }
 
-/* line 99, ../sass/screen/_main.scss */
+/* line 101, ../sass/screen/_main.scss */
 .article-pages-content-view {
   height: 100%;
 }
 
-/* line 103, ../sass/screen/_main.scss */
+/* line 105, ../sass/screen/_main.scss */
 .article-cover-view {
   display: inline-block;
   width: 100vw;
@@ -197,7 +199,7 @@ html, body {
   background-position: center bottom;
 }
 
-/* line 112, ../sass/screen/_main.scss */
+/* line 114, ../sass/screen/_main.scss */
 .toc-title {
   position: absolute;
   right: 0;
@@ -207,12 +209,12 @@ html, body {
   font-size: 3rem;
   font-weight: 800;
 }
-/* line 122, ../sass/screen/_main.scss */
+/* line 124, ../sass/screen/_main.scss */
 .toc-title.coming-soon {
   color: #ccc;
 }
 
-/* line 127, ../sass/screen/_main.scss */
+/* line 129, ../sass/screen/_main.scss */
 .toc-logo {
   position: absolute;
   bottom: 0;
@@ -220,12 +222,12 @@ html, body {
   margin: 1rem;
 }
 
-/* line 134, ../sass/screen/_main.scss */
+/* line 136, ../sass/screen/_main.scss */
 .toc-contents {
   -webkit-perspective: 500px;
 }
 
-/* line 138, ../sass/screen/_main.scss */
+/* line 140, ../sass/screen/_main.scss */
 .toc-view {
   height: 100vh;
   width: 100vw;
@@ -234,7 +236,7 @@ html, body {
   -webkit-overflow-scrolling: touch;
 }
 
-/* line 146, ../sass/screen/_main.scss */
+/* line 148, ../sass/screen/_main.scss */
 .toc-view-button {
   background-color: #333;
   background-size: 100%;
@@ -248,7 +250,7 @@ html, body {
   transform: translateZ(0);
 }
 
-/* line 157, ../sass/screen/_main.scss */
+/* line 159, ../sass/screen/_main.scss */
 .page-thumb-view {
   position: absolute;
   bottom: 0;
@@ -258,23 +260,23 @@ html, body {
   height: 20vh;
   z-index: 5;
 }
-/* line 166, ../sass/screen/_main.scss */
+/* line 168, ../sass/screen/_main.scss */
 .page-thumb-view .page-thumb-view-content {
   height: 20vh;
 }
-/* line 169, ../sass/screen/_main.scss */
+/* line 171, ../sass/screen/_main.scss */
 .page-thumb-view .page-thumb-view-content .page-thumb {
   height: 20vh;
   background-color: black;
   border-radius: 20px;
 }
 
-/* line 178, ../sass/screen/_main.scss */
+/* line 180, ../sass/screen/_main.scss */
 .intro-view {
   background-color: white;
 }
 
-/* line 182, ../sass/screen/_main.scss */
+/* line 184, ../sass/screen/_main.scss */
 .transition-container {
   position: fixed;
   top: 0;
@@ -286,7 +288,7 @@ html, body {
   pointer-events: none;
 }
 
-/* line 194, ../sass/screen/_main.scss */
+/* line 196, ../sass/screen/_main.scss */
 .transition-element {
   position: absolute;
   top: 0;
@@ -299,7 +301,7 @@ html, body {
 
 /* Nexus 7 */
 @media only screen and (min-device-width: 603px) and (max-device-width: 966px) {
-  /* line 206, ../sass/screen/_main.scss */
+  /* line 208, ../sass/screen/_main.scss */
   html, body {
     font-size: 80%;
   }
@@ -598,9 +600,14 @@ section.page-view-full.in {
   transform: translateZ(0);
 }
 
+/* line 263, ../sass/screen/_pages.scss */
+.hidden-page {
+  visibility: hidden;
+}
+
 /* Nexus 7 */
 @media only screen and (min-device-width: 603px) and (max-device-width: 966px) {
-  /* line 265, ../sass/screen/_pages.scss */
+  /* line 270, ../sass/screen/_pages.scss */
   .col-right-1 {
     margin-top: 37.8vh;
   }

@@ -36,6 +36,7 @@ define([], function (require) {
             $content = $('<div id="page-content-view" class="page-content-view">'),
             $copy = $('<div id="content1">'),
             $shadows = $('<div class="page-container-shadows">'),
+            $pageSections,
             PAGES = pageObj.list,
             scrollPosition = 0,
             pageScroll,
@@ -52,6 +53,17 @@ define([], function (require) {
             distance = Math.sqrt(dx * dx + dy * dy);
 
             return distance;
+        }
+        
+        function updatePageVisibility(currentIndex) {
+            var hiddenClass = 'hidden-page';
+            for( var i = 0; i < $pageSections.length; i++ ) {
+                if( currentIndex >= i - 2 && currentIndex <= i + 2 ) {
+                    $pageSections[i].classList.remove(hiddenClass);
+                } else {
+                    $pageSections[i].classList.add(hiddenClass);
+                }
+            }
         }
 
         function handle_SCROLL_MOVE() {
@@ -75,7 +87,8 @@ define([], function (require) {
 
             //scrollPosition = Math.abs(Math.floor(pageScroll.x / window.innerWidth));
             scrollPosition = pageScroll.currPageX;
-            $currentSection = $($('.page-view')[scrollPosition]);
+            $currentSection = $($pageSections[scrollPosition]);
+            updatePageVisibility(scrollPosition);
 
             if ($currentSection.find('.js-filter-element').length == 1) {
                 fullscreenElement = new FilterElement($currentSection.find('.js-filter-element'), pageScroll);
@@ -101,7 +114,8 @@ define([], function (require) {
                 vScrollbar: false,
                 onScrollMove: handle_SCROLL_MOVE,
                 onScrollEnd: handle_SCROLL_END,
-                onScrollStart: handle_SCROLL_START
+                onScrollStart: handle_SCROLL_START,
+                transformChildren: false
             });
 
             $('#page-scroll-view').css('overflow', 'visible');
@@ -121,14 +135,17 @@ define([], function (require) {
 
                 $content.append(page.render());
                 page.show();
+                var left = page.render().position().left;
                 width = page.render().position().left + page.render().width();
+                // console.log('left', left);
             }
 
             $copy.html(pageObj.content);
             $('body').append($copy);
 
             $content.css('width', ((window.innerWidth * PAGES.length) + 100) + 'px');
-            pageScroll.refresh();
+            // $content.css('width', window.innerWidth);
+            $pageSections = $('.page-view');
         }
 
         function handle_TOUCHSTART(e) {
@@ -163,8 +180,9 @@ define([], function (require) {
         };
 
         instance.show = function () {
-            addScroll();
             addPages();
+            addScroll();
+            pageScroll.refresh();
             //parseButtons();
             //Hyphenator.run();  //performance hit
             $('.balance').balanceText();
