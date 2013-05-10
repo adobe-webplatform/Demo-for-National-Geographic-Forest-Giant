@@ -48,10 +48,13 @@ define([], function (require) {
             foldLevel = 0, // 0 = folded in half, 1 = unfolded
             SCALE_DIVIDER = 100,
             FOLD_PREPARE_TIME = 0.3, // time from init to dragging
+            DRAG_AMBIENT = 0.3, // ambient light while dragging
+            DRAG_LIGHT_Z = 0.2, // light position while dragging
             fakeDistance = 500,
-            useFakeTouches = navigator.userAgent.indexOf('Android') == -1,
+            useFakeTouches = false, //navigator.userAgent.indexOf('Android') == -1,
             basefilter = {
-                ambient: 1,
+                ambient: 0,
+                lightZ: 3, // 3 is far away enough to not change default, reduce to make darker
                 vert: filterPath + 'max-fold2.vs',
                 frag: filterPath + 'max-fold2.fs',
                 x: $el.data('filter-x'),
@@ -68,6 +71,11 @@ define([], function (require) {
         window.setD = function(d) {
             fakeDistance = d;
         };
+        
+        window.setLight = function(ambient, z) {
+            DRAG_AMBIENT = ambient;
+            DRAG_LIGHT_Z = z;
+        }
         
         function getAngle(p1, p2) {
             var angle,
@@ -112,7 +120,7 @@ define([], function (require) {
                     'translation ' + filter.x + ' ' + filter.y + ' 0, ' + 
                     'rotation ' + filter.rotateX + ' ' + filter.rotateY + ' ' + filter.rotateZ + ', ' + 
                     'scale ' + filter.scale + ', ' + 
-                    'lightPosition 0 0 0, ' + 
+                    'lightPosition 0 0 ' + filter.lightZ + ', ' + 
                     'ambientLight ' + filter.ambient + ', ' + 
 //                    'anchorIndex 10, ' + 
                     'a0 ' + filter.a0 + ', ' + 
@@ -138,7 +146,7 @@ define([], function (require) {
             $filterEl.css({
                 'webkitFilter': str
             });
-            // console.log('str', str);
+            console.log('rotateY', filter.rotateY);
         }
         
         function addContainer() {
@@ -226,6 +234,8 @@ define([], function (require) {
                 a10: 0,
                 scale: 1,
                 rotateY: 0,
+                lightZ: 3,
+                ambient: 0,
                 onComplete: openResolve
             };
             
@@ -242,6 +252,8 @@ define([], function (require) {
                 a10: basefilter.a10,
                 scale: basefilter.scale,
                 rotateY: basefilter.rotateY,
+                lightZ: basefilter.lightZ,
+                ambient: basefilter.ambient,
                 onComplete: closeResolve,
                 ease: Quart.easeOut
             };
@@ -268,6 +280,8 @@ define([], function (require) {
                     a9: basefilter.a9,
                     a10: basefilter.a10,
                     rotateY: basefilter.rotateY,
+                    lightZ: basefilter.lightZ,
+                    ambient: basefilter.ambient,
                     onComplete: closeResolve
                 };
                 for( var i = 0; i < 20; i++ ) {
@@ -286,6 +300,8 @@ define([], function (require) {
                     y: 0, 
                     scale: 1,
                     rotateY: 0,
+                    lightZ: 3,
+                    ambient: 0,
                     onComplete: openResolve
                 };
                 for( var i = 0; i < 20; i++ ) {
@@ -441,7 +457,9 @@ define([], function (require) {
                     var values = {
                         x: newPosition.x,
     //                    y: newPosition.y,
-                        ease: Linear.easeNone
+                        ease: Linear.easeNone,
+                        lightZ: DRAG_LIGHT_Z,
+                        ambient: DRAG_AMBIENT
                     };
                     
                     copyValues(unfoldValues, values);
@@ -500,7 +518,9 @@ define([], function (require) {
                     var values = {
                         x: newPosition.x,
     //                    y: newPosition.y,
-                        ease: Linear.easeNone
+                        ease: Linear.easeNone,
+                        lightZ: DRAG_LIGHT_Z,
+                        ambient: DRAG_AMBIENT
                     };
                     copyValues(unfoldValues, values);
                     
@@ -532,6 +552,7 @@ define([], function (require) {
         function handle_el_CLICK(e) {
             console.log('el click');
             scroll.disable();
+            resetFilter();
             
             dragging = true;
             animating = true;
