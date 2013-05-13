@@ -438,11 +438,13 @@ define([], function (require) {
                 e.preventDefault();
                 e.stopPropagation();
                 scroll.disable();
+                filter.rotateY = -90;
                 resetFilter();
                 showFilterElement();
                 
                 // debugger;
-                setTimeout(function() {
+                instance.nextFrame(function() {
+                    dragging = true;
                     instance.startRequestAnimationFrame();
 
                     t1 = {x: touches[0].pageX, y: touches[0].pageY};
@@ -466,11 +468,10 @@ define([], function (require) {
                 
                     // Tween to folded drag position
                     var moveTween = new TweenMax.to(filter, FOLD_PREPARE_TIME / 2, values);
-                    dragging = true;
 
                     moveTween.play();
                     rotateTween.seek(0).play();
-                }, 1000);
+                });
             }
         }
 
@@ -504,7 +505,7 @@ define([], function (require) {
 
                 showFilterElement();
                 
-                setTimeout(function() {
+                instance.nextFrame(function() {
                     instance.startRequestAnimationFrame();
 
                     t1 = {x: touches[0].pageX, y: touches[0].pageY};
@@ -529,7 +530,7 @@ define([], function (require) {
                     dragging = true;
 
                     moveTween.play();
-                }, 1000);
+                });
             }
         }
 
@@ -540,13 +541,13 @@ define([], function (require) {
             animating = true;
             showFilterElement();
             
-            setTimeout( function() {
+            instance.nextFrame( function() {
 
                 instance.startRequestAnimationFrame();
                 dragging = true;
             
                 fullTimelineBack.seek(0).play();
-            }, 500);
+            });
         }
 
         function handle_el_CLICK(e) {
@@ -558,12 +559,12 @@ define([], function (require) {
             animating = true;
             showFilterElement();
             
-            setTimeout( function() {
+            instance.nextFrame( function() {
                 instance.startRequestAnimationFrame();
                 dragging = true;
             
                 fullTimeline.seek(0).play();
-            }, 500);
+            });
         }
 
         instance.init = function () {
@@ -591,6 +592,30 @@ define([], function (require) {
             addFilterElement();
             instance.waitingRequestAnimationFrame = false;
         };
+
+        // Executes the callback when the next frame is available. That means that we
+        // need to wait for the second requestAnimationFrame callback (first one would be
+        // just before the frame would render, while the second would be after the frame is already
+        // painted on screen).
+        instance.nextFrame = function(callback) {
+            if (instance.nextFrameCallbacks) {
+                instance.nextFrameCallbacks.push(callback);
+                return;
+            }
+            instance.nextFrameCallbacks = [callback];
+            requestAnimationFrame(function() {
+                requestAnimationFrame(instance.executeNextFrameCallbacks);
+            });
+        }
+
+        instance.executeNextFrameCallbacks = function() {
+            var nextFrameCallbacks = instance.nextFrameCallbacks;
+            instance.nextFrameCallbacks = null;
+            if (!nextFrameCallbacks)
+                return;
+            for (var i = 0; i < nextFrameCallbacks.length; ++i)
+                nextFrameCallbacks[i].call(instance);
+        }
 
         instance.startRequestAnimationFrame = function () {
             if (instance.waitingRequestAnimationFrame) 
