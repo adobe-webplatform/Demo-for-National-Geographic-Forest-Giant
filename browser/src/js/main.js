@@ -216,6 +216,7 @@ require([
                 //setTimeout(function () {
                 //    $('#cover').addClass('resolve');
                 //}, 1000);
+                $('#preloader').fadeOut();
             });
 
             $('#zoomViewBtn').click(function (e) {
