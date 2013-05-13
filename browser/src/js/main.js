@@ -144,10 +144,12 @@ require([
         function minimumRequirements() {
             var meetsRequirements = true;
 
+            /*
             if (!Modernizr.regions) {
                 meetsRequirements = false;
                 console.log('regions', meetsRequirements);
             }
+            */
 
             if (!Modernizr.webgl) {
                 meetsRequirements = false;

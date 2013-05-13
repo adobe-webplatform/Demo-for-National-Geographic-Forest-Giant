@@ -102,13 +102,16 @@ define([], function (require) {
             instance.loadNext();
 
             function checkForCSSLoad() {
+                console.log('csscheck');
                 if ($('#beacon')[0].clientWidth == 42) {
+                    console.log('cssloaded');
                     SiteEvent.CSS_LOADED.dispatch();
                     instance.cssLoaded = true;
                     clearInterval(checkInterval);
                 }
             }
 
+            console.log('load');
             checkInterval = setInterval(checkForCSSLoad, 10);
 
         };
