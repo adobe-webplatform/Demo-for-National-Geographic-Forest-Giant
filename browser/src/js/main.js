@@ -213,10 +213,7 @@ require([
             });
 
             SiteEvent.COVER_LOADED.add(function () {
-                //setTimeout(function () {
-                //    $('#cover').addClass('resolve');
-                //}, 1000);
-                $('#preloader').fadeOut();
+            
             });
 
             $('#zoomViewBtn').click(function (e) {
