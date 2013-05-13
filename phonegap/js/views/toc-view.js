@@ -222,19 +222,6 @@ define([], function (require) {
                     buttons[i].render().css({'webkitTransition': 'all .5s ease-out'});
                     buttons[i].render().css({'opacity': '0', 'scale': '0.5'});
                 }
-                
-                /*
-                delay = 0;//Math.abs(selectedBtn - i) / 10;
-
-                if (i !== selectedBtn) {
-                    new TweenMax.to(buttons[i].render(), 0.6, {
-                        scale: 0.5, 
-                        opacity: 0, 
-                        ease: Quint.easeOut,
-                        delay: delay
-                    });
-                }
-                */
             }
 
             setTimeout(function () {
