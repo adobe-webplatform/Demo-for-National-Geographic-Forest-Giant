@@ -1680,10 +1680,10 @@ body.withSidebar #main {
   text-indent: 0;
   font-size: 1rem;
   line-height: 1.5;
-  -webkit-shape-inside: polygon(0 0, 60% 0, 30% 100%, 0 100%);
+  -webkit-shape-inside: polygon(0 0, 60% 0, 50% 100%, 0 100%);
 }
 
-/* line 269, ../sass/screen/_map.scss */
+/* line 270, ../sass/screen/_map.scss */
 .low-perf #popup-forest svg {
   -webkit-transition: opacity 0.4s ease-out;
   -webkit-transition-delay: 2s;
@@ -1692,7 +1692,7 @@ body.withSidebar #main {
   transition: opacity 0.4s ease-out 2s;
   opacity: 0;
 }
-/* line 274, ../sass/screen/_map.scss */
+/* line 275, ../sass/screen/_map.scss */
 .low-perf #popup-forest.opened svg {
   display: block;
   opacity: 1;
