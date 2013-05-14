@@ -37,6 +37,8 @@ define([], function (require) {
             $copy = $('<div id="content1">'),
             $shadows = $('<div class="page-container-shadows">'),
             $pageSections,
+            $topBar = $('<div class="bar top">'),
+            $bottomBar = $('<div class="bar bottom">'),
             PAGES = pageObj.list,
             scrollPosition = 0,
             pageScroll,
@@ -193,6 +195,9 @@ define([], function (require) {
             $el.append($scroll);
             $el.append($shadows);
             $scroll.append($content);
+
+            $content.append($topBar);
+            $content.append($bottomBar);
 
             $el.bind('touchstart', handle_TOUCHSTART);
             $el.bind('touchmove', handle_TOUCHMOVE);

@@ -92,9 +92,6 @@ html, body {
 /* line 19, ../sass/screen/_main.scss */
 #img-loader {
   position: absolute;
-  width: 1px;
-  height: 1px;
-  background-image: url(../assets/images/toc/article1.jpg), url(../assets/images/article1/img2_bottom.jpg), url(../assets/images/article1/video.jpg), url(../assets/images/article1/img1_mist.jpg), url(../assets/images/article1/img3_dark.jpg);
 }
 
 /* line 26, ../sass/screen/_main.scss */
@@ -106,21 +103,37 @@ html, body {
 }
 
 /* line 33, ../sass/screen/_main.scss */
+.bar {
+  position: absolute;
+  height: 5vh;
+  width: 100%;
+  background: #333;
+}
+/* line 39, ../sass/screen/_main.scss */
+.bar.top {
+  top: 0;
+}
+/* line 43, ../sass/screen/_main.scss */
+.bar.bottom {
+  bottom: 0;
+}
+
+/* line 48, ../sass/screen/_main.scss */
 .view {
   position: absolute;
 }
 
-/* line 37, ../sass/screen/_main.scss */
+/* line 52, ../sass/screen/_main.scss */
 .page-container-view {
   position: absolute;
-  padding: 5vh 10vw;
+  padding: 0 10vw;
   width: 80vw;
-  height: 90vh;
+  height: 100vh;
   background-color: #1a1a1a;
   overflow: hidden;
 }
 
-/* line 46, ../sass/screen/_main.scss */
+/* line 61, ../sass/screen/_main.scss */
 .page-container-shadows {
   position: absolute;
   top: 0;
@@ -130,13 +143,13 @@ html, body {
   pointer-events: none;
 }
 
-/* line 55, ../sass/screen/_main.scss */
+/* line 70, ../sass/screen/_main.scss */
 .page-scroll-view {
   width: 80vw;
-  height: 90vh;
+  height: 100vh;
 }
 
-/* line 60, ../sass/screen/_main.scss */
+/* line 75, ../sass/screen/_main.scss */
 .page-content-view {
   height: 100%;
   background: white;
@@ -144,39 +157,39 @@ html, body {
   padding-left: 10vw;
 }
 
-/* line 68, ../sass/screen/_main.scss */
+/* line 83, ../sass/screen/_main.scss */
 .page-view-full,
 .page-view-exact {
   margin-right: 20vw;
   margin-left: 20vw;
 }
 
-/* line 73, ../sass/screen/_main.scss */
+/* line 88, ../sass/screen/_main.scss */
 .page-view {
   position: static;
   float: left;
   width: 80vw;
-  height: 80vh;
+  height: 100vh;
 }
 
-/* line 80, ../sass/screen/_main.scss */
+/* line 95, ../sass/screen/_main.scss */
 .article-container-view {
   width: 100vw;
   height: 100vh;
 }
 
-/* line 85, ../sass/screen/_main.scss */
+/* line 100, ../sass/screen/_main.scss */
 .article-content-view {
   height: 100%;
 }
 
-/* line 89, ../sass/screen/_main.scss */
+/* line 104, ../sass/screen/_main.scss */
 .article-scroll-view {
   width: 100vw;
   height: 100vh;
 }
 
-/* line 94, ../sass/screen/_main.scss */
+/* line 109, ../sass/screen/_main.scss */
 .article-pages-scroll-view {
   bottom: 0;
   width: 100vw;
@@ -184,12 +197,12 @@ html, body {
   background: blue;
 }
 
-/* line 101, ../sass/screen/_main.scss */
+/* line 116, ../sass/screen/_main.scss */
 .article-pages-content-view {
   height: 100%;
 }
 
-/* line 105, ../sass/screen/_main.scss */
+/* line 120, ../sass/screen/_main.scss */
 .article-cover-view {
   display: inline-block;
   width: 100vw;
@@ -199,7 +212,7 @@ html, body {
   background-position: center bottom;
 }
 
-/* line 114, ../sass/screen/_main.scss */
+/* line 129, ../sass/screen/_main.scss */
 .toc-title {
   position: absolute;
   right: 0;
@@ -209,12 +222,12 @@ html, body {
   font-size: 3rem;
   font-weight: 800;
 }
-/* line 124, ../sass/screen/_main.scss */
+/* line 139, ../sass/screen/_main.scss */
 .toc-title.coming-soon {
   color: #ccc;
 }
 
-/* line 129, ../sass/screen/_main.scss */
+/* line 144, ../sass/screen/_main.scss */
 .toc-logo {
   position: absolute;
   bottom: 0;
@@ -222,12 +235,12 @@ html, body {
   margin: 1rem;
 }
 
-/* line 136, ../sass/screen/_main.scss */
+/* line 151, ../sass/screen/_main.scss */
 .toc-contents {
   -webkit-perspective: 500px;
 }
 
-/* line 140, ../sass/screen/_main.scss */
+/* line 155, ../sass/screen/_main.scss */
 .toc-view {
   height: 100vh;
   width: 100vw;
@@ -236,7 +249,7 @@ html, body {
   -webkit-overflow-scrolling: touch;
 }
 
-/* line 148, ../sass/screen/_main.scss */
+/* line 163, ../sass/screen/_main.scss */
 .toc-view-button {
   background-color: #333;
   background-size: 100%;
@@ -250,7 +263,7 @@ html, body {
   transform: translateZ(0);
 }
 
-/* line 159, ../sass/screen/_main.scss */
+/* line 174, ../sass/screen/_main.scss */
 .page-thumb-view {
   position: absolute;
   bottom: 0;
@@ -260,23 +273,23 @@ html, body {
   height: 20vh;
   z-index: 5;
 }
-/* line 168, ../sass/screen/_main.scss */
+/* line 183, ../sass/screen/_main.scss */
 .page-thumb-view .page-thumb-view-content {
   height: 20vh;
 }
-/* line 171, ../sass/screen/_main.scss */
+/* line 186, ../sass/screen/_main.scss */
 .page-thumb-view .page-thumb-view-content .page-thumb {
   height: 20vh;
   background-color: black;
   border-radius: 20px;
 }
 
-/* line 180, ../sass/screen/_main.scss */
+/* line 195, ../sass/screen/_main.scss */
 .intro-view {
   background-color: white;
 }
 
-/* line 184, ../sass/screen/_main.scss */
+/* line 199, ../sass/screen/_main.scss */
 .transition-container {
   position: fixed;
   top: 0;
@@ -288,7 +301,7 @@ html, body {
   pointer-events: none;
 }
 
-/* line 196, ../sass/screen/_main.scss */
+/* line 211, ../sass/screen/_main.scss */
 .transition-element {
   position: absolute;
   top: 0;
@@ -301,7 +314,7 @@ html, body {
 
 /* Nexus 7 */
 @media only screen and (min-device-width: 603px) and (max-device-width: 966px) {
-  /* line 208, ../sass/screen/_main.scss */
+  /* line 223, ../sass/screen/_main.scss */
   html, body {
     font-size: 80%;
   }
@@ -327,7 +340,6 @@ section.page-view-full.in {
 .page-full,
 .page-exact {
   position: relative;
-  top: -5vh;
   left: -10vw;
   width: 100vw;
   height: 95vh;
@@ -343,19 +355,20 @@ section.page-view-full.in {
 /* line 35, ../sass/screen/_pages.scss */
 .page {
   position: relative;
+  top: 5vh;
   width: 100%;
   height: 80vh;
   padding: 2em;
   box-sizing: border-box;
 }
 
-/* line 43, ../sass/screen/_pages.scss */
+/* line 44, ../sass/screen/_pages.scss */
 .region1 {
   pointer-events: none;
   -webkit-flow-from: flow1;
 }
 
-/* line 48, ../sass/screen/_pages.scss */
+/* line 49, ../sass/screen/_pages.scss */
 #content1 {
   text-align: justify;
   font-family: georgia;
@@ -365,32 +378,32 @@ section.page-view-full.in {
   -webkit-hyphens: auto;
   -webkit-flow-into: flow1;
 }
-/* line 60, ../sass/screen/_pages.scss */
+/* line 61, ../sass/screen/_pages.scss */
 #content1 p {
   margin-top: 1.7em;
   text-indent: 2em;
 }
-/* line 64, ../sass/screen/_pages.scss */
+/* line 65, ../sass/screen/_pages.scss */
 #content1 p.first {
   margin-top: 0;
   text-indent: 0;
 }
 
-/* line 71, ../sass/screen/_pages.scss */
+/* line 72, ../sass/screen/_pages.scss */
 .col-left-full {
   float: left;
   width: 47%;
   height: 80vh;
 }
 
-/* line 77, ../sass/screen/_pages.scss */
+/* line 78, ../sass/screen/_pages.scss */
 .col-right-full {
   float: right;
   width: 47%;
   height: 80vh;
 }
 
-/* line 83, ../sass/screen/_pages.scss */
+/* line 84, ../sass/screen/_pages.scss */
 .col-right-1 {
   float: right;
   margin-top: 39.63vh;
@@ -398,7 +411,7 @@ section.page-view-full.in {
   height: 42vh;
 }
 
-/* line 90, ../sass/screen/_pages.scss */
+/* line 91, ../sass/screen/_pages.scss */
 .col-right-2 {
   float: right;
   margin-top: 0px;
@@ -406,32 +419,32 @@ section.page-view-full.in {
   height: 38vh;
 }
 
-/* line 97, ../sass/screen/_pages.scss */
+/* line 98, ../sass/screen/_pages.scss */
 .col-right-3 {
   float: right;
   width: 35%;
   height: 80vh;
 }
 
-/* line 103, ../sass/screen/_pages.scss */
+/* line 104, ../sass/screen/_pages.scss */
 .col-left-1 {
   float: left;
   width: 35%;
   height: 80vh;
 }
 
-/* line 109, ../sass/screen/_pages.scss */
+/* line 110, ../sass/screen/_pages.scss */
 #article1-page-cover {
   background-image: url(../assets/images/article1/article1.jpg);
   height: 100vh;
 }
 
-/* line 116, ../sass/screen/_pages.scss */
+/* line 117, ../sass/screen/_pages.scss */
 #a1p2 .col1,
 #a1p2 .col2 {
   height: 62vh;
 }
-/* line 119, ../sass/screen/_pages.scss */
+/* line 120, ../sass/screen/_pages.scss */
 #a1p2 blockquote {
   position: relative;
   top: .2em;
@@ -443,12 +456,12 @@ section.page-view-full.in {
   height: 6rem;
 }
 
-/* line 131, ../sass/screen/_pages.scss */
+/* line 132, ../sass/screen/_pages.scss */
 #a1p7 {
   background-image: url(../assets/images/article1/img2_bottom.jpg);
   background-position: bottom center;
 }
-/* line 135, ../sass/screen/_pages.scss */
+/* line 136, ../sass/screen/_pages.scss */
 #a1p7 p {
   position: absolute;
   bottom: 0;
@@ -465,11 +478,11 @@ section.page-view-full.in {
   -webkit-shape-inside: polygon(0 40%, 30% 0, 100% 0, 100% 100%, 0 100%);
 }
 
-/* line 152, ../sass/screen/_pages.scss */
+/* line 153, ../sass/screen/_pages.scss */
 #a1p10 {
   background-color: #888;
 }
-/* line 155, ../sass/screen/_pages.scss */
+/* line 156, ../sass/screen/_pages.scss */
 #a1p10 .map-google {
   position: absolute;
   top: 0;
@@ -478,7 +491,7 @@ section.page-view-full.in {
   height: 100%;
 }
 
-/* line 164, ../sass/screen/_pages.scss */
+/* line 165, ../sass/screen/_pages.scss */
 #videoBtn {
   position: absolute;
   top: -10px;
@@ -491,7 +504,7 @@ section.page-view-full.in {
   background-repeat: no-repeat;
 }
 
-/* line 176, ../sass/screen/_pages.scss */
+/* line 177, ../sass/screen/_pages.scss */
 #logImage {
   position: absolute;
   bottom: -12vh;
@@ -504,7 +517,7 @@ section.page-view-full.in {
   background-repeat: no-repeat;
 }
 
-/* line 192, ../sass/screen/_pages.scss */
+/* line 193, ../sass/screen/_pages.scss */
 #fogImage {
   position: absolute;
   top: -10px;
@@ -527,7 +540,7 @@ section.page-view-full.in {
   transform: scale(0.93);
 }
 
-/* line 208, ../sass/screen/_pages.scss */
+/* line 209, ../sass/screen/_pages.scss */
 #darkImage {
   position: absolute;
   top: -10px;
@@ -550,13 +563,13 @@ section.page-view-full.in {
   transform: scale(0.93);
 }
 
-/* line 225, ../sass/screen/_pages.scss */
+/* line 226, ../sass/screen/_pages.scss */
 #elevation {
   width: 600px;
   height: 433px;
 }
 
-/* line 230, ../sass/screen/_pages.scss */
+/* line 231, ../sass/screen/_pages.scss */
 .drop-caps {
   float: left;
   margin-left: -0.05em;
@@ -568,7 +581,7 @@ section.page-view-full.in {
   -webkit-shape-outside: ellipse(50px, 50px, 60px, 60px);
 }
 
-/* line 241, ../sass/screen/_pages.scss */
+/* line 242, ../sass/screen/_pages.scss */
 .transition-filter {
   position: absolute;
   top: 0;
@@ -585,7 +598,7 @@ section.page-view-full.in {
   transform: translateZ(0);
 }
 
-/* line 253, ../sass/screen/_pages.scss */
+/* line 254, ../sass/screen/_pages.scss */
 .transition-transform {
   position: absolute;
   background-size: contain;
@@ -600,14 +613,14 @@ section.page-view-full.in {
   transform: translateZ(0);
 }
 
-/* line 263, ../sass/screen/_pages.scss */
+/* line 264, ../sass/screen/_pages.scss */
 .hidden-page {
   visibility: hidden;
 }
 
 /* Nexus 7 */
 @media only screen and (min-device-width: 603px) and (max-device-width: 966px) {
-  /* line 270, ../sass/screen/_pages.scss */
+  /* line 271, ../sass/screen/_pages.scss */
   .col-right-1 {
     margin-top: 37.8vh;
   }

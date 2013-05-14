@@ -18,9 +18,9 @@ html, body{
 
 #img-loader{
     position: absolute;
-    width: 1px;
-    height: 1px;
-    background-image: url(../assets/images/toc/article1.jpg), url(../assets/images/article1/img2_bottom.jpg), url(../assets/images/article1/video.jpg), url(../assets/images/article1/img1_mist.jpg), url(../assets/images/article1/img3_dark.jpg);
+    // width: 1px;
+    // height: 1px;
+    // background-image: url(../assets/images/toc/article1.jpg), url(../assets/images/article1/img2_bottom.jpg), url(../assets/images/article1/video.jpg), url(../assets/images/article1/img1_mist.jpg), url(../assets/images/article1/img3_dark.jpg);
 }
 
 #main{
@@ -30,15 +30,30 @@ html, body{
     overflow: hidden;
 }
 
+.bar{
+    position: absolute;
+    height: 5vh;
+    width: 100%;
+    background: #333;
+
+    &.top{
+        top: 0;
+    }
+
+    &.bottom{
+        bottom: 0;
+    }
+}
+
 .view{
     position: absolute;
 }
 
 .page-container-view{
     position: absolute;
-    padding: 5vh 10vw;
+    padding: 0 10vw;
     width: 80vw;
-    height: 90vh;
+    height: 100vh;
     background-color: #1a1a1a;
     overflow: hidden;
 }
@@ -54,7 +69,7 @@ html, body{
 
 .page-scroll-view{
     width: 80vw;
-    height: 90vh;
+    height: 100vh;
 }
 
 .page-content-view{
@@ -74,7 +89,7 @@ html, body{
     position: static;
     float: left;
     width: 80vw;
-    height: 80vh;
+    height: 100vh;
 }
 
 .article-container-view{
