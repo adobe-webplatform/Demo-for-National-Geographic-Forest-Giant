@@ -220,7 +220,6 @@ define([], function (require) {
 
                 if (i !== selectedBtn) {
                     buttons[i].render().css({'webkitTransition': 'all .3s ease-out'});
-                    //buttons[i].render().css({'opacity': '0'});
                     new TweenMax.set(buttons[i].render(), {opacity: 0, scale: 0.5});
                 }
             }

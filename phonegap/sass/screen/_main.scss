@@ -18,9 +18,9 @@ html, body{
 
 #img-loader{
     position: absolute;
-    width: 1px;
-    height: 1px;
-    background-image: url(../assets/images/toc/article1.jpg), url(../assets/images/article1/img2_bottom.jpg), url(../assets/images/article1/video.jpg), url(../assets/images/article1/img1_mist.jpg), url(../assets/images/article1/img3_dark.jpg);
+    // width: 1px;
+    // height: 1px;
+    // background-image: url(../assets/images/toc/article1.jpg), url(../assets/images/article1/img2_bottom.jpg), url(../assets/images/article1/video.jpg), url(../assets/images/article1/img1_mist.jpg), url(../assets/images/article1/img3_dark.jpg);
 }
 
 #main{
@@ -34,7 +34,7 @@ html, body{
     position: absolute;
     height: 5vh;
     width: 100%;
-    background: black;
+    background: #333;
 
     &.top{
         top: 0;

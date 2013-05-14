@@ -92,9 +92,6 @@ html, body {
 /* line 19, ../sass/screen/_main.scss */
 #img-loader {
   position: absolute;
-  width: 1px;
-  height: 1px;
-  background-image: url(../assets/images/toc/article1.jpg), url(../assets/images/article1/img2_bottom.jpg), url(../assets/images/article1/video.jpg), url(../assets/images/article1/img1_mist.jpg), url(../assets/images/article1/img3_dark.jpg);
 }
 
 /* line 26, ../sass/screen/_main.scss */
@@ -110,7 +107,7 @@ html, body {
   position: absolute;
   height: 5vh;
   width: 100%;
-  background: black;
+  background: #333;
 }
 /* line 39, ../sass/screen/_main.scss */
 .bar.top {
