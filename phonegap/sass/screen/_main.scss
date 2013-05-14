@@ -30,6 +30,21 @@ html, body{
     overflow: hidden;
 }
 
+.bar{
+    position: absolute;
+    height: 5vh;
+    width: 100%;
+    background: black;
+
+    &.top{
+        top: 0;
+    }
+
+    &.bottom{
+        bottom: 0;
+    }
+}
+
 .view{
     position: absolute;
 }
