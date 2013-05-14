@@ -50,8 +50,8 @@ define([], function (require) {
             FOLD_PREPARE_TIME = 0.3, // time from init to dragging
             DRAG_AMBIENT = 0.3, // ambient light while dragging
             DRAG_LIGHT_Z = 0.2, // light position while dragging
-            fakeDistance = 500,
-            useFakeTouches = false, //navigator.userAgent.indexOf('Android') == -1,
+            fakeDistance = 200,
+            useFakeTouches = navigator.userAgent.indexOf('Android') == -1,
             basefilter = {
                 ambient: 0,
                 lightZ: 3, // 3 is far away enough to not change default, reduce to make darker
@@ -189,6 +189,7 @@ define([], function (require) {
         function openResolve() {
 
             dragging = false;
+            animating = false;
             updateFilter(); // Needed for last frame
 
             $container.css({'pointer-events': 'auto'});
@@ -207,6 +208,7 @@ define([], function (require) {
             // fullTimeline.seek(0);
             updateFilter();
             dragging = false;
+            animating = false;
             
             $container.css({'pointer-events': 'none'});
             $resolveEl.css({opacity: 0});
@@ -271,7 +273,7 @@ define([], function (require) {
             $body.unbind('touchend');
             $body.unbind('touchmove');
             
-            if( foldLevel < 0.3 ) {
+            if( foldLevel < 0.2 ) {
                 // animate to folded
                 var values = {
                     x: basefilter.x, 
@@ -366,35 +368,21 @@ define([], function (require) {
         function getUnfoldValues(newLevel) {
             var n = 1 - newLevel;
             var angle, values = {};
-            /*
 
-                a0 5, a1 4, a2 3, a3 2, a4 1, a5 1, a6 2, a7 3, a8 4, a9 5,
-                a10 95, a11 -4, a12 -3, a13 -2, a14 -1, a15 -1, a16 -2, a17 -3, a18 -4, a19 -5
-                
-                n = 0, angle = 0
-                n = 0.33, angle = 5
-                n = 0.66, angle = 5
-                n = 1, angle = 0
-            */
             for( var i = 0; i < 20; i++ ) {
                 if( i < 5 ) {
-                    angle = 5 - i;
+                    angle = 6 - i; // 6, 5, 4, 3, 2
                 } else if( i < 9 ) {
-                    angle = i - 5;
+                    angle = i - 3; // 2, 3, 4, 5
                 } else if( i < 15 ) {
-                    angle = i - 15; // 11 = -4, 12 = -3
+                    angle = i - 14; // -7, -6, -5, -4, -3, -2
                 } else {
-                    angle = 15 - i;
+                    angle = 13 - i; // -2, -3, -4, -5, -6
                 }
                 
                 if( n < 0.25 ) {
                     angle = angle * n * 4;
                 } else if( n > .75 ) {
-                    // n = .8, angle = 5
-                    // x = 1 - n 
-                    // .25, .2, .1, 0 (*4)
-                    // 1, .8, .4, 0
-                    // new angle = (1 - .75) 
                     angle = (1 - n)  * angle * 4;
                 }
                 values['a' + i] = n * angle;
@@ -405,12 +393,6 @@ define([], function (require) {
             return values;
         }
         
-        function calculateMidpoint(t1, t2) {
-            deltaMidpoint = getMidpoint(t1, t2);
-            // deltaDistance = getDistance(t1, t2);
-            // deltaMidpoint = {x: deltaMidpoint.x - filter.x, y: deltaMidpoint.y - filter.y};
-        }
-
         function handle_el_TOUCHSTART(e) {
             var touches = e.originalEvent.touches,
                 t1, t2,
@@ -536,7 +518,9 @@ define([], function (require) {
 
         function handle_resolveEl_CLICK(e) {
             console.log('resolve click');
-
+            if(animating) {
+                return;
+            }
             dragging = true;
             animating = true;
             showFilterElement();
@@ -552,6 +536,10 @@ define([], function (require) {
 
         function handle_el_CLICK(e) {
             console.log('el click');
+            if(animating) {
+                return;
+            }
+
             scroll.disable();
             resetFilter();
             
