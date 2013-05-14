@@ -219,8 +219,9 @@ define([], function (require) {
             for (i = 0; i < buttons.length; i += 1) {
 
                 if (i !== selectedBtn) {
-                    buttons[i].render().css({'webkitTransition': 'all .5s ease-out'});
-                    buttons[i].render().css({'opacity': '0', 'scale': '0.5'});
+                    buttons[i].render().css({'webkitTransition': 'all .3s ease-out'});
+                    //buttons[i].render().css({'opacity': '0'});
+                    new TweenMax.set(buttons[i].render(), {opacity: 0, scale: 0.5});
                 }
             }
 

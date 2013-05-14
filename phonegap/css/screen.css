@@ -82,7 +82,7 @@ html, body {
   position: absolute;
   height: 100%;
   width: 100%;
-  background: blue;
+  background: white;
   -webkit-transition: opacity 0.5s linear;
   -moz-transition: opacity 0.5s linear;
   -o-transition: opacity 0.5s linear;

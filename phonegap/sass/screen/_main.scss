@@ -11,7 +11,7 @@ html, body{
     position: absolute;
     height: 100%;
     width: 100%;
-    background: blue;
+    background: white;
     @include transition(opacity .5s linear);
     //z-index: 10000;
 }
