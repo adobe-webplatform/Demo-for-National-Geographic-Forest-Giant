@@ -113,9 +113,9 @@ html, body {
 /* line 37, ../sass/screen/_main.scss */
 .page-container-view {
   position: absolute;
-  padding: 5vh 10vw;
+  padding: 0 10vw;
   width: 80vw;
-  height: 90vh;
+  height: 100vh;
   background-color: #1a1a1a;
   overflow: hidden;
 }
@@ -133,7 +133,7 @@ html, body {
 /* line 55, ../sass/screen/_main.scss */
 .page-scroll-view {
   width: 80vw;
-  height: 90vh;
+  height: 100vh;
 }
 
 /* line 60, ../sass/screen/_main.scss */
@@ -156,7 +156,7 @@ html, body {
   position: static;
   float: left;
   width: 80vw;
-  height: 80vh;
+  height: 100vh;
 }
 
 /* line 80, ../sass/screen/_main.scss */
@@ -327,7 +327,6 @@ section.page-view-full.in {
 .page-full,
 .page-exact {
   position: relative;
-  top: -5vh;
   left: -10vw;
   width: 100vw;
   height: 95vh;

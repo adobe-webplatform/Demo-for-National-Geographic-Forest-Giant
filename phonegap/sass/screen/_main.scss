@@ -36,9 +36,9 @@ html, body{
 
 .page-container-view{
     position: absolute;
-    padding: 5vh 10vw;
+    padding: 0 10vw;
     width: 80vw;
-    height: 90vh;
+    height: 100vh;
     background-color: #1a1a1a;
     overflow: hidden;
 }
@@ -54,7 +54,7 @@ html, body{
 
 .page-scroll-view{
     width: 80vw;
-    height: 90vh;
+    height: 100vh;
 }
 
 .page-content-view{
@@ -74,7 +74,7 @@ html, body{
     position: static;
     float: left;
     width: 80vw;
-    height: 80vh;
+    height: 100vh;
 }
 
 .article-container-view{
