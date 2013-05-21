@@ -104,6 +104,7 @@ body > header {
   width: 100%;
   min-height: 55px;
   background-color: black;
+  -webkit-transform: translateZ(0);
   z-index: 50;
 }
 /* line 37, ../sass/screen/_main.scss */
@@ -759,6 +760,7 @@ body.withSidebar #main {
   color: white;
   font-family: indie-flower;
   background: rgba(0, 0, 0, 0.2);
+  -webkit-transform: translateZ(0);
   z-index: 50;
   cursor: pointer;
   -webkit-transition: background 0.2s linear;
