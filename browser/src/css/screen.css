@@ -1418,16 +1418,6 @@ body.withSidebar #main {
   position: absolute;
   top: 8rem;
   left: -30px;
-  opacity: 0.2;
-  -webkit-transition: opacity 1s ease-out;
-  -webkit-transition-delay: 1s;
-  -moz-transition: opacity 1s ease-out 1s;
-  -o-transition: opacity 1s ease-out 1s;
-  transition: opacity 1s ease-out 1s;
-}
-/* line 47, ../sass/screen/_map.scss */
-#map .map-content-main figure.in {
-  opacity: 1;
 }
 /* line 53, ../sass/screen/_map.scss */
 #map a {
@@ -1486,7 +1476,6 @@ body.withSidebar #main {
 /* line 93, ../sass/screen/_map.scss */
 #map a.plus span {
   display: block;
-  opacity: 0;
   margin-left: 2.5em;
   width: 200px;
 }
@@ -1514,15 +1503,6 @@ body.withSidebar #main {
   font-size: .7rem;
   max-width: 20em;
   line-height: 1.8;
-  opacity: 0;
-  -webkit-transition: opacity 1s;
-  -moz-transition: opacity 1s;
-  -o-transition: opacity 1s;
-  transition: opacity 1s;
-}
-/* line 125, ../sass/screen/_map.scss */
-#map-dist.in {
-  opacity: 1;
 }
 
 /* line 130, ../sass/screen/_map.scss */
@@ -1533,15 +1513,6 @@ body.withSidebar #main {
   font-size: .7rem;
   max-width: 15em;
   line-height: 1.8;
-  opacity: 0;
-  -webkit-transition: opacity 1s;
-  -moz-transition: opacity 1s;
-  -o-transition: opacity 1s;
-  transition: opacity 1s;
-}
-/* line 140, ../sass/screen/_map.scss */
-#map-limit.in {
-  opacity: 1;
 }
 
 /* line 145, ../sass/screen/_map.scss */

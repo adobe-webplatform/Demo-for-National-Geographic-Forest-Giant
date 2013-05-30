@@ -41,12 +41,12 @@
 			position: absolute;
             top: 8rem;
             left: -30px;
-            opacity: 0.2;
-            @include transition(opacity 1s ease-out 1s);
+            // opacity: 0.2;
+            // @include transition(opacity 1s ease-out 1s);
 
-            &.in{
-                opacity: 1;
-            }
+            // &.in{
+            //     opacity: 1;
+            // }
 		}
 	}
 
@@ -92,7 +92,7 @@
 
             span{
                 display: block;
-                opacity: 0;
+                // opacity: 0;
                 margin-left: 2.5em;
                 width: 200px;
             }
@@ -119,12 +119,12 @@
     font-size: .7rem;
     max-width: 20em;
     line-height: 1.8;
-    opacity: 0;
-    @include transition(opacity 1s);
+    // opacity: 0;
+    // @include transition(opacity 1s);
 
-    &.in{
-        opacity: 1;
-    }
+    // &.in{
+    //     opacity: 1;
+    // }
 }
 
 #map-limit{
@@ -134,12 +134,12 @@
     font-size: .7rem;
     max-width: 15em;
     line-height: 1.8;
-    opacity: 0;
-    @include transition(opacity 1s);
+    // opacity: 0;
+    // @include transition(opacity 1s);
 
-    &.in{
-        opacity: 1;
-    }
+    // &.in{
+    //     opacity: 1;
+    // }
 }
 
 #map-plus-1{
