@@ -33,6 +33,7 @@ body > header{
     min-height: 55px;
     background-color: black;
     z-index: 50;
+    @include transform(translateZ(0));
 
     img{
         border-right: 1px solid rgba(255, 255, 255, .5);
@@ -590,6 +591,7 @@ p{
 
 body.withSidebar #main {
     -webkit-filter: opacity(75%) blur(2px);
+    @include transform(translateZ(0));
 }
 
 #comments-btn{
