@@ -155,12 +155,12 @@ require([
                 meetsRequirements = false;
                 console.log('webgl', meetsRequirements);
             }
-
+/*
             if (!Modernizr.shapes) {
                 meetsRequirements = false;
                 console.log('shapes', meetsRequirements);
             }
-
+*/
             if (!Modernizr.regionexclusion) {
                 meetsRequirements = false;
                 console.log('regionexclusion', meetsRequirements);
