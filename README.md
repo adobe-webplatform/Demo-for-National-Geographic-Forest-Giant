@@ -10,7 +10,7 @@ This demo requires Chrome Canary with the following runtime flags:
 
 * Disable accelerated 2D canvas: ENABLED
 * Enable CSS Shaders: ENABLED
-* Enable experimental WebKit features: ENABLED
+* Enable experimental Web Platform features: ENABLED
 
 To view the demo, go to the following URL:
 
