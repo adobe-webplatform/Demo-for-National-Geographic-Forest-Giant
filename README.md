@@ -6,11 +6,7 @@ Any use of National Geographic assets requires a written license. For contacts a
 BROWSER
 -------
 
-This demo requires Chrome Canary with the following runtime flags:
-
-* Disable accelerated 2D canvas: ENABLED
-* Enable CSS Shaders: ENABLED
-* Enable experimental Web Platform features: ENABLED
+This demo requires Chrome Canary with certain runtime flags enabled. To learn how to enable CSS Regions, CSS Exclusions, and Custom Filters, see [Enabling Cutting-Edge Graphical & Layout Features](http://html.adobe.com/webplatform/enable/).
 
 To view the demo, go to the following URL:
 
