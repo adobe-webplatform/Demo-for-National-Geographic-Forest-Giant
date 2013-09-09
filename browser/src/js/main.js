@@ -141,14 +141,6 @@ require([
             }
         }
 
-		function testRegionExclusion() {
-
-		}
-		
-		function testWebGL() {
-
-		}
-
         function minimumRequirements() {
             var meetsRequirements = true;
 			
@@ -157,7 +149,6 @@ require([
                 console.log('webgl', meetsRequirements);
             }
 
-			console.log('regions:', Modernizr.regions);
             if (!Modernizr.regions) {
                 meetsRequirements = false;
                 console.log('regions', meetsRequirements);
