@@ -141,22 +141,29 @@ require([
             }
         }
 
+		function testRegionExclusion() {
+
+		}
+		
+		function testWebGL() {
+
+		}
+
         function minimumRequirements() {
             var meetsRequirements = true;
 			
-			/*
             if (!Modernizr.webgl) {
                 meetsRequirements = false;
                 console.log('webgl', meetsRequirements);
             }
 
-            if (!Modernizr.regionexclusion) {
+			console.log('regions:', Modernizr.regions);
+            if (!Modernizr.regions) {
                 meetsRequirements = false;
-                console.log('regionexclusion', meetsRequirements);
+                console.log('regions', meetsRequirements);
             }
 
 			Vars.highPerformance = !Modernizr.touch;
-            */
 
             return meetsRequirements;
         }
