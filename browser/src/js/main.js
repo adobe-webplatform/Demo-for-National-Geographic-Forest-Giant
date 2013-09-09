@@ -143,33 +143,26 @@ require([
 
         function minimumRequirements() {
             var meetsRequirements = true;
-
-            /*
-            if (!Modernizr.regions) {
-                meetsRequirements = false;
-                console.log('regions', meetsRequirements);
-            }
-            */
-
+			
+			/*
             if (!Modernizr.webgl) {
                 meetsRequirements = false;
                 console.log('webgl', meetsRequirements);
             }
-/*
-            if (!Modernizr.shapes) {
-                meetsRequirements = false;
-                console.log('shapes', meetsRequirements);
-            }
-*/
+
             if (!Modernizr.regionexclusion) {
                 meetsRequirements = false;
                 console.log('regionexclusion', meetsRequirements);
             }
 
+			Vars.highPerformance = !Modernizr.touch;
+            */
+
             return meetsRequirements;
         }
 
         function init() {
+			
             var css,
                 canvasTree,
                 sectionMap,
@@ -181,7 +174,6 @@ require([
                 return;
             }
 
-            Vars.highPerformance = !Modernizr.touch;
             $('html').addClass(Vars.highPerformance ? 'high-perf' : 'low-perf');
             
             $window = $(window);

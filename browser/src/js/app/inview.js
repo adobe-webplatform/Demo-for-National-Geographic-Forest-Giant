@@ -29,8 +29,9 @@ define([], function (require) {
     function inviewAnimations() {
         $animates.each(function () {
             var $this = $(this);
-						
-            if ($this.offset().top - $('body').scrollTop() < $(window).height() - $this.height() / 2  && $this.offset().top - $('body').scrollTop() + $this.height() > 0) 
+
+            if ($this.offset().top - $(window).scrollTop() < $(window).height() - $this.height() / 2  && 
+				$this.offset().top - $(window).scrollTop() + $this.height() > 0) 
             {
                 if (!$this.hasClass('in')) {
                     $this.addClass('in');
@@ -48,7 +49,6 @@ define([], function (require) {
             var $this = $(this),
                 yPos;
 
-			//TODO:: check if in view
 			yPos = Math.round((($this.offset().top - $('body').scrollTop()) / 8) - $this.data('offset'));
             $this.css('background-position', '50% ' + yPos + 'px');
         });
