@@ -600,7 +600,7 @@ section {
   float: left;
   font-size: 9em;
   width: 120px;
-  height: 130px;
+  height: 110px;
   background-image: url(../assets/images/drop-caps.svg);
   background-repeat: no-repeat;
   -webkit-shape-outside: ellipse(50%, 50%, 50%, 43%);
