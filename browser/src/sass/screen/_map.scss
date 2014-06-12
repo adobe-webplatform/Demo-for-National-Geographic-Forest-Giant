@@ -29,24 +29,15 @@
         p{
             display: block;
             min-height: 200px;
-            margin-left: 3em;
             padding-bottom: 0;
             margin-bottom: 0;
             font-size: 1rem;
             text-indent: 0;
-            -webkit-shape-inside: polygon(30px 0, 100% 0, 100% 500px, 130px 500px, 0% 50px);
         }
 
 		figure{
-			position: absolute;
-            top: 8rem;
-            left: -30px;
-            // opacity: 0.2;
-            // @include transition(opacity 1s ease-out 1s);
-
-            // &.in{
-            //     opacity: 1;
-            // }
+                    float: left;
+                    -webkit-shape-outside: polygon(0 0, 100% 0, 100% 10%, 65% 35%, 100% 75%, 100% 100%, 0 100%);
 		}
 	}
 
@@ -144,7 +135,7 @@
 
 #map-plus-1{
     position: absolute;
-    top: 450px;
+    top: 500px;
     left: 20%;
 }
 
@@ -212,12 +203,11 @@
 
 #elevation-label2{
     bottom: 20%; 
-    left: 10%; 
+    left: 5%; 
     width: 200px; 
     height: 50px;
     line-height: 1.5;
     text-align: right;
-    -webkit-shape-inside: polygon(0 0, 100% 0, 80% 100%, 0 100%);
 }
 
 #elevation-wetter{
@@ -255,13 +245,10 @@
 
     p{
         margin-top: .7em;
-        height: 200px;
+        width: 325px;
         text-indent: 0;
-        // text-align: left;
         font-size: 1rem;
         line-height: 1.5;
-        -webkit-shape-inside: polygon(0 0, 60% 0, 50% 100%, 0 100%);
-        // -webkit-shape-inside: polygon(0 0, 60% 0, 30% 100%, 0 100%);
     }
 }
 

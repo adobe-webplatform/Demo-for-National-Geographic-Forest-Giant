@@ -39,13 +39,13 @@ define([], function (require) {
             });
 
             $('#overlay-drop').css({
-                top: ($('#content .drop-caps').offset().top - $('#content .drop-caps').height() + 10) + 'px',
+                top: ($('#content .drop-caps').offset().top - $('#content .drop-caps').height() - 5) + 'px',
                 left: $('#content .drop-caps').offset().left + 'px'
             });
 
             $('#overlay-flow').css({
-                top: ($('#region2').offset().top + $('#region2').height() - 150) + 'px',
-                left: $('#region2').offset().left + 'px'
+                top: ($('#region2-1').offset().top + $('#region2-1').height() - 100) + 'px',
+                left: $('#region2-1').offset().left + 'px'
             });
 
             $('#overlay-balance-2').css({
@@ -54,7 +54,7 @@ define([], function (require) {
             });
 
             $('#overlay-flow-2').css({
-                top: ($('#region3').offset().top + $('#region3').height() - 400) + 'px',
+                top: ($('#region3').offset().top + $('#region3').height() - 350) + 'px',
                 left: ($('#region3').offset().left + $('#region3').width() - 150) + 'px'
             });
 
@@ -99,8 +99,8 @@ define([], function (require) {
             });
 
             $('#overlay-shape-3').css({
-                top: ($('.map-content-main p').offset().top - 30) + 'px',
-                left: ($('.map-content-main').offset().left + 60) + 'px'
+                top: ($('#map-california-figure').offset().top + 25) + 'px',
+                left: ($('#map-california-figure').offset().left + 85) + 'px'
             });
 
             $('#overlay-filter-1').css({

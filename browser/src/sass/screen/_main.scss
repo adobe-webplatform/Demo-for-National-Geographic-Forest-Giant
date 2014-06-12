@@ -490,7 +490,7 @@ section{
     height: 110px;
     background-image: url(../assets/images/drop-caps.svg);
     background-repeat: no-repeat;
-    -webkit-shape-outside: ellipse(50%, 50%, 50%, 43%);
+    -webkit-shape-outside: ellipse(50% 43%);
 }
 
 .img{
@@ -785,8 +785,12 @@ body.withSidebar #main {
 }
 
 #region2{
-	height: 60ex;
-	-webkit-shape-inside: polygon(0% 0%, 65% 0%, 65% 300px, 100% 300px, 100% 100%, 0% 100%);
+	height: 39ex;
+        max-width: 375px;
+}
+
+#region2-1{
+        height: 21ex;
 }
 
 #region3{
@@ -847,6 +851,7 @@ body.withSidebar #main {
 
 #region11{
     margin-bottom: 2em;
+    margin-left: 1em;
 }
 
 #layers{
@@ -855,7 +860,7 @@ body.withSidebar #main {
 }
 
 #video-btn{
-	position: absolute;
+        position: absolute;
 	right: -300px;
 	color: #666;
 	cursor: pointer;
@@ -1009,9 +1014,14 @@ body.withSidebar #main {
         text-align: justify;
         opacity: 0;
         @include transition(opacity 1s linear 1s);
-        -webkit-shape-inside: polygon(0 50%, 50% 0, 100% 0, 100% 100%, 0 100%);
-        // -webkit-shape-inside: circle(50%, 50%, 50%);
     }
+}
+
+.shapes * #img2 .copy .shape{
+        float: left;
+        width: 100%;
+        height: 100%;
+        -webkit-shape-outside: polygon(0 50%, 50% 0, 0 0);
 }
 
 #img3{
@@ -1048,15 +1058,19 @@ body.withSidebar #main {
         line-height: 1.8;
         opacity: 0;
         @include transition(opacity 1s ease-out 1s);
-        -webkit-shape-inside: polygon(0 0, 40% 0, 80% 100%, 0 100%);
     }
 }
 
+.shapes * #img3 .copy .shape{
+    float: right;
+    width: 100%;
+    height: 100%;
+    -webkit-shape-outside: polygon(40% 0, 80% 100%, 100% 100%, 100% 0);
+}
+
 #img4{
-    position: absolute;
-    top: 200px;
-    left: -350px;
-    // @include transition(all 1s ease-out .5s);
+    float: left;
+    margin-left: -350px;
 }
 
 #figureTree{
@@ -1088,10 +1102,8 @@ body.withSidebar #main {
 }
 
 #asideBook{
-    position: absolute;
-    top: 680px;
-    right: 100%;
-    margin-right: 4em;
+    float: left;
+    margin-left: -300px;
     width: 300px;
     font-size: .8rem;
     
