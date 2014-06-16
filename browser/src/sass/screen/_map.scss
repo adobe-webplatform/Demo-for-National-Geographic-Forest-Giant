@@ -38,6 +38,7 @@
 		figure{
                     float: left;
                     -webkit-shape-outside: polygon(0 0, 100% 0, 100% 10%, 65% 35%, 100% 75%, 100% 100%, 0 100%);
+                    shape-outside: polygon(0 0, 100% 0, 100% 10%, 65% 35%, 100% 75%, 100% 100%, 0 100%);
 		}
 	}
 
