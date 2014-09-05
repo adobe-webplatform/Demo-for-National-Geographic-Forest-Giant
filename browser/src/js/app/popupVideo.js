@@ -27,6 +27,7 @@ define([], function (require) {
             canAutoPlay = true,
             videoLoaded = false,
             videoReady = false,
+            videoPlayerOpen = false,
             video,
             $video;
 
@@ -45,7 +46,9 @@ define([], function (require) {
         }
 
         function handle_video_LOAD_COMPLETE(e) {
-            playVideo();    
+            videoLoaded = true;
+            if (videoPlayerOpen)
+                playVideo();
         }
 
         function loadVideo() {
@@ -92,7 +95,9 @@ define([], function (require) {
             $('#popup-video .popup-close').bind('click', handle_close_CLICK);
             $video.css({opacity: 1, width: _width, height: _width, marginLeft: - _halfwidth, marginTop: - _halfwidth});
             
-            loadVideo();
+            videoPlayerOpen = true;
+            if (videoLoaded)
+                playVideo();
         }
 
         function handle_open_CLICK() {
@@ -212,6 +217,7 @@ define([], function (require) {
             testAutoPlay();
         
             $('#video-btn').click(handle_open_CLICK);
+            $('#video-btn').click(loadVideo);
         }
         
         instance.open = function() {
