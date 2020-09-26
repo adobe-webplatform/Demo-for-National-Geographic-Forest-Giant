@@ -165,13 +165,13 @@ require([
                 canvasTree,
                 sectionMap,
                 headerBar;
-
+/*
             if (!minimumRequirements()) {
                 $('#instructions').css('display', 'block');
                 $('#preloader').hide();
                 return;
             }
-
+*/
             $('html').addClass(Vars.highPerformance ? 'high-perf' : 'low-perf');
             
             $window = $(window);
